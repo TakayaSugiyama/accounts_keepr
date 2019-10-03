@@ -37,7 +37,7 @@ https://docs.google.com/spreadsheets/d/1RD7jpve8eY3zwVRgTJJyagzFbNL5wXDSX1_3_qzt
 https://docs.google.com/spreadsheets/d/1gPVrMuYmgLHGt5aiq6qHgiY5BT50O_FA37moAreEzUg/edit?usp=sharing
 
 ## ER図 
-![ER図](https://i.imgur.com/i6kmCvW.png)
+![ER図](https://i.imgur.com/hoMFDnh.png)
 
 ## 画面遷移図
  https://docs.google.com/spreadsheets/d/1_mOu4XsW04zrnbsH1-6BsKjR6FLK62PHsayS8m_AAuk/edit?usp=sharing
