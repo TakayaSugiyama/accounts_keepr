@@ -21,4 +21,18 @@ RSpec.feature "Users", type: :feature do
       expect(page).to have_content "は10文字以内で入力してください"
     end
   end
+
+  describe "ログイン機能" do  
+    before do   
+      FactoryBot.create(:user)
+    end
+
+    it "ログインに成功する"   do
+       visit new_user_session_path
+       fill_in "メールアドレス", with: "test1@railstest.org"
+       fill_in "パスワード", with: "testtest"
+       click_on "ログイン"
+       expect(page).to have_content "ログインしました"
+    end
+  end
 end
