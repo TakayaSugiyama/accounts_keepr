@@ -11,8 +11,10 @@
 
   <body> 
     <%= render "shared/layouts/header" %>
-    <p class="notice"><%= notice %></p>
+    <% if notice %>
+       <p class="notice"><%= notice %></p>
+    <% end %>
     <%= yield %>
   </body>
-  
+
 </html>
