@@ -51,5 +51,6 @@ https://docs.google.com/presentation/d/1JWiNAiFC7Wlq2qCXs2NqP9eQcEFjstzxWDWUH947
 - ratyrate 
 - jquery-rails 
 - aws-fog 
+- chartkick  
 
 
