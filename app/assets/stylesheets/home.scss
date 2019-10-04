@@ -1,0 +1,45 @@
+// トップ画面
+#top-wrapper {
+  background-image: url("top.jpg");
+  background-size: cover;
+  height: 500px;
+  position: relative;
+  h1{
+    padding-top:100px;
+    color: rgba(255,255,255,0.8);
+    font-size: 100px;
+  }
+}
+
+.bg{
+  position: absolute;
+  width: 100%;
+}
+
+#top-wrapper::before{
+  /* 透過した黒を重ねる */
+  background-color: rgba(0,0,0,0.3);
+  /* どの範囲に重ねるかを指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+}
+
+#about-wrapper {
+  background: #f6f6f6;
+  padding: 100px 0;
+  #about-text{
+    p{
+      color: #a4a4a4;
+    }
+  }
+}
+
+.section-title {
+  h2{
+    margin-bottom: 40px;
+  }
+}

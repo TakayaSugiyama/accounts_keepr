@@ -1,5 +1,13 @@
 {
   "name": "accouts_keeper",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "4",
+    "jquery": "^3.4.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:TakayaSugiyama/accounts_keepr.git",
+  "author": "takayasugiyama <s.takaya1027@gmail.com>",
+  "license": "MIT"
 }
