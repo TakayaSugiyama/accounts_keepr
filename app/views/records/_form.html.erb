@@ -1,0 +1,23 @@
+<div class = "col-sm-7 text-center mt-3 offset-sm-3">
+  <%= bootstrap_form_with(model: @record, local: true) do |f| %>
+    <h1>家計簿登録フォーム</h1>
+    <span class="badge badge-danger">必須</span>
+    <%= f.date_field :purchase_date, value: Date.today %>
+    <span class="badge badge-danger">必須</span>
+    <%= f.text_field :store_name, placeholder: "セブンイレブン"%>
+    <span class="badge badge-danger">必須</span>
+    <%= f.number_field :purchase_price, placeholder: 1000 %>
+    <h3>買い物メモ</h3> 
+    <div id = "memos"> 
+      <%= f.fields_for :memos do |memo| %>
+          <%= render 'memo_fields', f: memo %>
+          <div class = "links">
+            <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success"%>
+          </div>
+      <% end %>
+    </div>
+    <div class = "mt-4">
+      <%= f.submit%>
+    </div>
+  <% end %>
+</div>

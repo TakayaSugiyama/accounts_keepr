@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_053627) do
+ActiveRecord::Schema.define(version: 2019_10_07_062802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,20 +18,21 @@ ActiveRecord::Schema.define(version: 2019_10_07_053627) do
   create_table "memos", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
-    t.integer "transaction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "record_id"
+    t.index ["record_id"], name: "index_memos_on_record_id"
     t.index ["user_id"], name: "index_memos_on_user_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "records", force: :cascade do |t|
     t.string "store_name"
     t.bigint "user_id"
     t.integer "purchase_price"
     t.date "purchase_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_transactions_on_user_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,5 +49,5 @@ ActiveRecord::Schema.define(version: 2019_10_07_053627) do
   end
 
   add_foreign_key "memos", "users"
-  add_foreign_key "transactions", "users"
+  add_foreign_key "records", "users"
 end
