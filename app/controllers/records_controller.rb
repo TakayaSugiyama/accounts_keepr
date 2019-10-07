@@ -21,6 +21,7 @@ class RecordsController < ApplicationController
   def new
     @record = Record.new 
     @memo = @record.memos.build
+    @product = @record.products.build
   end
 
   def update
@@ -30,6 +31,7 @@ class RecordsController < ApplicationController
 
   def transaction_params 
     params.require(:record).permit(:store_name, :purchase_price, :purchase_date, 
-                                        memos_attributes: [:id, :content, :user_id,:memo_id, :_destroy])
+                                        memos_attributes: [:id, :content, :user_id,:memo_id, :_destroy],
+                                        products_attributes: [:id,:name,:price,:user_id,:record_id,:_destroy])
   end
 end
