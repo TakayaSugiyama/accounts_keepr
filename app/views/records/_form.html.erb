@@ -7,6 +7,7 @@
     <%= f.text_field :store_name, placeholder: "セブンイレブン"%>
     <span class="badge badge-danger">必須</span>
     <%= f.number_field :purchase_price, placeholder: 1000 %>
+    <%# 買い物メモ ここから %>
     <h3>買い物メモ</h3> 
     <div id = "memos"> 
       <%= f.fields_for :memos do |memo| %>
@@ -16,6 +17,9 @@
           </div>
       <% end %>
     </div>
+    <%# 買い物メモ ここまで %>
+    <%# 商品の記録 ここから %>
+    <%# 商品の記録 ここまで %>
     <div class = "mt-4">
       <%= f.submit%>
     </div>

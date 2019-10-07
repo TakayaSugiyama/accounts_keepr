@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_062802) do
+ActiveRecord::Schema.define(version: 2019_10_07_073423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2019_10_07_062802) do
     t.bigint "record_id"
     t.index ["record_id"], name: "index_memos_on_record_id"
     t.index ["user_id"], name: "index_memos_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.bigint "user_id"
+    t.bigint "record_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_id"], name: "index_products_on_record_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -49,5 +60,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_062802) do
   end
 
   add_foreign_key "memos", "users"
+  add_foreign_key "products", "records"
+  add_foreign_key "products", "users"
   add_foreign_key "records", "users"
 end
