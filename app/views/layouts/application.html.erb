@@ -11,9 +11,13 @@
 
   <body> 
     <%= render "shared/layouts/header" %>
+    <%# フラッシュ %>
     <% if notice %>
-       <p class="notice"><%= notice %></p>
+       <p class="alert alert-info text-center"><%= notice %></p>
+    <% elsif alert %>
+       <p class = "alert alert-danger text-center"><%= alert %></p>
     <% end %>
+    <%# フラッシュここまで %>
     <%= yield %>
   </body>
 
