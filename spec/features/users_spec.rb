@@ -22,17 +22,27 @@ RSpec.feature "Users", type: :feature do
     end
   end
 
-  describe "ログイン機能" do  
+  describe "ログイン/ログアウト機能" do  
     before do   
-      FactoryBot.create(:user)
+      user = FactoryBot.create(:user)
+      visit new_user_session_path
+      fill_in "パスワード", with: "testtest"
     end
 
     it "ログインに成功する"   do
-       visit new_user_session_path
        fill_in "メールアドレス", with: "test1@railstest.org"
-       fill_in "パスワード", with: "testtest"
-       click_on "ログイン"
+       click_button "ログイン"
        expect(page).to have_content "ログインしました"
     end
+
+    it "ログアウトに成功する" do 
+      fill_in "メールアドレス", with: "test2@railstest.org"
+       click_button "ログイン"
+      click_on "ログアウト" 
+      expect(page).to  have_content  "ログアウトしました"
+    end
+
   end
+
 end
+
