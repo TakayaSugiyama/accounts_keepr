@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name , presence: true, length: {in: 5..10}
   validates :email, presence: true,format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  has_many :transactions
 end
