@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_073423) do
+ActiveRecord::Schema.define(version: 2019_10_07_081847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: :cascade do |t|
+    t.string "image", null: false
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_images_on_product_id"
+  end
 
   create_table "memos", force: :cascade do |t|
     t.text "content"
@@ -59,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_073423) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "images", "products"
   add_foreign_key "memos", "users"
   add_foreign_key "products", "records"
   add_foreign_key "products", "users"
