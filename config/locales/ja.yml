@@ -10,6 +10,7 @@ ja:
      user: "ユーザー"
      record: "家計簿"
      product: "商品"
+     imaege: "画像"
      memo: 
     attributes:
         user:
@@ -32,6 +33,10 @@ ja:
         product: 
           name: "商品名"
           price: "値段"
+          created_at: "商品登録日時"
+          updated_at: "商品更新日時"
+        image: 
+          image: "画像"
   date:
     abbr_day_names:
     - 日
