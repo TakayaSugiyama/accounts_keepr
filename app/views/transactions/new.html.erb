@@ -1,2 +1,8 @@
-<h1>Transactions#new</h1>
-<p>Find me in app/views/transactions/new.html.erb</p>
+<div class = "col-sm-7 text-center mt-3 offset-sm-3">
+  <%= bootstrap_form_with(model: @transaction, local: true) do |f| %>
+    <h1>家計簿登録フォーム</h1>
+    <%= f.date_field :purchase_date, value: Date.today %>
+    <%= f.text_field :name, placeholder: "セブンイレブン"%>
+    <%= f.number_field :purchase_price, placeholder: 1000 %>
+  <% end %>
+</div>

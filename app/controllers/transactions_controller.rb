@@ -12,6 +12,7 @@ class TransactionsController < ApplicationController
   end
 
   def new
+    @transaction = Transaction.new
   end
 
   def update
