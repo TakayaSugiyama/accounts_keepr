@@ -4,7 +4,6 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.build(transaction_params)
-    binding.pry
     if @record.save  
       redirect_to @record, notice: "家計簿を作成しました"
     else 
