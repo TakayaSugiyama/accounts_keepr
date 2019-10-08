@@ -1,2 +1,44 @@
-<h1>Transactions#show</h1>
-<p>Find me in app/views/transactions/show.html.erb</p>
+<h1 class = "text-center mb-4 mt-4">家計簿詳細</h1>
+<div class = "offset-4 mt-4">
+  <table class="table table-striped col-md-6">
+    <tr>
+      <th><h4>お店</h4></th>
+      <td><h5><%= @record.store_name %></h5></td>
+    </tr>
+    <tr>
+      <th><h4>日付</h4></th>
+      <td><h5><%= @record.purchase_date %></h5></td>
+    </tr>
+    <tr>
+      <th><h4>購入金額</h4></th>
+      <td><h5><%= @record.purchase_price %>円</h5><td>
+    </tr>
+  </table>
+</div>
+<div class = "text-center col-md-6 offset-3 mt-4">
+  <% if @record.memos.any?%>
+    <% @record.memos.each_with_index do |memo,i| %>
+      <div class = "card">
+         <div class = "card-header">
+            <strong>メモ<%= i + 1 %></strong>
+         </div>
+         <h5><%= memo.content %></h5>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class = "text-center col-md-6 offset-3 mt-4">
+  <h2>購入した商品リスト</h2>
+  <table class="table table-hover">
+     <% if @record.products.any? %>
+        <% @record.products.each_with_index do |product, i| %>
+          <tr>
+            <th><h4><%= i + 1 %> .</th></th>
+            <td><h5><%= product.name %></h5></td>
+            <td><h5><%= product.price %>円<h5></td>
+            <td><%= link_to "レビューを書く", "#", class: "btn btn-primary"%></td>
+          </tr>
+        <% end %>
+     <% end %>
+  </table>
+</div>
