@@ -4,7 +4,6 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.build(transaction_params)
-    binding.pry
     if @record.save  
       redirect_to @record, notice: "家計簿を作成しました"
     else 
@@ -15,11 +14,11 @@ class RecordsController < ApplicationController
   def destroy
   end
 
-  def edit
+  def edit 
   end
 
   def new
-    @record = Record.new 
+    @record = current_user.records.build
     @memo = @record.memos.build
     @product = @record.products.build 
   end
