@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
-  def show
-  end
+  before_action :set_record, only: %i(show)
+  def show;end
 
   def create
     @record = current_user.records.build(transaction_params)
@@ -30,7 +30,12 @@ class RecordsController < ApplicationController
 
   def transaction_params 
     params.require(:record).permit(:store_name, :purchase_price, :purchase_date, 
-                                        memos_attributes: [:id, :content, :user_id,:memo_id, :_destroy],
-                                        products_attributes: [:id,:name,:price,:user_id,:record_id,:_destroy])
+                                    memos_attributes: [:id, :content, :user_id,:memo_id, :_destroy],
+                                    products_attributes: [:id,:name,:price,:user_id,:record_id,:_destroy])
   end
+
+  def set_record 
+    @record = Record.find(params[:id])
+  end
+
 end
