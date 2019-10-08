@@ -1,9 +1,9 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: %i(show)
+  before_action :set_record, only: %i(show edit destroy update)
   def show;end
 
   def create
-    @record = current_user.records.build(transaction_params)
+    @record = current_user.records.build(record_params)
     if @record.save  
       @record.create_label_relation(params[:record][:label_id].to_i)
       redirect_to @record, notice: "家計簿を作成しました"
@@ -12,7 +12,10 @@ class RecordsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy 
+    @record = Record.find(params[:id])
+    @record.destroy
+    redirect_to user_path(@record.user),notice: "家計簿を削除しました"
   end
 
   def edit 
@@ -25,11 +28,15 @@ class RecordsController < ApplicationController
   end
 
   def update
+    if @record.update(record_params)
+      @record.update_label_relation(params[:record][:label_id].to_i)
+      redirect_to @record, notice: "家計簿を更新しました"
+    end 
   end
 
   private 
 
-  def transaction_params 
+  def record_params 
     params.require(:record).permit(:store_name, :purchase_price, :purchase_date,:label_ids,
                                     memos_attributes: [:id, :content, :user_id,:memo_id, :_destroy],
                                     products_attributes: [:id,:name,:price,:user_id,:record_id,:_destroy])
