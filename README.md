@@ -52,5 +52,7 @@ https://docs.google.com/presentation/d/1JWiNAiFC7Wlq2qCXs2NqP9eQcEFjstzxWDWUH947
 - jquery-rails 
 - aws-fog 
 - chartkick  
+- bootstrap_form 
+- ransack 
 
 
