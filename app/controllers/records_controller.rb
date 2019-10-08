@@ -5,6 +5,7 @@ class RecordsController < ApplicationController
   def create
     @record = current_user.records.build(transaction_params)
     if @record.save  
+      @record.create_label_relation(params[:record][:label_id].to_i)
       redirect_to @record, notice: "家計簿を作成しました"
     else 
       render "records/new"
@@ -29,7 +30,7 @@ class RecordsController < ApplicationController
   private 
 
   def transaction_params 
-    params.require(:record).permit(:store_name, :purchase_price, :purchase_date, 
+    params.require(:record).permit(:store_name, :purchase_price, :purchase_date,:label_ids,
                                     memos_attributes: [:id, :content, :user_id,:memo_id, :_destroy],
                                     products_attributes: [:id,:name,:price,:user_id,:record_id,:_destroy])
   end

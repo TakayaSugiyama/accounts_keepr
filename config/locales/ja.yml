@@ -11,7 +11,8 @@ ja:
      record: "家計簿"
      product: "商品"
      imaege: "画像"
-     memo: 
+     memo: "メモ"
+     label: "分類"
     attributes:
         user:
           name: "名前"
@@ -26,6 +27,7 @@ ja:
           purchase_date: "購入日"
           created_at: "家計簿作成日時"
           updated_at: "家計簿更新日時"
+          label_id: "分類"
         memo: 
           content: "内容"
           created_at: "メモ作成日時"
@@ -37,6 +39,8 @@ ja:
           updated_at: "商品更新日時"
         image: 
           image: "画像"
+        label: 
+          name: "分類名"
   date:
     abbr_day_names:
     - 日
