@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @first_day = Date.new(today.year, today.month).strftime("%Y-%m-%d")
     @sum = @user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
     @monthly_money  =  EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
+    @records = Record.where(user_id: @user.id).order(purchase_date: :desc).slice(0..2)
   end
   
   private 

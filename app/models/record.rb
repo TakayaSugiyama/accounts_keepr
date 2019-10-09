@@ -18,7 +18,8 @@ class Record < ApplicationRecord
 
   #labelとrecordとの関係を更新する 
   def update_label_relation(id)
-    LabelRelation.update(label_id: id, record_id: self.id)
+     label_relation = LabelRelation.where(record_id: self.id).first
+     label_relation.update(label_id: id, record_id: self.id)
   end
 
 end
