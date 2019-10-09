@@ -1,4 +1,40 @@
-<div class = "col-md-4 mt-3">
-  <h3 class = "text-center">消費割合</h3>
-  <%= pie_chart  @chart  %>
+<div class = "row mt-4">
+  <div class = "col-md-4">
+    <h3 class = "text-center"><u>消費割合</u></h3>
+    <% if @chart.any? %>
+      <%= pie_chart  @chart  %>
+    <% else %>
+      <h4 class = "text-center">記録がありません</h4>
+    <% end %>
+  </div>
+  <div class = "col-md-6">
+    <h3>今月の消費  (<%= @first_day %> 〜 <%= @last_day %>)</h3>
+    <table class="table table-striped">
+      <tr>
+        <th>今月予定金額</th>
+        <td id = "estimate_field">
+           <% if @monthly_money %>
+            <%= number_with_delimiter @monthly_money.price %>円
+           <% else %>
+             設定してください.
+           <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>当月支出</th>
+        <td><%= number_with_delimiter @sum %>円</td>
+      </tr>
+    </table>
+    <% unless @monthly_money %>
+      <div class = "col-md-7" id = "set_field">
+        <h4>今月の使用予定金額を設定する</h4>
+        <%= bootstrap_form_with(model: @estimate_amount, url: set_estimate_amount_path(@user), scope: :estimate_amount,data: {confirm: "今月の予定金額は変更できませんが、よろしいですか?"}) do |f| %>
+          <%= f.number_field :price, label: "使用予定金額", required: true, id: "set_price_field"%>
+          <%= f.hidden_field :month, value: Date.today.month %>
+          <%= f.hidden_field :year, value: Date.today.year %>
+          <%= f.submit "使用予定金額を設定する" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

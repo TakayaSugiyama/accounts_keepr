@@ -13,6 +13,7 @@ ja:
      imaege: "画像"
      memo: "メモ"
      label: "分類"
+     estimate_amount: "使用予定金額"
     attributes:
         user:
           name: "名前"
@@ -41,6 +42,11 @@ ja:
           image: "画像"
         label: 
           name: "分類名"
+        estimate_amount: 
+          price: "使用予定金額"
+          month: "設定する月"
+          created_at: "設定日"
+          updated_at: "設定更新日"
   date:
     abbr_day_names:
     - 日
