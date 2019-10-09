@@ -1,4 +1,4 @@
 class Image < ApplicationRecord
-  belongs_to :product
+  belongs_to :review
   mount_uploader :image, ImageUploader
 end

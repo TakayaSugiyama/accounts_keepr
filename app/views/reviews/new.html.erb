@@ -1,2 +1,23 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<div class = "offset-3 col-md-6 mt-3">
+  <h1 class = "text-center">レビュー投稿</h1>
+  <%= bootstrap_form_with(model: @review, local: true ,url: create_review_path(@product.id))  do |f| %>
+    <div id = "product_data">
+      <h2>商品名:  <%= @product.name  %></h2>
+      <h2>価格:   <%= @product.price %>円</h2>
+      <h2>購入したお店:  <%= @product.record.store_name %></h2>
+    </div>
+    <%= f.text_field :title , required: true %>
+    <%= f.text_area :content, rows: 5 %>
+    <div id = "images">
+      <%= f.fields_for :images do |image| %>
+        <%= render "image_fields", f: image %>
+        <div class = "links">
+          <%= link_to_add_association "画像を追加する", f,:images, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+    <div class = "text-center">
+       <%= f.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -47,7 +47,7 @@
             <th><h4><%= i + 1 %> .</th></th>
             <td><h5><%= product.name %></h5></td>
             <td><h5><%= product.price %>円<h5></td>
-            <td><%= link_to "レビューを書く", "#", class: "btn btn-primary"%></td>
+            <td><%= link_to "レビューを書く", new_review_path(product.id), class: "btn btn-primary"%></td>
           </tr>
         <% end %>
      <% end %>

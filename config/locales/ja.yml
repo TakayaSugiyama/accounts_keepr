@@ -13,6 +13,7 @@ ja:
      imaege: "画像"
      memo: "メモ"
      label: "分類"
+     review: "レビュー"
      estimate_amount: "使用予定金額"
     attributes:
         user:
@@ -47,6 +48,9 @@ ja:
           month: "設定する月"
           created_at: "設定日"
           updated_at: "設定更新日"
+        review: 
+          title: "タイトル"
+          content: "レビュー"
   date:
     abbr_day_names:
     - 日
