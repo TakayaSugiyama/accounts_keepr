@@ -2,9 +2,12 @@ class EstimateAmountsController < ApplicationController
   def create 
     user = User.find(params[:user_id])
     @estimate_amount = user.estimate_amounts.build(estimate_amount_params)
-    @estimate_amount.save
-    respond_to do |format|
-      format.js {render :create}
+    respond_to do |format| 
+      if @estimate_amount.save
+         format.js {render :create} 
+      else 
+         format.js  {render :error}
+      end
     end
   end
 

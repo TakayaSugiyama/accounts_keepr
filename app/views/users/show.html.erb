@@ -1,6 +1,6 @@
 <div class = "row mt-4">
   <div class = "col-md-4">
-    <h3 class = "text-center"><u>消費割合</u></h3>
+    <h3 class = "text-center"><u>支出割合</u></h3>
     <% if @chart.any? %>
       <%= pie_chart  @chart  %>
     <% else %>
@@ -28,6 +28,7 @@
     <% unless @monthly_money %>
       <div class = "col-md-7" id = "set_field">
         <h4>今月の使用予定金額を設定する</h4>
+        <div id = "error_messages" class = "text-center text-danger"></div>
         <%= bootstrap_form_with(model: @estimate_amount, url: set_estimate_amount_path(@user), scope: :estimate_amount,data: {confirm: "今月の予定金額は変更できませんが、よろしいですか?"}) do |f| %>
           <%= f.number_field :price, label: "使用予定金額", required: true, id: "set_price_field"%>
           <%= f.hidden_field :month, value: Date.today.month %>
