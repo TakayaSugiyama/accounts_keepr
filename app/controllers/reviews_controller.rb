@@ -16,4 +16,7 @@ class ReviewsController < ApplicationController
 
   def update
   end
+
+  def index 
+  end
 end
