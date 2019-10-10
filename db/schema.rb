@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_070139) do
+ActiveRecord::Schema.define(version: 2019_10_10_011901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2019_10_09_070139) do
     t.bigint "review_id", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
     t.index ["review_id"], name: "index_images_on_review_id"
-  end
-
-  create_table "label_relations", force: :cascade do |t|
-    t.bigint "label_id", null: false
-    t.bigint "record_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["label_id"], name: "index_label_relations_on_label_id"
-    t.index ["record_id"], name: "index_label_relations_on_record_id"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -74,6 +65,8 @@ ActiveRecord::Schema.define(version: 2019_10_09_070139) do
     t.date "purchase_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "label_id", null: false
+    t.index ["label_id"], name: "index_records_on_label_id"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
@@ -103,9 +96,8 @@ ActiveRecord::Schema.define(version: 2019_10_09_070139) do
 
   add_foreign_key "estimate_amounts", "users"
   add_foreign_key "images", "products"
-  add_foreign_key "label_relations", "labels"
-  add_foreign_key "label_relations", "records"
   add_foreign_key "products", "records"
+  add_foreign_key "records", "labels"
   add_foreign_key "records", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
