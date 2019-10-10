@@ -46,7 +46,7 @@
        <% @records.each do |record|%>
           <li class="list-group-item"> 
              <span class = "mr-1"><%= record.purchase_date %></span>
-             <span><%= record.labels.first.name %></span>
+             <span><%= record.label.name %></span>
              <object class = "offset-5"><%= record.purchase_price %>円</object>
              <%= link_to "詳細", record_path(record) %>
           </li>

@@ -1,5 +1,6 @@
 class Record < ApplicationRecord
   belongs_to :user
+  belongs_to :label 
   has_many :memos ,dependent: :destroy
   has_many :products, dependent: :destroy
   has_many :labels, through: :label_relations

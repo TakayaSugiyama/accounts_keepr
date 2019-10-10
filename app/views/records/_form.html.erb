@@ -11,7 +11,7 @@
           <span class="badge badge-danger">必須</span>
           <%= f.number_field :purchase_price, placeholder: 1000 ,required: true %>
            <span class="badge badge-danger">必須</span> 
-           <%= f.collection_select :label_id,  Label.all, :id, :name, selected: edit_or_new?(@record) %>
+           <%= f.collection_select :label_id,  Label.all, :id, :name, selected: edit_or_new(@record) %>
           <hr/>
           <%# 買い物メモ ここから %>
           <u><h3>買い物メモ</h3></u>
