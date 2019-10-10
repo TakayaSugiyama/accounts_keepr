@@ -6,6 +6,9 @@
       <h2>価格:   <%= @product.price %>円</h2>
       <h2>購入したお店:  <%= @product.record.store_name %></h2>
     </div>
+    <%= f.label :rating  %>
+    <%= f.hidden_field :rating, id: :review_rating %>
+    <div id='star-rating'></div>
     <%= f.text_field :title , required: true %>
     <%= f.text_area :content, rows: 5 %>
     <div id = "images">
@@ -22,8 +25,12 @@
   <% end %>
 </div>
 
-<script> 
-  function previewFile() {
-    var file = document.getElementById('')
-  }
-</script>
+
+  <script>
+    $('#star-rating').raty({
+      path: '/assets/',
+     click: function(score, e) {
+      $("#review_rating").val(score)
+    }
+    });
+  </script>

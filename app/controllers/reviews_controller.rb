@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find(params[:id])
   end
 
   def update
@@ -38,7 +39,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params 
-    params.require(:review).permit(:title, :content, images_attributes: [:id,:image,:review_id,:_destroy])
+    params.require(:review).permit(:title, :content,:rating, images_attributes: [:id,:image,:review_id,:_destroy])
   end
 
 end
