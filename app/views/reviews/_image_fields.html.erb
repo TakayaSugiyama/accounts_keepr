@@ -1,6 +1,5 @@
 <div class = "nested-fields">
   <div class = "field">
-    <img src = "" id = "preview" height = "200">
     <%= f.file_field :image ,onchange: "previewFile()"%>
   </div>
   <%= link_to_remove_association "画像を削除する", f %>
