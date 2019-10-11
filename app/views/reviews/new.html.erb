@@ -12,7 +12,8 @@
     <div id='star-rating'></div>
     <span class="badge badge-danger">必須</span>
     <%= f.text_field :title , required: true %>
-    <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"%>
+     <span class="badge badge-danger">必須</span>
+    <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true %>
     <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
     <div id = "images">
       <%= f.fields_for :images do |image| %>
