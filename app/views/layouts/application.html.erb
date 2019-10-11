@@ -13,9 +13,9 @@
     <%= render "shared/layouts/header" %>
     <%# フラッシュ %>
     <% if notice %>
-       <p class="alert alert-info text-center"><%= notice %></p>
+       <p class="alert alert-info text-center time-limit"><%= notice %></p>
     <% elsif alert %>
-       <p class = "alert alert-danger text-center"><%= alert %></p>
+       <p class = "alert alert-danger text-center time-limit"><%= alert %></p>
     <% end %>
     <%# フラッシュここまで %>
     <%= yield %>
