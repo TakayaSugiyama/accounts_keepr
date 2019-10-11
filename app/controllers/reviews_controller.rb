@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController 
+  before_action :set_review, only: %i(show destroy)
   before_action :only_product_user, only: %i(new)
   before_action :alreadey_wirited, only: %i(new)
   def new
@@ -19,14 +20,14 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @review.destroy 
+    redirect_to user_path(@reveiw.user), notice: "削除しました"
   end
 
   def edit
   end
 
-  def show
-    @review = Review.find(params[:id])
-  end
+  def show;end
 
   def update
   end
