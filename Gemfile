@@ -16,6 +16,8 @@ gem "bootstrap_form", "~> 4.0"
 gem "cocoon"
 gem 'carrierwave', '~> 2.0' 
 gem "chartkick"
+gem 'font-awesome-sass', '~> 5.11.2'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
