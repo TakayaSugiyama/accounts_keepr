@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
   resources :reviews, except: [:new, :create]
   get "reviews/new/:product_id", to: "reviews#new", as: "new_review"
   post "reviews/:product_id", to: "reviews#create", as: "create_review"
