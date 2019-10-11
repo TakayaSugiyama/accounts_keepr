@@ -10,7 +10,8 @@
     <%= f.hidden_field :rating, id: :review_rating %>
     <div id='star-rating'></div>
     <%= f.text_field :title , required: true %>
-    <%= f.text_area :content, rows: 5 %>
+    <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"%>
+    <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
     <div id = "images">
       <%= f.fields_for :images do |image| %>
         <%= render "image_fields", f: image %>
