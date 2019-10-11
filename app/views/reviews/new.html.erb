@@ -8,7 +8,9 @@
     </div>
     <%= f.label :rating  %>
     <%= f.hidden_field :rating, id: :review_rating %>
+    <span class="badge badge-danger">必須</span>
     <div id='star-rating'></div>
+    <span class="badge badge-danger">必須</span>
     <%= f.text_field :title , required: true %>
     <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"%>
     <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
