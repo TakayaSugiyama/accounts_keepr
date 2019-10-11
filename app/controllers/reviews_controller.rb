@@ -21,13 +21,15 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy 
-    redirect_to user_path(@reveiw.user), notice: "削除しました"
+    redirect_to user_path(@review.user), notice: "削除しました"
   end
 
   def edit
   end
 
-  def show;end
+  def show 
+    @comments = @review.comments 
+  end
 
   def update
   end

@@ -13,7 +13,8 @@ ja:
      imaege: "画像"
      memo: "メモ"
      label: "分類"
-     review: "レビュー"
+     review: "レビュー" 
+     comment: "コメント"
      estimate_amount: "使用予定金額"
     attributes:
         user:
@@ -51,7 +52,12 @@ ja:
         review: 
           title: "タイトル"
           content: "レビュー"
-          rating: "評価"
+          rating: "評価" 
+        comment: 
+          content: "内容"
+          user_id: "投稿者"
+          created_at: "投稿日時"
+          updated_at: "更新日時"
   date:
     abbr_day_names:
     - 日
@@ -246,7 +252,7 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y/%m/%d %H:%M:%S"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後

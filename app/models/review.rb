@@ -2,6 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
   has_many :images
   belongs_to :product
+  has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :images, reject_if: :all_blank, allow_destroy: true 
   validates :title, presence: true, length: {in: 5..20}
   validates :content,presence: true, length: {maximum: 385}
