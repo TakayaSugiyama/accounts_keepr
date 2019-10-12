@@ -11,7 +11,8 @@ class ReviewsController < ApplicationController
   def create 
     @product = Product.find(params[:product_id])
     @review = current_user.reviews.build(review_params)
-    @review.product_id = @product.id
+    @review.product_id = @product.id 
+    @review.images.each {|image| image.product_id = @product.id }
     if @review.save 
       #binding.pry
        redirect_to @review, notice: "投稿しました" 
