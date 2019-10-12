@@ -1,3 +1,3 @@
 $(function(){
-  setTimeout("$('.time-limit').fadeOut('slow')", 100) 
+  setTimeout("$('.time-limit').fadeOut('slow')", 800) 
 })
