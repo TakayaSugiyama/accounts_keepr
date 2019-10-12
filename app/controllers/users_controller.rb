@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def get_engel 
     @sum = @user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum 
     @food_cost = @user.records.where(purchase_date: @first_day..@last_day).select{|item| item.label.name == "食費"}.map(&:purchase_price).sum
-    @engel = ((@food_cost.to_f / @sum) * 100).round
+    @engel = ((@food_cost / @sum.to_f ) * 100).round if @sum != 0
   end
 
 end
