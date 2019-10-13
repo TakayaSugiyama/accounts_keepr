@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_many :estimate_amounts
   has_many :comments
   has_many :records, dependent: :destroy
-  has_many :memos, dependent: :destroy
-  has_many :products, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :favorites 
   has_many :favorite_reviews, through: :favorites

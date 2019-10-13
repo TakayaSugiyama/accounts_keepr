@@ -12,9 +12,9 @@
   <body> 
     <%= render "shared/layouts/header" %>
     <%# フラッシュ %>
-    <% if notice %>
-       <p class="alert alert-info text-center time-limit" id = "flash-message"><%= notice %></p>
-    <% elsif alert %>
+    <% if flash[:notice] %>
+       <p class= "alert alert-info text-center time-limit" id = "flash-message"><%= notice %></p>
+    <% elsif flash[:alert] %>
        <p class = "alert alert-danger text-center time-limit"><%= alert %></p>
     <% end %>
     <%# フラッシュここまで %>

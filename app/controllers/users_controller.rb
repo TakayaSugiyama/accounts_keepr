@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show)
+  before_action :set_user, only: %i(show edit update destroy)
   before_action :set_date, only: %i(show)
   before_action :forbid_not_mypage_user, only: %i(show)
   before_action :get_data, only: %i(show)
@@ -10,8 +10,29 @@ class UsersController < ApplicationController
     @monthly_money  =  EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
     @records = Record.where(user_id: @user.id).order(purchase_date: :desc).slice(0..2)
   end
+
+  def edit;end
   
+  def update 
+    respond_to do |format| 
+      if @user.update(user_params) 
+        format.html { redirect_to @user, flash: {notice: "ユーザー情報を更新しました" } }
+      else  
+        format.js {render :error}
+      end
+    end
+  end
+
+  def destroy 
+    @user.destroy 
+    redirect_to root_path, notice: "またのご利用をお待ちしております"
+  end
+
   private 
+
+  def user_params 
+    params.require(:user).permit(:name, :email)
+  end
 
   def set_user 
     @user = User.find(params[:id])
