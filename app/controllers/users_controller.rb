@@ -18,7 +18,9 @@ class UsersController < ApplicationController
   end
 
   def set_date 
-    today = Date.today
+    today = Date.today 
+    @premonth_first_day = (Date.new(today.year, today.month) << 1).strftime("%Y-%m-%d") 
+    @premonth_last_day = (Date.new(today.year, today.month ,-1) << 1).strftime("%Y-%m-%d") 
     @last_day = Date.new(today.year, today.month, -1).strftime("%Y-%m-%d")
     @first_day = Date.new(today.year, today.month).strftime("%Y-%m-%d")
   end
@@ -49,5 +51,6 @@ class UsersController < ApplicationController
     @food_cost = @user.records.where(purchase_date: @first_day..@last_day).select{|item| item.label.name == "食費"}.map(&:purchase_price).sum
     @engel = ((@food_cost / @sum.to_f ) * 100).round if @sum != 0
   end
+
 
 end

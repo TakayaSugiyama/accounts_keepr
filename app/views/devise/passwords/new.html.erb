@@ -1,5 +1,5 @@
-<div class = "container text-center mt-4">
-    <div class = "col-sm-9">
+<div class = "container text-center mt-4 offset-3">
+    <div class = "col-7">
       <h2>パスワードをお忘れですか?</h2>
       <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

@@ -13,7 +13,7 @@
     <%= render "shared/layouts/header" %>
     <%# フラッシュ %>
     <% if notice %>
-       <p class="alert alert-info text-center time-limit"><%= notice %></p>
+       <p class="alert alert-info text-center time-limit" id = "flash-message"><%= notice %></p>
     <% elsif alert %>
        <p class = "alert alert-danger text-center time-limit"><%= alert %></p>
     <% end %>
