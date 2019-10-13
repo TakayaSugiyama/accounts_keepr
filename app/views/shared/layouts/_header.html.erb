@@ -1,6 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <%= link_to "AccountsKeeper", root_path, class: "navbar-brand", id: "application-title" %> 
-  <ul class="navbar-nav mr-auto justify-content-end">
-      <%= render header_menu_path %>
-  </ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <%= render header_menu_path %>
+    </ul>
+  </div>
 </nav>
