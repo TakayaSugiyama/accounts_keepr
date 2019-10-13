@@ -11,5 +11,18 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :favorites 
-  has_many :favorite_reviews, through: :favorites
+  has_many :favorite_reviews, through: :favorites,  source: :review
+
+  def is_like?(review) 
+    if Favorite.find_by(review_id: review.id , user_id: self.id) 
+      true  
+    else 
+      false 
+    end
+  end 
+
+  def get_favorite_id(review)
+    self.favorites.find_by(review_id: review.id)
+  end
+
 end

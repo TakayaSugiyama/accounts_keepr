@@ -22,7 +22,9 @@
     </div>
     <%# ここまでレビュー本文と画像 %>
     <div class = "card-footer">
-       <p class = "heart"><%= icon("fas", "heart") %></p>
+        <div id = "like_unlike_field">
+           <%= render "reviews/favorite_field" , review: @review %>
+        </div>
        <% if current_user %>
         <% if @review.user == current_user %>
           <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか?"} %>
