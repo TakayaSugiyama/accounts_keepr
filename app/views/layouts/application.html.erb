@@ -6,8 +6,6 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= include_gon %>
-    <%= Gon::Base.render_data %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -21,6 +19,7 @@
     <% end %>
     <%# フラッシュここまで %>
     <%= yield %>
+     <%= Gon::Base.render_data %>
   </body>
 
 </html>
