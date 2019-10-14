@@ -2,6 +2,9 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i(show destroy)
   before_action :only_product_user, only: %i(new)
   before_action :alreadey_wirited, only: %i(new)
+
+  PER = 8
+
   def new
     @product = Product.find(params[:product_id])
     @review = Review.new
@@ -38,7 +41,7 @@ class ReviewsController < ApplicationController
   end
 
   def index 
-    @reviews = Review.all.order(created_at: :desc)
+    @reviews = Review.page(params[:page]).per(PER).order(created_at: :desc)
     gon.ratings = {} 
     @reviews.each do |review| 
       gon.ratings[review.id] = review.rating

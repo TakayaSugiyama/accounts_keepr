@@ -7,8 +7,8 @@ $(document).on("turbolinks:load", function(){
         readOnly: true
       }); 
       //reload stars/stop duplication
+      $("#star_show_" +  id ).raty('reload');
     }
-    $("#star_show_" +  id ).raty('reload');
 });
 
   
