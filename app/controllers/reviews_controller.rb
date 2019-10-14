@@ -31,6 +31,7 @@ class ReviewsController < ApplicationController
 
   def show 
     @comments = @review.comments 
+    gon.rating = @review.rating.to_s
   end
 
   def update
@@ -38,6 +39,10 @@ class ReviewsController < ApplicationController
 
   def index 
     @reviews = Review.all.order(created_at: :desc)
+    gon.ratings = {}
+    @reviews.each do |review| 
+      gon.ratings[review.id.to_s] = review.rating.to_s
+    end
   end
 
   private 

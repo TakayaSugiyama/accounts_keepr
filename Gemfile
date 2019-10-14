@@ -15,9 +15,11 @@ gem 'devise'
 gem "bootstrap_form", "~> 4.0"
 gem "cocoon"
 gem 'carrierwave', '~> 2.0' 
+gem "mini_magick"
 gem "chartkick"
 gem 'font-awesome-sass', '~> 5.11.2'
-gem 'kaminari'
+gem 'kaminari' 
+gem 'gon'
 
 
 group :development, :test do

@@ -4,7 +4,7 @@
     <div class = "card-header text-center">
       商品名: <%= @review.product.name %><br/>
       タイトル:  <%= @review.title %>
-      <div id ="star_index"></div>
+      <div class ="star_show"></div>
     </div>
     <%# ここまで商品名とタイトルと評価 %>
     <%# ここからレビュー本文と画像 %>
@@ -56,11 +56,5 @@
 </div>
 
 
-<script>
-  $('#star').raty({
-    score : "<%= @review.rating %>",
-    path: '/assets/',
-    readOnly: true
-  });
-</script>
+
 
