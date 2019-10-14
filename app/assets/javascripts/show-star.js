@@ -1,9 +1,11 @@
-$(function(){
-  document.addEventListener("turbolinks:load", function(){
-    $('.star_show').raty({
-      score: gon.rating,
-      path: '/assets/',
-      readOnly: true
-    });
-  })
+document.addEventListener("turbolinks:load", function(){
+    for(id in gon.rating){
+      $("#star_show_" +  id ).raty({
+        score: gon.rating[id],
+        path: '/assets/',
+        readOnly: true
+      }); 
+    }
 });
+
+  
