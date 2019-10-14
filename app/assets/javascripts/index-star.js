@@ -6,5 +6,6 @@
         number: 5,
         readOnly: true
       }); 
+      $("#star_index_" +  key ).raty('reload');
     }
 });

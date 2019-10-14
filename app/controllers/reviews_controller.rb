@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
 
   def index 
     @reviews = Review.all.order(created_at: :desc)
-    gon.ratings = {}
+    gon.ratings = {} 
     @reviews.each do |review| 
       gon.ratings[review.id] = review.rating
     end

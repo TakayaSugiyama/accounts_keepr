@@ -6,11 +6,13 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   #サムネイル画像を作成する
   version :thumb do
-    process :resize_to_limit => [225, 215]
+    process resize_to_fill: [225, 215, "Center"]
   end  
+
+  process resize_to_fill: [640, 410, "Center"]
   
   #受け付ける画像の最大サイズ
-  process :resize_to_limit => [700, 700]
+  process :resize_to_limit => [800,800]
 
   process :convert => 'jpg'
 
