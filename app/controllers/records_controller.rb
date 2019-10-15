@@ -17,7 +17,9 @@ class RecordsController < ApplicationController
     redirect_to user_path(@record.user),notice: "家計簿を削除しました"
   end
 
-  def edit 
+  def edit
+    @product = @record.products.build if @record.products.length == 0 
+    @memo = @record.memos.build if @record.memos.length == 0
   end
 
   def new

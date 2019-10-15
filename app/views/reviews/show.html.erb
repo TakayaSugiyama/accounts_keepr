@@ -15,7 +15,7 @@
         <% if @review.images.any? %>
           <% @review.images.each do |image| %>
             <li class = "review-image">
-               <%= image_tag image.image.url , class: "img-fluid index-image"%>
+               <%= image_tag image.image.url , class: "img-fluid index-image img-thumbnail"%>
             </li>
           <% end %>
         <% else %>
