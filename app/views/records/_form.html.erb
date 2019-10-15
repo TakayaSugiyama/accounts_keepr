@@ -1,4 +1,4 @@
-<div class = "mt-3 container">
+<div class = "mt-3 container" >
    <h1 class = "text-center mb-4">家計簿登録フォーム</h1>
   <%= bootstrap_form_with(model: @record, local: true) do |f| %>
      <div class = "row">
@@ -19,7 +19,7 @@
             <%= f.fields_for :memos do |memo| %>
                 <%= render 'memo_fields', f: memo %>
                 <div class = "links mb-3">
-                  <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success"%>
+                  <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success" , id: "add-memo" %>
                 </div>
             <% end %>
           </div>
