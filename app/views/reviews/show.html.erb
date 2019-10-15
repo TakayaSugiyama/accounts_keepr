@@ -3,6 +3,7 @@
     <%# ここから商品名とタイトルと評価 %>
     <div class = "card-header text-center">
       商品名: <%= @review.product.name %><br/>
+      価格: <%= number_with_delimiter  @review.product.price %>円<br/>
       タイトル:  <%= @review.title %>
       <div id ="star_show_<%= @review.id %>"></div>
     </div>
@@ -10,13 +11,15 @@
     <%# ここからレビュー本文と画像 %>
     <div class = "card-body">
       <p><%= @review.content %></p>
-      <div class = "mt-3 text-center">
+      <ul class = "mt-3 text-center slide justify-content-center">
         <% if @review.images.any? %>
           <% @review.images.each do |image| %>
-             <%= image_tag image.image.url , class: "img-fluid index-image"%>
+            <li class = "review-image">
+               <%= image_tag image.image.url , class: "img-fluid index-image"%>
+            </li>
           <% end %>
         <% else %>
-          <%= image_tag "review.jpg" ,class: "img-fluid index-image" %>
+           <%= image_tag "review.jpg" ,class: "img-fluid index-image" %>
         <% end %>
       </div>
     </div>

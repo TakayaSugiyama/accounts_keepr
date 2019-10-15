@@ -21,3 +21,11 @@
 //= require jquery
 //= require jquery.raty
 //= require_tree .
+
+
+$(function() {
+    $('.slide').slick({
+      dots: true,
+      autoplay: true
+    });
+});
