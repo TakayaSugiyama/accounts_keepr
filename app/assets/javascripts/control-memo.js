@@ -8,7 +8,6 @@ $(function() {
     check_to_hide_or_show_memo_link();
   });
 
- 
 
   function check_to_hide_or_show_memo_link() {
     if ($('#memos .nested-fields').length == 2) {
