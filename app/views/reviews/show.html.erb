@@ -10,7 +10,7 @@
     <%# ここからレビュー本文と画像 %>
     <div class = "card-body">
       <p><%= @review.content %></p>
-      <div class = "mt-3">
+      <div class = "mt-3 text-center">
         <% if @review.images.any? %>
           <% @review.images.each do |image| %>
              <%= image_tag image.image.url , class: "img-fluid index-image"%>
