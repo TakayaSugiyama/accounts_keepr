@@ -20,3 +20,14 @@ $(function(){
     }
   })
 })
+
+$(function(){
+  let field = $("#show-password").on("change", function(){
+    let input_type = $("#user_password").prop("type");
+    if(input_type == "password"){
+      $("#user_password").attr("type", "text");
+    }else if(input_type == "text"){
+      $("#user_password").attr("type", "password");
+    }
+  })
+})

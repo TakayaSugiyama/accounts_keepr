@@ -7,6 +7,7 @@
           <%= f.email_field :email, required: true , label: "メールアドレス"%>
           <span class="badge badge-danger">必須</span>
           <%= f.password_field :password, required: true, label: "パスワード" %>
+          <input type = "checkbox" id = "show-password">パスワードを表示させる
           <%= f.check_box :remember_me, label: "記憶させる" %>
           <p><%= f.primary "ログイン" %></p>
           <p><%= render "devise/shared/links" %></p>
