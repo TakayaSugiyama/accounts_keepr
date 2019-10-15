@@ -9,8 +9,10 @@
           <%= f.email_field :email, required: true %>
           <span class="badge badge-danger">必須</span>
           <%= f.password_field :password , required: true %>
+          <%= f.check_box :password_check , label: "パスワードを表示する" %>
           <span class="badge badge-danger">必須</span>
           <%= f.password_field :password_confirmation, required: true %>
+          <%= f.check_box :password_confirmation_check, label: "パスワードを表示する" %>
           <p><%= f.primary "登録" %></p>
           <p><%= render "devise/shared/links" %></p>
       <% end %>
