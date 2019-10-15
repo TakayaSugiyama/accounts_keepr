@@ -1,5 +1,4 @@
 $(function(){
-  $(document).on("turbolinks:load", function(){
     $("#engel").on("click",function(){
       let  $account =  $("#engel_account");
       if($account.hasClass("none")){
@@ -9,4 +8,3 @@ $(function(){
       }
     });
   })
-});
