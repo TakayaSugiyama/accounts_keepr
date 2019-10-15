@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @monthly_money  =  EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
-    @records = Record.where(user_id: @user.id).order(purchase_date: :desc)
+    @records = Record.where(user_id: @user.id).order(purchase_date: :desc).page(params[:page]).per(3)
   end
 
   def edit;end
