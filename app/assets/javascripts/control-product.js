@@ -1,5 +1,4 @@
 $(function(){
-      // limits the number of categories
     $('#products').on('cocoon:after-insert', function() {
       check_to_hide_or_show_product_link()
     });

@@ -1,2 +1,28 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<div class = "offset-3 col-md-6 mt-3">
+  <h1 class = "text-center">レビュー投稿</h1>
+  <%= bootstrap_form_with(model: @review, local: true)  do |f| %>
+    <div id = "product_data">
+      <h2>商品名:  <%= @review.product.name  %></h2>
+      <h2>価格:   <%= @review.product.price %>円</h2>
+      <h2>購入したお店:  <%= @review.product.record.store_name %></h2>
+    </div>
+    <%= f.label :rating  %>
+    <%= f.hidden_field :rating, id: :review_rating %>
+    <span class="badge badge-danger">必須</span>
+    <div id='star-rating'></div>
+    <span class="badge badge-danger">必須</span>
+    <%= f.text_field :title , required: true %>
+     <span class="badge badge-danger">必須</span>
+    <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true %>
+    <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
+    <div id = "images">
+      <%= f.fields_for :images do  |image| %>
+        <%= image.file_field :image  ,class: "image_field"%>
+      <% end %>
+    </div>
+    <div class = "text-center">
+       <%= f.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+

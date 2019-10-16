@@ -18,10 +18,10 @@
           <div id = "memos"> 
             <%= f.fields_for :memos do |memo| %>
                 <%= render 'memo_fields', f: memo %>
-                <div class = "links mb-3">
-                  <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success" , id: "add-memo" %>
-                </div>
             <% end %>
+            <div class = "links mb-3">
+                  <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success" , id: "add-memo" %>
+             </div>
           </div>
           <hr/>
           <%# 買い物メモ ここまで %>
@@ -32,10 +32,10 @@
             <div id = "products"> 
               <%= f.fields_for :products do |product| %>
                   <%= render 'product_fields', f: product %>
-                  <div class = "links mb-3">
-                    <%= link_to_add_association "商品情報を追加する",f, :products , class: "btn btn-success", id: "add-product"%>
-                  </div>
               <% end %>
+              <div class = "links mb-3">
+                     <%= link_to_add_association "商品情報を追加する",f, :products , class: "btn btn-success", id: "add-product"%>
+              </div>
             </div>
             <hr/>
             <%# 商品の記録 ここまで %>

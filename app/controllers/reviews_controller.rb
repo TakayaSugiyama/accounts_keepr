@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController 
-  before_action :set_review, only: %i(show destroy)
+  before_action :set_review, only: %i(show destroy edit update)
   before_action :only_product_user, only: %i(new)
   before_action :alreadey_wirited, only: %i(new)
 
@@ -28,7 +28,8 @@ class ReviewsController < ApplicationController
     redirect_to user_path(@review.user), notice: "削除しました"
   end
 
-  def edit
+  def edit 
+  
   end
 
   def show 
@@ -37,6 +38,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    if @review.update(review_params) 
+      redirect_to @review, notice: "レビューを更新しました"
+    end
   end
 
   def index 

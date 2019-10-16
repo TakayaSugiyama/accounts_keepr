@@ -24,7 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   #これらの形式の画像しか受け付けない
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg png)
   end
 
   #ファイル名を変更する

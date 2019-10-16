@@ -3,7 +3,6 @@ class Record < ApplicationRecord
   belongs_to :label 
   has_many :memos ,dependent: :destroy
   has_many :products, dependent: :destroy
-  has_many :labels, through: :label_relations
   accepts_nested_attributes_for :memos, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :products, reject_if: :all_blank, allow_destroy: true
   #バリデーション 
