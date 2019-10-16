@@ -8,7 +8,8 @@ class ReviewsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @review = Review.new
-    @image = @review.images.build
+    3.times {@image = @review.images.build}
+    binding.pry
   end
 
   def create 
