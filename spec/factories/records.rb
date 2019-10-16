@@ -1,8 +1,11 @@
 FactoryBot.define do
-  factory :transaction do
-    store_name { "MyString" }
-    user { nil }
-    purchase_price { 1 }
-    purchase_date { "2019-10-07" }
+  factory :record do
+    sequence(:store_name) {|n| "store_#{n}"}
+    association :user
+    association :label 
+    user_id {1}
+    label_id {1}
+    purchase_price {1000}
+    purchase_date { Date.today.strftime("%Y-%m-%d") }
   end
 end

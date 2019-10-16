@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
       it "ユーザーが登録できること"  do  
         user = FactoryBot.build(:user)
         user.save 
-        User.first.name = "test_user1"
+        expect(User.first.name).to  eq "test_user1"
       end
 
       describe "名前は5文字以上10文字以下ではないと登録できない。"  do 

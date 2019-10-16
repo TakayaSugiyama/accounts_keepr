@@ -40,8 +40,8 @@ class UsersController < ApplicationController
 
   def set_date 
     today = Date.today 
-    @premonth_first_day = (Date.new(today.year, today.month) << 1).strftime("%Y-%m-%d") 
-    @premonth_last_day = (Date.new(today.year, today.month ,-1) << 1).strftime("%Y-%m-%d") 
+    # @premonth_first_day = (Date.new(today.year, today.month) << 1).strftime("%Y-%m-%d") 
+    # @premonth_last_day = (Date.new(today.year, today.month ,-1) << 1).strftime("%Y-%m-%d") 
     @last_day = Date.new(today.year, today.month, -1).strftime("%Y-%m-%d")
     @first_day = Date.new(today.year, today.month).strftime("%Y-%m-%d")
   end
