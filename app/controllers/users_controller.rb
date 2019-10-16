@@ -14,13 +14,13 @@ class UsersController < ApplicationController
   def edit;end
   
   def update 
-    respond_to do |format| 
       if @user.update(user_params) 
-        format.html { redirect_to @user, flash: {notice: "ユーザー情報を更新しました" } }
+        redirect_to  user_path(@user), notice: "ユーザー情報を更新しました"
       else  
-        format.js {render :error}
+        respond_to do |format| 
+           format.js {render :error}
+        end
       end
-    end
   end
 
   def destroy 

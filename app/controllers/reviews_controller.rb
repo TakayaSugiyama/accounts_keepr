@@ -9,7 +9,6 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     @review = Review.new
     3.times {@image = @review.images.build}
-    binding.pry
   end
 
   def create 
@@ -18,7 +17,6 @@ class ReviewsController < ApplicationController
     @review.product_id = @product.id 
     @review.images.each {|image| image.product_id = @product.id }
     if @review.save 
-      #binding.pry
        redirect_to @review, notice: "投稿しました" 
     else 
       render "reviews/new"
