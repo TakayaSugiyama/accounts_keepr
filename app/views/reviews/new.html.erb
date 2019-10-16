@@ -19,7 +19,7 @@
       <%= f.fields_for :images do |image| %>
         <%= render "image_fields", f: image %>
         <div class = "links">
-          <%= link_to_add_association "画像を追加する", f,:images, class: "btn btn-success" %>
+          <%= link_to_add_association "画像を追加する", f,:images, class: "btn btn-success" , id: "add-image"%>
         </div>
       <% end %>
     </div>
