@@ -14,6 +14,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #受け付ける画像の最大サイズ
   process :resize_to_limit => [800,800]
 
+  #すべての画像をjpg形式へ
   process :convert => 'jpg'
 
   def store_dir
@@ -24,6 +25,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   #これらの形式の画像しか受け付けない
   def extension_whitelist
     %w(jpg jpeg gif png)
+  end
+
+  #ファイル名を変更する
+  def filename
+    time = Time.now
+    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+    name.downcase
   end
 
 end
