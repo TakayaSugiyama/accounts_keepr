@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
     @review.images.map do |image| 
       gon.images.push(image.image.url)
     end
-  
+    gon.edit_rating = @review.rating
     if gon.images.length <= 3 
       count = 3 - gon.images.length 
       count.times {@review.images.build}
