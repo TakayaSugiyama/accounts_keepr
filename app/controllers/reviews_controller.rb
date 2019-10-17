@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i(show destroy edit update)
   before_action :only_product_user, only: %i(new)
   before_action :alreadey_wirited, only: %i(new)
+  before_action :only_review_user, only: %i(edit update)
 
   PER = 8
 
@@ -82,6 +83,12 @@ class ReviewsController < ApplicationController
     unless  @product.record.user == current_user 
       redirect_to @product.record.user, notice: "権限がありません"
     end
+  end
+
+  def only_review_user 
+     unless @review.user == current_user 
+       redirect_to user_path(current_user), notice: "権限がありません"
+     end
   end
 
 end
