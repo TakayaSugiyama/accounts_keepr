@@ -17,8 +17,8 @@
     <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
     <div id = "images">
       <%= f.fields_for :images do  |image|  %>
-        <img src = "" class = "none preview" width = "200px" alt = "preview image">
-        <%= image.file_field :image  ,class: "image_field"%>
+        <img src = "" class = "preview none"  width = "200px" alt = "preview image">
+        <%= image.file_field :image, class: "image_field" %>
       <% end %>
     </div>
     <div class = "text-center">
@@ -33,6 +33,6 @@
       path: '/assets/',
      click: function(score, e) {
       $("#review_rating").val(score)
-    }
+      }
     });
   </script>
