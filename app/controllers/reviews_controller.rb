@@ -31,9 +31,14 @@ class ReviewsController < ApplicationController
 
   def edit 
     gon.images = []
-     @review.images.map do |image| 
-        gon.images.push(image.image.url)
-     end
+    @review.images.map do |image| 
+      gon.images.push(image.image.url)
+    end
+  
+    if gon.images.length <= 3 
+      count = 3 - gon.images.length 
+      count.times {@review.images.build}
+    end
   end
 
   def show 
