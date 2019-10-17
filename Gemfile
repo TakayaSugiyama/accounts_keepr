@@ -19,6 +19,7 @@ gem "chartkick"
 gem 'font-awesome-sass', '~> 5.11.2'
 gem 'kaminari' 
 gem 'gon'
+gem 'csv'
 
 
 group :development, :test do
