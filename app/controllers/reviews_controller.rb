@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i(show destroy edit update)
   before_action :only_product_user, only: %i(new)
   before_action :alreadey_wirited, only: %i(new)
+  before_action :authenticate_user!, only: %i(edit update)
   before_action :only_review_user, only: %i(edit update)
 
   PER = 8
