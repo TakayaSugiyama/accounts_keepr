@@ -16,8 +16,9 @@
     <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true %>
     <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
     <div id = "images">
-      <%= f.fields_for :images do  |image| %>
-        <%= image.file_field :image  ,class: "image_field"%>
+      <%= f.fields_for :images do  |image|  %>
+        <img src = "" class = "preview none"  width = "200px" alt = "preview image">
+        <%= image.file_field :image, class: "image_field" %>
       <% end %>
     </div>
     <div class = "text-center">
@@ -25,4 +26,6 @@
     </div>
   <% end %>
 </div>
+
+
 

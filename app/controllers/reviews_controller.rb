@@ -30,7 +30,10 @@ class ReviewsController < ApplicationController
   end
 
   def edit 
-  
+    gon.images = []
+     @review.images.map do |image| 
+        gon.images.push(image.image.url)
+     end
   end
 
   def show 
