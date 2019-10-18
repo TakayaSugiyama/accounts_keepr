@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_save {self.email.downcase}
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,:omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
+         :recoverable, :rememberable, :validatable,:omniauthable, omniauth_providers: %i[google_oauth2]
   validates :name , presence: true, length: {in: 5..23}
   validates :email, presence: true,format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   has_many :estimate_amounts, dependent: :destroy
@@ -24,9 +24,10 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
+    binding.pry
     user = User.find_by(email: auth.info.email)
     unless user
-      user = User.create(name:     "user_name",
+      user = User.create(name:     auth.info.name,
                          provider: auth.provider,
                          uid:      auth.uid,
                          email: auth.info.email,

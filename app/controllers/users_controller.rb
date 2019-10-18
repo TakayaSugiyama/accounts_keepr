@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :get_data, only: %i(show)
   before_action :get_chart, only: %i(show)
   before_action :get_engel, only: %i(show)
+  before_action :only_not_google_user , only: %i(edit)
 
   def show
     @monthly_money  =  EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
@@ -45,8 +46,6 @@ class UsersController < ApplicationController
 
   def set_date 
     today = Date.today 
-    # @premonth_first_day = (Date.new(today.year, today.month) << 1).strftime("%Y-%m-%d") 
-    # @premonth_last_day = (Date.new(today.year, today.month ,-1) << 1).strftime("%Y-%m-%d") 
     @last_day = Date.new(today.year, today.month, -1).strftime("%Y-%m-%d")
     @first_day = Date.new(today.year, today.month).strftime("%Y-%m-%d")
   end
@@ -76,6 +75,12 @@ class UsersController < ApplicationController
     @sum = @user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum 
     @food_cost = @user.records.where(purchase_date: @first_day..@last_day).select{|item| item.label.name == "食費"}.map(&:purchase_price).sum 
     @engel = ((@food_cost / @sum.to_f ) * 100).round if @sum != 0
+  end
+
+  def only_not_google_user  
+    if current_user.provider  
+      redirect_to user_path(current_user),notice: "アクセスできません"
+    end
   end
 
 
