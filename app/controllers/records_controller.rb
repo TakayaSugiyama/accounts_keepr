@@ -9,8 +9,11 @@ class RecordsController < ApplicationController
     @estimate_amount = EstimateAmount.find_by(user_id: current_user.id, year: @today.year, month: @today.month)
     if @record.save  
       @sum_price = current_user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
-      if  (@estimate_amount.price  -   @sum_price) <= 2000 
-          AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
+      difference = @estimate_amount.price  -   @sum_price
+      if   difference <= 2000  && difference >= 0
+        AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
+      elsif difference < 0 
+        BeyondMailer.beyond_mail(current_user, @estimate_amount, @sum_price).deliver
       end
       redirect_to @record, notice: "家計簿を作成しました"
     else 
