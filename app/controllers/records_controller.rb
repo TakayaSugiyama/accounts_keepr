@@ -1,10 +1,17 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: %i(show edit destroy update)
+  before_action :set_date , only: %i(create)
+
   def show;end
 
   def create
     @record = current_user.records.build(record_params)
+    @estimate_amount = EstimateAmount.find_by(user_id: current_user.id, year: @today.year, month: @today.month)
     if @record.save  
+      @sum_price = current_user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
+      if  (@estimate_amount.price  -   @sum_price) <= 2000 
+          AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
+      end
       redirect_to @record, notice: "家計簿を作成しました"
     else 
       render "records/new"
@@ -44,6 +51,12 @@ class RecordsController < ApplicationController
 
   def set_record 
     @record = Record.find(params[:id])
+  end
+
+  def set_date 
+    @today = Date.today 
+    @last_day = Date.new(@today.year, @today.month, -1).strftime("%Y-%m-%d")
+    @first_day = Date.new(@today.year, @today.month).strftime("%Y-%m-%d")
   end
 
 end

@@ -24,7 +24,6 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    binding.pry
     user = User.find_by(email: auth.info.email)
     unless user
       user = User.create(name:     auth.info.name,
