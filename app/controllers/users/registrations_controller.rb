@@ -1,5 +1,5 @@
 class  Users::RegistrationsController <    Devise::RegistrationsController
-  before_action :prohibit_google_user, only: [:edit,:update,:new,:create]
+  before_action :prohibit_google_user, only: [:edit,:update,:create]
    private 
    
    def prohibit_google_user  
