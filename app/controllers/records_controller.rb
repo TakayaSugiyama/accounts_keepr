@@ -9,10 +9,10 @@ class RecordsController < ApplicationController
     @estimate_amount = EstimateAmount.find_by(user_id: current_user.id, year: @today.year, month: @today.month)
     if @record.save  
       @sum_price = current_user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
-      difference = @estimate_amount.price  -   @sum_price
-      if   difference <= 2000  && difference >= 0
+      percent = (@sum_price.to_f / @estimate_amount.price ) * 100  if @estimate_amount 
+      if    percent >= 85  && @estimate_amount &&  percent < 100
         AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
-      elsif difference < 0 
+      elsif percent >= 100 &&  @estimate_amount
         BeyondMailer.beyond_mail(current_user, @estimate_amount, @sum_price).deliver
       end
       redirect_to @record, notice: "家計簿を作成しました"
