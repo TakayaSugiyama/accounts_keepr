@@ -23,5 +23,7 @@ module AccoutsKeeper
          request_specs: false  
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+    config.assets.initialize_on_precompile = false
+
   end
 end
