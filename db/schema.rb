@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_063322) do
+ActiveRecord::Schema.define(version: 2019_10_18_060410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,9 @@ ActiveRecord::Schema.define(version: 2019_10_17_063322) do
 
   create_table "images", force: :cascade do |t|
     t.string "image", null: false
-    t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "review_id", null: false
-    t.index ["product_id"], name: "index_images_on_product_id"
     t.index ["review_id"], name: "index_images_on_review_id"
   end
 
@@ -122,7 +120,6 @@ ActiveRecord::Schema.define(version: 2019_10_17_063322) do
   add_foreign_key "estimate_amounts", "users"
   add_foreign_key "favorites", "reviews"
   add_foreign_key "favorites", "users"
-  add_foreign_key "images", "products"
   add_foreign_key "products", "records"
   add_foreign_key "records", "labels"
   add_foreign_key "records", "users"

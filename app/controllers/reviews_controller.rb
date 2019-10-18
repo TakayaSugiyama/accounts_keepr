@@ -17,8 +17,6 @@ class ReviewsController < ApplicationController
   def create 
     @product = Product.find(params[:product_id])
     @review = current_user.reviews.build(review_params)
-    @review.product_id = @product.id 
-    @review.images.each {|image| image.product_id = @product.id }
     if @review.save 
        redirect_to @review, notice: "投稿しました" 
     else 
@@ -69,7 +67,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params 
-    params.require(:review).permit(:title, :content,:rating, images_attributes: [:id,:image,:_destroy])
+    params.require(:review).permit(:title, :content,:rating,:product_id, images_attributes: [:id,:image,:_destroy])
   end
 
   def alreadey_wirited 
