@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :memo do
-    content { "MyText" }
+    content { 'MyText' }
     user { nil }
-    transaction { "" }
+    transaction { '' }
   end
 end

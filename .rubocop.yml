@@ -1,0 +1,21 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails 
+
+AllCops: 
+  Exclude: 
+    - db/schema.rb
+    - db/migrate/*
+    - db/seed.rb
+    - bin/**/*
+    - vendor/**/*
+    - config/**/*
+    - lib/**/*
+    - node_modules/**/*
+    - Rakefile
+  TargetRubyVersion: 2.6.3 
+  DisplayStyleGuide: true
+  StyleGuideBaseURL: https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md
+
+
