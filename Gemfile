@@ -34,6 +34,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
 
 group :development do
