@@ -40,7 +40,7 @@
   </div>
 </div>
 <h3 class = "text-center mt-4">コメントを作成する</h3>
-<div class = "offset-3 col-6">
+<div class = "offset-md-3 col-md-6">
   <% if current_user %>
      <%= bootstrap_form_with(model: @comment, url: review_comments_path(@review), scope: :comment) do |f| %>
         <div id = "errors" class = "success-flash">
@@ -52,7 +52,7 @@
         </div>
      <% end %>
   <% else %>
-      <h3 class = "text-center">コメントをするにはログインがひつようです。</h3>
+      <h3 class = "text-center">コメントをするにはログインが必要です。</h3>
   <% end %>
 </div>
 
