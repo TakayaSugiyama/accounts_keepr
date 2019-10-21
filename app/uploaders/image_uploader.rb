@@ -2,8 +2,12 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-
-  storage :file
+ 
+  if Rails.env.production?  
+    storage :fog 
+  elsif Rails.env.development?
+    storage :file
+  end
 
   # サムネイル画像を作成する
   version :thumb do
