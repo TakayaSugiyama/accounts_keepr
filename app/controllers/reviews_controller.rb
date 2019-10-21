@@ -67,7 +67,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :content, :rating, :product_id, images_attributes: %i[id image _destroy])
+    params.require(:review).permit(:title, :content, :rating, :product_id, images_attributes: %i[id image])
   end
 
   def alreadey_wirited
