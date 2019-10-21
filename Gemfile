@@ -44,6 +44,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'letter_opener_web'
   gem 'listen', '>= 2.7', '< 4.0'
   gem 'pry-rails'

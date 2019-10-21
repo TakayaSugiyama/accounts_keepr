@@ -61,20 +61,20 @@ class UsersController < ApplicationController
   def get_data
     @data = {}
     [*@first_day..@last_day].each do |day|
-      @data[day.to_s] = @user.records.where(purchase_date: day).map(&:purchase_price).sum
+      @data[day.to_s] = @user.records.where(purchase_date: day).pluck(:purchase_price).sum
     end
   end
 
   def get_chart
     @chart = {}
-    @labels = @user.records.where(purchase_date: @first_day..@last_day).map(&:label)
-    @labels.each do |label|
-      @chart[label.name.to_s] = label.records.where(user_id: @user.id).map(&:purchase_price).sum
+    @user_data = @user.records.where(purchase_date: @first_day..@last_day).includes(:label)
+    @user_data.each do |data|
+      @chart[data.label.name] = data.label.records.where(user_id: @user.id).pluck(:purchase_price).sum
     end
   end
 
   def get_engel
-    @sum = @user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
+    @sum = @user.records.where(purchase_date: @first_day..@last_day).pluck(:purchase_price).sum
     @food_cost = @user.records.where(purchase_date: @first_day..@last_day).select { |item| item.label.name == '食費' }.map(&:purchase_price).sum
     @engel = ((@food_cost / @sum.to_f) * 100).round if @sum != 0
   end
