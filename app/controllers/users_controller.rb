@@ -11,8 +11,8 @@ class UsersController < ApplicationController
 
   def show
     @monthly_money = EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
-    @records = Record.where(user_id: @user.id).order(purchase_date: :desc).page(params[:page]).per(3)
-
+    @records = Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).order(purchase_date: :desc).page(params[:page]).per(3)
+    @count =  Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).count
     respond_to do |format|
       format.html
       format.csv { send_data @user.records.generate_csv, filename: "records-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }

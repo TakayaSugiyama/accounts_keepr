@@ -45,11 +45,12 @@
 </div>
 <div class = "out-wrapper col-md-9 offset-md-2 mt-4 mb-4">
   <h3 class = "text-center">
-     支出一覧
+     支出一覧 
      <% if @user.records.any? %>
        <%= link_to "csvダウンロード", user_path(@user, format: :csv), class: "btn btn-sm btn-primary"%>
      <% end %>
   </h3>
+  <p class = "text-center text-info">今月は<%= @count %>件の記録があります</p>
   <div class = "card col-md-6 offset-md-3">
     <ul class="list-group list-group-flush">
        <% @records.each do |record|%>
