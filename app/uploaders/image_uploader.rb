@@ -34,7 +34,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # ファイル名を変更する
   def filename
     time = Time.zone.now
-    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+    name = time.strftime('%Y%m%d') + '.jpg'
     name.downcase
   end
 end
