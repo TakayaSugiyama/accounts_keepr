@@ -35,6 +35,7 @@ group :development, :test do
   gem 'hirb'
   gem 'hirb-unicode-steakknife', '~> 0.0.6'
   gem 'launchy'
+  gem 'rack-mini-profiler'
   gem 'rspec-rails'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
