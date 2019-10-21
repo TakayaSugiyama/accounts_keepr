@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :prohibit_google_user, only: %i[edit update create]
+  before_action :prohibit_google_user, only: %i[edit update]
 
   private
 

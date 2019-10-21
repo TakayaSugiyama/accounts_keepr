@@ -13,11 +13,11 @@ class RecordsController < ApplicationController
       @sum_price = current_user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
       if @estimate_amount
         percent = (@sum_price.to_f / @estimate_amount.price) * 100
-      end
-      if    percent >= 85  && @estimate_amount && percent < 100
-        AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
-      elsif percent >= 100 && @estimate_amount
-        BeyondMailer.beyond_mail(current_user, @estimate_amount, @sum_price).deliver
+        if    percent >= 85  && @estimate_amount && percent < 100
+          AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
+        elsif percent >= 100 && @estimate_amount
+          BeyondMailer.beyond_mail(current_user, @estimate_amount, @sum_price).deliver
+        end
       end
       redirect_to @record, notice: '家計簿を作成しました'
     else
