@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :memo do
-    content { 'MyText' }
-    user { nil }
-    transaction { '' }
+    sequence(:content) { |n| "test_content#{n}" }
+    association :record
   end
 end
