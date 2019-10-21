@@ -25,31 +25,29 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "ユーザー情報を変更できる" do 
-    before do 
+  describe 'ユーザー情報を変更できる' do
+    before do
       @user = FactoryBot.create(:user)
     end
 
-    it "正常に名前を更新できる" do 
-      @user.update(name: "test_user_updated")
-      expect(@user.name).to eq "test_user_updated"
+    it '正常に名前を更新できる' do
+      @user.update(name: 'test_user_updated')
+      expect(@user.name).to eq 'test_user_updated'
     end
 
-    it "正常にメールアドレスを更新できる" do 
-      @user.update(email: "aaaaa@aaaaaa.com")
-      expect(@user.email).to eq "aaaaa@aaaaaa.com"
+    it '正常にメールアドレスを更新できる' do
+      @user.update(email: 'aaaaa@aaaaaa.com')
+      expect(@user.email).to eq 'aaaaa@aaaaaa.com'
     end
 
-    it "名前の更新に失敗する" do  
-      @user.update(name: "あ" * 5) 
+    it '名前の更新に失敗する' do
+      @user.update(name: 'あ' * 5)
       expect(@user.errors[:name]).to include 'は6文字以上で入力してください'
     end
 
-    it "メールアドレスの更新に失敗する" do 
-      @user.update(email: "ffoawfjoa@fijwaifjewoigja")
-      expect(@user.errors[:email]).to include "は不正な値です"
+    it 'メールアドレスの更新に失敗する' do
+      @user.update(email: 'ffoawfjoa@fijwaifjewoigja')
+      expect(@user.errors[:email]).to include 'は不正な値です'
     end
-
   end
-
 end

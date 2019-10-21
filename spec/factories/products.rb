@@ -2,9 +2,8 @@
 
 FactoryBot.define do
   factory :product do
-    name { 'MyString' }
-    price { 1 }
-    user { nil }
-    record { nil }
+    name { 'test_product' }
+    price { 1000 }
+    association :record
   end
 end
