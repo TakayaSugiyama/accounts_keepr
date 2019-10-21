@@ -2,9 +2,10 @@
 
 FactoryBot.define do
   factory :review do
-    title { 'MyString' }
-    content { 'MyText' }
-    product { nil }
-    user { nil }
+    sequence(:title) { |n| "test_title#{n}" }
+    sequence(:content) { |n| "test_content#{n}" }
+    rating { (1..5).to_a.sample }
+    association :product
+    association :user
   end
 end

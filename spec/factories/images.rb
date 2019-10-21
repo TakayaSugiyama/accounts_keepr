@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :image do
-    image { 'MyString' }
-    product { nil }
+    image { 'review.jpg' }
+    association :review
   end
 end
