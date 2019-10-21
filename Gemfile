@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'csv'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'fog-aws'
 gem 'font-awesome-sass', '~> 5.11.2'
 gem 'gon'
 gem 'jbuilder', '~> 2.5'
@@ -25,7 +26,6 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'fog-aws'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
