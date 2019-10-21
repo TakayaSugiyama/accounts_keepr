@@ -8,11 +8,8 @@ CarrierWave.configure do |config|
       region:                'ap-northeast-1',
   }
 
-  config.fog_public     = true
-  config.fog_attributes = {'Cache-Control' => 'public, max-age=86400'}
-
   case Rails.env
     when 'production'
-      config.fog_directory = 'accountskeeper-production'
+      config.fog_directory = 'accountskeeper'
   end
 end
