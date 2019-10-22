@@ -18,9 +18,9 @@ RSpec.describe 'Users', type: :feature do
     end
 
     it '登録に失敗してエラーがでる' do
-      fill_in '名前', with: 'test_user_1'
+      fill_in '名前', with: 'あ' * 31
       click_on '登録'
-      expect(page).to have_content 'は10文字以内で入力してください'
+      expect(page).to have_content 'は30文字以内で入力してください'
     end
   end
 
