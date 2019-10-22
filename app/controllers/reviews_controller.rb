@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.page(params[:page]).per(PER).order(created_at: :desc)
+    @reviews = Review.page(params[:page]).per(PER).order(created_at: :desc).includes(:images)
     gon.ratings = {}
     @reviews.each do |review|
       gon.ratings[review.id] = review.rating
