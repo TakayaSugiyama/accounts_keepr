@@ -51,6 +51,18 @@
      <% end %>
   </h3>
   <p class = "text-center text-info">今月は<%= @count %>件の記録があります</p>
+  <div class = "text-center col-md-5 offset-md-3 mb-3">
+    <%= form_with(method: :get) do %>
+     <%= select_tag  :label_id, options_from_collection_for_select(Label.all, :id, :name),
+           {
+                  prompt: 'ラベルで絞り込みをする',
+                  class: 'form-control',
+                  onchange: 'submit(this.form);'
+           }
+      %>
+      <%= link_to "元に戻す", @user %>
+    <% end %>
+  </div>
   <div class = "card col-md-6 offset-md-3">
     <ul class="list-group list-group-flush">
        <% @records.each do |record|%>
