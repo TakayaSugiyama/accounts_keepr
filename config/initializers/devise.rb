@@ -14,7 +14,7 @@ Devise.setup do |config|
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
    
-  if Rails.env.development? 
+  if Rails.env.development? || Rails.env.test?
     config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email userinfo.profile',redirect_uri: "http://localhost:3000/users/auth/google_oauth2/callback" 
   elsif Rails.env.production? 
     config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email userinfo.profile', redirect_uri: "https://young-taiga-20455.herokuapp.com/users/auth/google_oauth2/callback"

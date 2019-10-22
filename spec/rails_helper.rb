@@ -10,6 +10,17 @@ if Rails.env.production?
 end
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+OmniAuth.configure do |config|
+  config.test_mode = true
+  config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    provider: "google_oauth2",
+    uid:      "12345",
+    info: {
+      name: "google_user",
+      email: "test@google.com"
+    }
+  })
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
