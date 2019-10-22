@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :comment do
     association :review
-    content {Faker::Quote.famous_last_words}
+    content { Faker::Quote.famous_last_words }
     association :user
   end
 end
