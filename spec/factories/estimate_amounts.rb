@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :estimate_amount do
-    user { nil }
-    month { 1 }
-    price { 1 }
+    association :user
+    month { Date.today.month }
+    year {Date.today.year}
+    price { 10000 }
   end
 end
