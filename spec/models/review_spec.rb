@@ -9,7 +9,7 @@ RSpec.describe Review, type: :model do
     end
 
     it 'レビューを作成できる' do
-      expect(described_class.first.title).to eq 'test_title1'
+      expect(described_class.first).to eq @review
     end
 
     it 'レビューを編集・更新できる' do

@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :comment do
-    review { nil }
-    content { 'MyText' }
-    user { '' }
+    association :review
+    content {Faker::Quote.famous_last_words}
+    association :user
   end
 end

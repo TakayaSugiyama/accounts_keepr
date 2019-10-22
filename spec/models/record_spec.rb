@@ -11,7 +11,7 @@ RSpec.describe Record, type: :model do
 
     it '家計簿を新規で投稿できる' do
       record = FactoryBot.create(:record, user_id: @user.id, label_id: @label.id)
-      expect(described_class.first.store_name).to eq 'store_1'
+      expect(described_class.first.store_name).to eq  record.store_name
     end
 
     it '店の名前がnilだと登録できない' do
