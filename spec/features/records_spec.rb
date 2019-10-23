@@ -57,7 +57,6 @@ RSpec.describe 'Records', type: :feature do
       fill_in "商品名",with: "this product name is updated"
       click_on "更新する" 
       expect(page).to have_content "家計簿詳細"
-      save_and_open_page
       expect(page).to have_content "家計簿を更新しました"
       expect(Record.all.count).to eq 1
     end
@@ -65,7 +64,6 @@ RSpec.describe 'Records', type: :feature do
     it "家計簿を削除する"  do  
       record = FactoryBot.create(:record, user_id: @user.id) 
       visit record_path(record)
-      save_and_open_page
       click_on "削除"
       expect(page).to have_content "家計簿を削除しました"
       expect(Record.all.count).to eq 0
