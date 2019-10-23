@@ -81,6 +81,7 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    cliver (0.3.2)
     cocoon (1.2.14)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -228,6 +229,10 @@ GEM
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
+    poltergeist (1.18.1)
+      capybara (>= 2.1, < 4)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -406,6 +411,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)
+  poltergeist
   pry-rails
   puma (~> 3.11)
   rack-mini-profiler

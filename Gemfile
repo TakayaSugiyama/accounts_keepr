@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
   gem 'spring-commands-rspec'
+  gem 'poltergeist'
 end
 
 group :development do
