@@ -1,5 +1,6 @@
 <div class = "col-md-9 container">
   <h1 class = "text-center mt-3">家計簿一覧</h1> 
+  <div class = "row">
   <div class = "col-md-6 mt-2 mb-4">
     <%= form_with(method: :get) do %>
       <%= select_tag  :label_id, options_from_collection_for_select(Label.all, :id, :name),
@@ -10,10 +11,16 @@
                   onchange: 'submit(this.form);'
             }
       %>
-    <% if params[:label_id] %>
-        <%= link_to "元に戻す", @user %>
+      <% if params[:label_id] %>
+          <%= link_to "元に戻す", @user %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class = "col-md-3 mt-2 mb-4"> 
+     <% if current_user.records.any? %>
+       <%= link_to "csvダウンロード", user_path(current_user, format: :csv), class: "btn btn-sm btn-primary"%>
+     <% end %>
+  </div>
   </div>
   <p class = "text-info text-center">ラベルをクリックすると詳細に飛びます</p>
   <div id="calendar" class = "container mt-3 mb-4"></div>
