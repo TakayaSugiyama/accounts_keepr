@@ -4,9 +4,9 @@
       <h2 class="text-center mt-4">ログイン</h2>
        <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <span class="badge badge-danger">必須</span>
-          <%= f.email_field :email, required: true , label: "メールアドレス"%>
+          <%= f.email_field :email, required: true , label: "メールアドレス", placeholder: "Your Email Address"%>
           <span class="badge badge-danger">必須</span>
-          <%= f.password_field :password, required: true, label: "パスワード" %>
+          <%= f.password_field :password, required: true, label: "パスワード", placeholder: "Your Password" %>
           <input type = "checkbox" id = "show-password">パスワードを表示させる
           <%= f.check_box :remember_me, label: "記憶させる" %>
           <p><%= f.primary "ログイン" %></p>
