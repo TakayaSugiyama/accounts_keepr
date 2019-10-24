@@ -10,11 +10,11 @@ RSpec.describe User, type: :model do
       expect(described_class.last.name).to eq user.name
     end
 
-    describe '名前は6文字以上30文字以下ではないと登録できない。' do
-      it '名前が5文字のときは登録できない' do
-        user = FactoryBot.build(:user, name: 'あ' * 5)
+    describe '名前は5文字以上30文字以下ではないと登録できない。' do
+      it '名前が4文字のときは登録できない' do
+        user = FactoryBot.build(:user, name: 'あ' * 4)
         user.valid?
-        expect(user.errors[:name]).to include 'は6文字以上で入力してください'
+        expect(user.errors[:name]).to include 'は5文字以上で入力してください'
       end
 
       it '名前が31文字のときは登録できない' do
@@ -41,8 +41,8 @@ RSpec.describe User, type: :model do
     end
 
     it '名前の更新に失敗する' do
-      @user.update(name: 'あ' * 5)
-      expect(@user.errors[:name]).to include 'は6文字以上で入力してください'
+      @user.update(name: 'あ' * 4)
+      expect(@user.errors[:name]).to include 'は5文字以上で入力してください'
     end
 
     it 'メールアドレスの更新に失敗する' do
