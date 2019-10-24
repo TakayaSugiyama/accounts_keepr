@@ -55,12 +55,14 @@
     <%= form_with(method: :get) do %>
      <%= select_tag  :label_id, options_from_collection_for_select(Label.all, :id, :name),
            {
-                  prompt: 'ラベルで絞り込みをする',
+                  prompt: '費目で絞り込みをする',
                   class: 'form-control',
                   onchange: 'submit(this.form);'
            }
       %>
-      <%= link_to "元に戻す", @user %>
+      <% if params[:label_id] %>
+         <%= link_to "元に戻す", @user %>
+      <% end %>
     <% end %>
   </div>
   <div class = "card col-md-6 offset-md-3">
