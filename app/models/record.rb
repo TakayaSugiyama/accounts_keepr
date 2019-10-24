@@ -19,11 +19,12 @@ class Record < ApplicationRecord
   end
 
   def self.generate_csv
-    CSV.generate(headers: true) do |csv|
+    CSV.generate(headers: true,encoding:Encoding::SJIS ) do |csv|
       csv << csv_attributes
       all.find_each do |record|
         csv << csv_attributes.map { |attr| record.send(attr) }
       end
     end
   end
+  
 end
