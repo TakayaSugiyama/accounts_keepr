@@ -4,11 +4,11 @@ $(document).ready(function(){
       
     },
     lang: "ja",
-    eventColor: '#D7F0F7',
+    eventColor: '#378006',
     eventSources:[
       {
         events: gon.records
       }
-    ] 
+    ]
   });
 });
