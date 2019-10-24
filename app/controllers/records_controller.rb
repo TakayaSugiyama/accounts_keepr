@@ -48,8 +48,14 @@ class RecordsController < ApplicationController
 
   def index 
      gon.records = []
-     current_user.records.includes(:label).each do |record|
-        gon.records.push({ title: "#{record.label.name}  #{record.purchase_price}円",start: record.purchase_date, url: "/records/#{record.id}"})
+      if params[:label_id]
+        current_user.records.includes(:label).where(label_id: params[:label_id]).each do |record|
+          gon.records.push({ title: "#{record.label.name}  #{record.purchase_price}円",start: record.purchase_date, url: "/records/#{record.id}"})
+        end
+     else
+        current_user.records.includes(:label).each do |record|
+            gon.records.push({ title: "#{record.label.name}  #{record.purchase_price}円",start: record.purchase_date, url: "/records/#{record.id}"})
+        end
      end
   end
 

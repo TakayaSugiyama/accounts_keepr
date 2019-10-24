@@ -1,7 +1,22 @@
 <div class = "col-md-9 container">
-<h1 class = "text-center mt-3">家計簿一覧</h1> 
-<p class = "text-info text-center">ラベルをクリックすると詳細に飛びます</p>
-<div id="calendar" class = "container mt-3 mb-4"></div>
+  <h1 class = "text-center mt-3">家計簿一覧</h1> 
+  <div class = "col-md-6 mt-2 mb-4">
+    <%= form_with(method: :get) do %>
+      <%= select_tag  :label_id, options_from_collection_for_select(Label.all, :id, :name),
+            {
+                  prompt: 'ラベルで絞り込みをする',
+                  prompt: '費目で絞り込みをする',
+                  class: 'form-control',
+                  onchange: 'submit(this.form);'
+            }
+      %>
+    <% if params[:label_id] %>
+        <%= link_to "元に戻す", @user %>
+    <% end %>
+  <% end %>
+  </div>
+  <p class = "text-info text-center">ラベルをクリックすると詳細に飛びます</p>
+  <div id="calendar" class = "container mt-3 mb-4"></div>
 </div>
 
 

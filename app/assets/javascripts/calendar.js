@@ -5,6 +5,7 @@ $(document).ready(function(){
     },
     lang: "ja",
     eventColor: '#378006',
+    contentHeight: 'auto',
     eventSources:[
       {
         events: gon.records
