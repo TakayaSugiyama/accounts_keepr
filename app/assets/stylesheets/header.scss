@@ -1,6 +1,10 @@
 // ヘッダ-
 #application-title:hover{
-  opacity: 0.5; 
-  font-size: 120%;
+  opacity: 0.8; 
   transition: all, 0.3s;
+}
+
+.header-title {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  color: yellow;
 }
