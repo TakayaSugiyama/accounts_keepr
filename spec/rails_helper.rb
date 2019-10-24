@@ -17,14 +17,14 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 OmniAuth.configure do |config|
   config.test_mode = true
-  config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-    provider: "google_oauth2",
-    uid:      "12345",
+  config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+    provider: 'google_oauth2',
+    uid: '12345',
     info: {
-      name: "google_user",
-      email: "test@google.com"
+      name: 'google_user',
+      email: 'test@google.com'
     }
-  })
+  )
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -60,8 +60,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   Capybara.javascript_driver = :poltergeist
-
-
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

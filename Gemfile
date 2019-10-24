@@ -35,6 +35,7 @@ group :development, :test do
   gem 'hirb'
   gem 'hirb-unicode-steakknife', '~> 0.0.6'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'rack-mini-profiler'
   gem 'rspec-rails'
   gem 'rubocop-performance'
@@ -42,7 +43,6 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
   gem 'spring-commands-rspec'
-  gem 'poltergeist'
 end
 
 group :development do

@@ -43,17 +43,15 @@ RSpec.describe 'Users', type: :feature do
       click_on 'ログアウト'
       expect(page).to have_content 'ログアウトしました'
     end
-
   end
 
-  describe "Googel" do 
-    it "googleでログイン認証できること"  do 
+  describe 'Googel' do
+    it 'googleでログイン認証できること' do
       google_user = FactoryBot.create(:google_user)
-      visit root_path 
-      click_on "Googleで登録/ログインする"
+      visit root_path
+      click_on 'Googleで登録/ログインする'
       sleep 1
-      expect(page).to have_content "Google アカウントによる認証に成功しました"
+      expect(page).to have_content 'Google アカウントによる認証に成功しました'
     end
   end
-
 end
