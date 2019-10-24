@@ -12,13 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @monthly_money = EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
-    if params[:label_id]
-      label = Label.find(params[:label_id])
-      @records = label.records.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).order(purchase_date: :desc).page(params[:page]).per(3)
-    else
-      @records = Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).order(purchase_date: :desc).page(params[:page]).per(3)
-    end
-
+    @records = Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).order(purchase_date: :desc).slice(0..2)
     @count = Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).count
     respond_to do |format|
       format.html

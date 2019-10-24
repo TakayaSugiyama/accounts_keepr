@@ -47,39 +47,20 @@
     <% end %>
   </div>
 </div>
-<div class = "out-wrapper col-md-9 offset-md-2 mt-4 mb-4">
-  <h3 class = "text-center">
-     支出一覧 
-     <% if @user.records.any? %>
-       <%= link_to "csvダウンロード", user_path(@user, format: :csv), class: "btn btn-sm btn-primary"%>
-     <% end %>
-  </h3>
-  <p class = "text-center text-info">今月は<%= @count %>件の記録があります</p>
-  <div class = "text-center col-md-5 offset-md-3 mb-3">
-    <%= form_with(method: :get) do %>
-     <%= select_tag  :label_id, options_from_collection_for_select(Label.all, :id, :name),
-           {
-                  prompt: '費目で絞り込みをする',
-                  class: 'form-control',
-                  onchange: 'submit(this.form);'
-           }
-      %>
-      <% if params[:label_id] %>
-         <%= link_to "元に戻す", @user %>
-      <% end %>
-    <% end %>
+<div class = "out-wrapper mt-4 mb-4 container text-center">
+  <h3>最近の支出</h3>
+  <%= link_to "一覧を見る",records_path %>
   </div>
-  <div class = "card col-md-6 offset-md-3">
+  <div class = "card col-md-6 text-center offset-md-3 mb-4">
     <ul class="list-group list-group-flush">
        <% @records.each do |record|%>
           <li class="list-group-item"> 
              <span class = "mr-1"><%= record.purchase_date %></span>
              <span><%= record.label.name %></span>
-             <object class = "offset-5"><%= record.purchase_price %>円</object>
+             <object><%= record.purchase_price %>円</object>
              <%= link_to "詳細", record_path(record) %>
           </li>
        <% end %>
-       <%= paginate @records %>
     </ul>
   </div>
 </div>
