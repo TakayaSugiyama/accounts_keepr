@@ -20,7 +20,12 @@
 //= require cocoon
 //= require jquery
 //= require jquery.raty
-//= require_tree .
+//= require moment 
+//= require fullcalendar
+//= require fullcalendar/lang/ja
+//= require_tree . 
+
+$('#calender').fullCalendar({});
 
 
 $(function() {

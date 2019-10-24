@@ -46,6 +46,14 @@ class RecordsController < ApplicationController
     redirect_to @record, notice: '家計簿を更新しました' if @record.update(record_params)
   end
 
+  def index 
+     @records = current_user.records
+     gon.records = []
+     @records.select(:label_id, :purchase_date,:purchase_price).each do |record|
+        gon.records.push({title: "#{record.label.name}  #{record.purchase_price}円",start: record.purchase_date})
+     end
+  end
+
   private
 
   def record_params
