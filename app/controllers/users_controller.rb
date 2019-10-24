@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   before_action :get_chart, only: %i[show]
   before_action :get_engel, only: %i[show]
   before_action :only_not_google_user, only: %i[edit]
+  before_action :get_comparison, only: %i[show]
 
   def show
     @monthly_money = EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
@@ -56,6 +57,13 @@ class UsersController < ApplicationController
     today = Date.today
     @last_day = Date.new(today.year, today.month, -1).strftime('%Y-%m-%d')
     @first_day = Date.new(today.year, today.month).strftime('%Y-%m-%d')
+    @premonth_first_day = (Date.new(today.year, today.month) << 1).strftime('%Y-%m-%d')
+    @premonth_last_day = ( Date.new(today.year, today.month, -1) << 1).strftime('%Y-%m-%d')
+  end
+
+  def get_comparison  
+    @premonth_sum = @user.records.where(purchase_date: @premonth_first_day..@premonth_last_day).pluck(:purchase_price).sum
+    @comparison = ((@sum.to_f / @premonth_sum) * 100).round if @premonth_sum != 0
   end
 
   def forbid_not_mypage_user

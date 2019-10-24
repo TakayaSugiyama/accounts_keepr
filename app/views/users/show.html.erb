@@ -3,6 +3,10 @@
     <h3 class = "text-center"><u>支出割合</u></h3>
     <% if @chart.any? %>
       <%= pie_chart  @chart  %>
+      <p class = "text-center mt-3">前月使用額は <%= number_with_delimiter @premonth_sum %> 円です</p>
+      <% if @comparison %>
+         <p class = "text-center">前月比は <%= @comparison %>%です</p>
+      <% end  %>
       <p class = "text-center mt-3">エンゲル係数は <%= @engel %>% です</p>
       <div class = "text-info text-center">エンゲル係数とは? </div>
       <%= render "users/engel"%>
