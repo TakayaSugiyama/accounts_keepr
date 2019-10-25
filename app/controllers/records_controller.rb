@@ -21,7 +21,7 @@ class RecordsController < ApplicationController
       end
       redirect_to @record, notice: '家計簿を作成しました'
     else
-      render 'records/new'
+      render :new
     end
   end
 
@@ -43,20 +43,24 @@ class RecordsController < ApplicationController
   end
 
   def update
-    redirect_to @record, notice: '家計簿を更新しました' if @record.update(record_params)
+    if @record.update(record_params)
+      redirect_to @record, notice: '家計簿を更新しました'
+    else
+      render :edit
+    end
   end
 
-  def index 
-     gon.records = []
-      if params[:label_id]
-        current_user.records.includes(:label).where(label_id: params[:label_id]).each do |record|
-          gon.records.push({ title: "#{record.label.name}  #{record.purchase_price}円",start: record.purchase_date, url: "/records/#{record.id}"})
-        end
-     else
-        current_user.records.includes(:label).each do |record|
-            gon.records.push({ title: "#{record.label.name}  #{record.purchase_price}円",start: record.purchase_date, url: "/records/#{record.id}"})
-        end
-     end
+  def index
+    gon.records = []
+    if params[:label_id]
+      current_user.records.includes(:label).where(label_id: params[:label_id]).each do |record|
+        gon.records.push(title: "#{record.label.name}  #{record.purchase_price}円", start: record.purchase_date, url: "/records/#{record.id}")
+      end
+    else
+      current_user.records.includes(:label).each do |record|
+        gon.records.push(title: "#{record.label.name}  #{record.purchase_price}円", start: record.purchase_date, url: "/records/#{record.id}")
+      end
+   end
   end
 
   private
