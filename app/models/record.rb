@@ -10,7 +10,7 @@ class Record < ApplicationRecord
   accepts_nested_attributes_for :products, reject_if: :all_blank, allow_destroy: true
   # バリデーション
   validates :store_name, presence: true, length: { maximum: 15 }
-  validates :purchase_price, presence: true
+  validates :purchase_price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10_000_000 }
   validates :purchase_date, presence: true
   # 未来の家計簿は登録できない
   validate :can_not_feature_post
