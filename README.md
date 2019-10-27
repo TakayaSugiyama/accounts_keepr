@@ -2,6 +2,10 @@
 
 ## アプリ名 AccountsKeeper
 
+![Imgur](https://i.imgur.com/rNwt8Pa.png)
+![Imgur](https://i.imgur.com/zCI9UlK.png)
+![Imgur](https://i.imgur.com/CgNsrWz.png)
+
 ## Heroku 
 https://young-taiga-20455.herokuapp.com/
 
@@ -46,6 +50,16 @@ https://gyazo.com/457bfc6f1c2297ce19ee3763cfd2e657
  https://docs.google.com/spreadsheets/d/1_mOu4XsW04zrnbsH1-6BsKjR6FLK62PHsayS8m_AAuk/edit?usp=sharing
 ## ワイヤーフレーム
 https://docs.google.com/presentation/d/1JWiNAiFC7Wlq2qCXs2NqP9eQcEFjstzxWDWUH9478UM/edit?usp=sharing
+
+## How to Start 
+```
+  1.  git clone https://github.com/TakayaSugiyama/accounts_keepr.git 
+  2.  rails db:create 
+  3.  rails db:seed 
+  4.  bundle exec rspec    
+  5.  rails s  
+```
+
 ## 使用予定Gem
 - devise 
 - carrirwave 
