@@ -57,7 +57,7 @@
           <li class="list-group-item"> 
              <span class = "mr-1"><%= record.purchase_date %></span>
              <span><%= record.label.name %></span>
-             <object><%= record.purchase_price %>円</object>
+             <object><%= number_with_delimiter  record.purchase_price %>円</object>
              <%= link_to "詳細", record_path(record) %>
           </li>
        <% end %>
