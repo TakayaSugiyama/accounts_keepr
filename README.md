@@ -3,7 +3,12 @@
 ## アプリ名 AccountsKeeper
 
 ![Imgur](https://i.imgur.com/rNwt8Pa.png)
+
+
 ![Imgur](https://i.imgur.com/zCI9UlK.png)
+
+
+
 ![Imgur](https://i.imgur.com/CgNsrWz.png)
 
 ## Heroku 
