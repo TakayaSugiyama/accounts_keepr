@@ -13,6 +13,7 @@
           <span class="badge badge-danger">必須</span>
           <%= f.password_field :password_confirmation, required: true, placeholder: "Password Confirmation (6 to 20 characters)" %>
           <%= f.check_box :password_confirmation_check, label: "パスワードを表示する" %>
+          <p class = "mt-3 font-weight-bold">利用規約、プライバシーポリシーに同意の元ご利用ください</p>
           <p><%= f.primary "登録" %></p>
           <p><%= render "devise/shared/links" %></p>
       <% end %>
