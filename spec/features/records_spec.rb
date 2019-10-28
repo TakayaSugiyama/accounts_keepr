@@ -57,7 +57,7 @@ RSpec.describe 'Records', type: :feature do
       product = FactoryBot.create(:product, record_id: record.id)
       visit edit_record_path(record)
       # 更新する
-      fill_in '購入日', with: Date.today >> 1
+      fill_in '購入日', with: Date.today << 1
       fill_in '値段', with: 3000
       select '税・社会保証', from: '分類'
       fill_in '内容', with: 'this text is updated'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_record, only: %i[show edit destroy update]
   before_action :set_date, only: %i[create]
 

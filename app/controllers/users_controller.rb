@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
   before_action :set_date, only: %i[show]
   before_action :forbid_not_mypage_user, only: %i[show]
