@@ -61,8 +61,9 @@ https://docs.google.com/presentation/d/1JWiNAiFC7Wlq2qCXs2NqP9eQcEFjstzxWDWUH947
   1.  git clone https://github.com/TakayaSugiyama/accounts_keepr.git 
   2.  rails db:create 
   3.  rails db:seed 
-  4.  bundle exec rspec    
-  5.  rails s  
+  4.  yarn install
+  5.  bundle exec rspec    
+  6.  rails s  
 ```
 
 ## 使用予定Gem
