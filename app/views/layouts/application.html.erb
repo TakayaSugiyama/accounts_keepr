@@ -33,7 +33,7 @@
     <% end %>
     <%# フラッシュここまで %>
     <%= yield %>
-     <%= Gon::Base.render_data %>
+    <%= render "shared/layouts/footer" %>
+    <%= Gon::Base.render_data %>
   </body>
-
 </html>

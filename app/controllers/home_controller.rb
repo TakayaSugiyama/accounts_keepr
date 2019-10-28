@@ -5,6 +5,10 @@ class HomeController < ApplicationController
 
   def index; end
 
+  def service; end
+
+  def privacy; end
+
   private
 
   # ログインしているときは、マイページへ飛ぶ

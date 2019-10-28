@@ -51,3 +51,16 @@
 html,body{
   width: 100%;
 }
+
+footer {
+  border-top:solid 1px #333;
+  color: #fff; 
+  background: #333;
+  padding: 20px 0;
+  li{
+    padding: 0px 20px;
+    a{
+      color: #fff;
+    }
+  }
+}
