@@ -14,9 +14,13 @@
 ## Heroku 
 https://young-taiga-20455.herokuapp.com/
 
+## Blog 
+https://takbooooo.hatenadiary.jp/entry/2019/10/28/161125
+
 ## 概要
 
   日々のお金の流れを把握することができる家計簿アプリ。
+
 
 ## バージョン情報
 
