@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   before_action :get_comparison, only: %i[show]
 
   def show
-    @monthly_money = EstimateAmount.find_by(month: Date.today.month, year: Date.today.year, user: @user)
-    @records = Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).order(purchase_date: :desc).slice(0..2)
-    @count = Record.where(user_id: @user.id).where(purchase_date: @first_day..@last_day).count
+    @monthly_money = EstimateAmount.target_amount(@user)
+    @records = Record.recent_records(@user,@first_day,@last_day)
+    @count = Record.recods_count_monthly(@user,@first_day,@last_day)
 
     respond_to do |format|
       format.html

@@ -15,6 +15,18 @@ class Record < ApplicationRecord
   # 未来の家計簿は登録できない
   validate :can_not_feature_post
 
+  # スコープ
+
+  ## 最近の記録
+  def self.recent_records(user,first_day,last_day) 
+     where(user_id: user.id).where(purchase_date: first_day..last_day).order(purchase_date: :desc).slice(0..2)
+  end
+
+  ## 今月の家計簿の数
+  def self.recods_count_monthly(user,first_day,last_day)
+    where(user_id: user.id).where(purchase_date: first_day..last_day).count
+  end
+
   def can_not_feature_post
     if purchase_date.present? && purchase_date > Date.today
       errors.add(:purchase_date, 'が未来になっています')
