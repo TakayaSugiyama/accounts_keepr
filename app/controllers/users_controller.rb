@@ -58,10 +58,8 @@ class UsersController < ApplicationController
   end
 
   def get_comparison
-    @premonth_sum = @user.records.where(purchase_date: @premonth_first_day..@premonth_last_day).pluck(:purchase_price).sum
-    if @premonth_sum != 0
-      @comparison = ((@sum.to_f / @premonth_sum) * 100).round
-    end
+    @premonth_sum = @user.records.premonth_cost(@premonth_first_day, @premonth_last_day)
+    @comparison = ((@sum.to_f / @premonth_sum) * 100).round  unless @premonth_sum == 0
   end
 
   def forbid_not_mypage_user
@@ -86,8 +84,8 @@ class UsersController < ApplicationController
   end
 
   def get_engel
-    @sum = @user.records.where(purchase_date: @first_day..@last_day).pluck(:purchase_price).sum
-    @food_cost = @user.records.where(purchase_date: @first_day..@last_day).select { |item| item.label.name == '食費' }.map(&:purchase_price).sum
+    @sum = @user.records.monthly_cost(@first_day, @last_day)
+    @food_cost = @user.records.category_cost("食費")
     @engel = ((@food_cost / @sum.to_f) * 100).round if @sum != 0
   end
 

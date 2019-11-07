@@ -27,6 +27,21 @@ class Record < ApplicationRecord
     where(user_id: user.id).where(purchase_date: first_day..last_day).count
   end
 
+  ## 今月の使用金額
+  def self.monthly_cost(first_day, last_day) 
+    where(purchase_date: first_day..last_day).pluck(:purchase_price).sum
+  end
+
+  ## 費目別で今月の使用金額をとってくる
+  def self.category_cost(name)
+    where(purchase_date: @first_day..@last_day).select { |item| item.label.name == name }.map(&:purchase_price).sum
+  end
+
+  ## 先月の使用金額
+  def self.premonth_cost(premonth_first_day, premonth_last_day)
+    where(purchase_date: premonth_first_day..premonth_last_day).pluck(:purchase_price).sum
+  end 
+
   def can_not_feature_post
     if purchase_date.present? && purchase_date > Date.today
       errors.add(:purchase_date, 'が未来になっています')
