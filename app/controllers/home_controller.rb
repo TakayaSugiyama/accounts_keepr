@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  before_action :return_my_page
+  before_action :return_my_page, only: [:index]
 
   def index; end
 
