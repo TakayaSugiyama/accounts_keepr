@@ -10,12 +10,12 @@ RSpec.describe 'Records', type: :feature do
       fill_in 'メールアドレス', with: @user.email
       fill_in 'パスワード', with: @user.password
       click_button 'ログイン'
-    end 
+    end
 
-    before "費目作成" do  
+    before '費目作成' do
       label_names = %w[未分類 食費 日用品費 レジャー費 交際費 医療費 養育費 美容費 被服費 趣味・娯楽費 交通費 家賃 水道・光熱費 保険 税・社会保証 自動車関連費 その他]
       label_names.each do |name|
-         FactoryBot.create(:label, name: name)
+        FactoryBot.create(:label, name: name)
       end
     end
 
