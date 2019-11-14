@@ -3,23 +3,15 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_record, only: %i[show edit destroy update]
-  before_action :set_date, only: %i[create]
 
   def show; end
 
   def create
     @record = current_user.records.build(record_params)
-    @estimate_amount = EstimateAmount.find_by(user_id: current_user.id, year: @today.year, month: @today.month)
+    @estimate_amount = EstimateAmount.get_monthly_goal(current_user)
     if @record.save
-      @sum_price = current_user.records.where(purchase_date: @first_day..@last_day).map(&:purchase_price).sum
-      if @estimate_amount
-        percent = (@sum_price.to_f / @estimate_amount.price) * 100
-        if    percent >= 85  && @estimate_amount && percent < 100
-          AlertMailer.alert_mail(current_user, @estimate_amount, @sum_price).deliver
-        elsif percent >= 100 && @estimate_amount
-          BeyondMailer.beyond_mail(current_user, @estimate_amount, @sum_price).deliver
-        end
-      end
+      #予定金額を超えたらアラートメールを送る
+      current_user.deliver_alert_mail(@estimate_amount) if @estimate_amount
       redirect_to @record, notice: '家計簿を作成しました'
     else
       render :new
@@ -76,9 +68,4 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:id])
   end
 
-  def set_date
-    @today = Date.today
-    @last_day = Date.new(@today.year, @today.month, -1).strftime('%Y-%m-%d')
-    @first_day = Date.new(@today.year, @today.month).strftime('%Y-%m-%d')
-  end
 end

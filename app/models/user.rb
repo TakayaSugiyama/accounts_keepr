@@ -66,7 +66,7 @@ class User < ApplicationRecord
   def get_data
     data = {}
     [*@@first_day..@@last_day].each do |day|
-      data[day.to_s] = records.where(purchase_date: day).pluck(:purchase_price).sum
+      data[day.to_s] = self.records.where(purchase_date: day).pluck(:purchase_price).sum
     end
     data
   end
@@ -94,8 +94,18 @@ class User < ApplicationRecord
     chart = {}
     user_data = records.where(purchase_date: @@first_day..@@last_day).includes(:label)
     user_data.each do |data|
-      chart[data.label.name] = data.label.records.where(user_id: id).pluck(:purchase_price).sum
+      chart[data.label.name] = data.label.records.where(purchase_date: @@first_day..@@last_day).where(user_id: self.id).pluck(:purchase_price).sum
     end
     chart
   end
+
+  def deliver_alert_mail(estimate_amount)
+    percent = (get_sum.to_f / estimate_amount.price) * 100
+    if    percent >= 85  && estimate_amount && percent < 100
+      AlertMailer.alert_mail(self, estimate_amount, get_sum.to_f).deliver
+    elsif percent >= 100 && estimate_amount
+      BeyondMailer.beyond_mail(self, estimate_amount,get_sum.to_f).deliver
+    end
+ end
+
 end
