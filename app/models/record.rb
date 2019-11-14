@@ -15,31 +15,38 @@ class Record < ApplicationRecord
   # 未来の家計簿は登録できない
   validate :can_not_feature_post
 
+  # 日付のデータ
+  @@today = Date.today
+  @@last_day = Date.new(@@today.year, @@today.month, -1).strftime('%Y-%m-%d')
+  @@first_day = Date.new(@@today.year, @@today.month).strftime('%Y-%m-%d')
+  @@premonth_first_day = (Date.new(@@today.year, @@today.month) << 1).strftime('%Y-%m-%d')
+  @@premonth_last_day = (Date.new(@@today.year, @@today.month, -1) << 1).strftime('%Y-%m-%d')
+
   # スコープ
 
   ## 最近の記録
-  def self.recent_records(user, first_day, last_day)
-    where(user_id: user.id).where(purchase_date: first_day..last_day).order(purchase_date: :desc).slice(0..2)
+  def self.recent_records(user)
+    where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).order(purchase_date: :desc).slice(0..2)
   end
 
   ## 今月の家計簿の数
-  def self.recods_count_monthly(user, first_day, last_day)
-    where(user_id: user.id).where(purchase_date: first_day..last_day).count
+  def self.recods_count_monthly(user)
+    where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).count
   end
 
   ## 今月の使用金額
   def self.monthly_cost(first_day, last_day)
-    where(purchase_date: first_day..last_day).pluck(:purchase_price).sum
+    where(purchase_date: @@first_day..@@last_day).pluck(:purchase_price).sum
   end
 
   ## 費目別で今月の使用金額をとってくる
-  def self.category_cost(name, first_day, last_day)
-    where(purchase_date: first_day..last_day).select { |item| item.label.name == name }.map(&:purchase_price).sum
+  def self.category_cost(name)
+    where(purchase_date: @@first_day..@@last_day).select { |item| item.label.name == name }.map(&:purchase_price).sum
   end
 
   ## 先月の使用金額
-  def self.premonth_cost(premonth_first_day, premonth_last_day)
-    where(purchase_date: premonth_first_day..premonth_last_day).pluck(:purchase_price).sum
+  def self.premonth_cost
+    where(purchase_date: @@premonth_first_day..@@premonth_last_day).pluck(:purchase_price).sum
   end
 
   def can_not_feature_post

@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def get_engel
-    food_cost = records.category_cost('食費', @@first_day, @@last_day)
+    food_cost = records.category_cost('食費')
     engel = ((food_cost / get_sum.to_f) * 100).round if get_sum != 0
   end
 
@@ -87,7 +87,7 @@ class User < ApplicationRecord
   end
 
   def get_premonth_sum
-    premonth_sum = records.premonth_cost(@@premonth_first_day, @@premonth_last_day)
+    premonth_sum = records.premonth_cost
   end
 
   def get_chart
