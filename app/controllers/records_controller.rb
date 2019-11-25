@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
     @record = current_user.records.build(record_params)
     @estimate_amount = EstimateAmount.get_monthly_goal(current_user)
     if @record.save
-      #予定金額を超えたらアラートメールを送る
+      # 予定金額を超えたらアラートメールを送る
       current_user.deliver_alert_mail(@estimate_amount) if @estimate_amount
       redirect_to @record, notice: '家計簿を作成しました'
     else
@@ -67,5 +67,4 @@ class RecordsController < ApplicationController
   def set_record
     @record = Record.find(params[:id])
   end
-
 end

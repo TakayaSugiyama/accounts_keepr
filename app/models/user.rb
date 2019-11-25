@@ -20,32 +20,35 @@ class User < ApplicationRecord
   @@premonth_first_day = (Date.new(@@today.year, @@today.month) << 1).strftime('%Y-%m-%d')
   @@premonth_last_day = (Date.new(@@today.year, @@today.month, -1) << 1).strftime('%Y-%m-%d')
 
-  # 日付を返す
-  def self.get_today
-    @@today
-  end
+  class << self
+    def get_today
+      @@today
+    end
 
-  def self.get_first_day
-    @@first_day
-  end
+    def get_first_day
+      @@first_day
+    end
 
-  def self.get_last_day
-    @@last_day
-  end
+    def get_last_day
+      @@last_day
+    end
 
-  def self.get_premonth_first_day
-    @@premonth_first_day
-  end
+    def get_premonth_first_day
+      @@premonth_first_day
+    end
 
-  def self.get_premonth_last_day
-    @@premonth_last_day
-  end
+    def get_premonth_last_day
+      @@premonth_last_day
+    end
 
-  def is_like?(review)
-    if Favorite.find_by(review_id: review.id, user_id: id)
-      true
-    else
-      false
+    def from_omniauth(auth)
+      user = User.find_by(email: auth.info.email)
+      user ||= User.create(name: auth.info.name,
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           email: auth.info.email,
+                           password: Devise.friendly_token[0, 20])
+      user
     end
   end
 
@@ -53,20 +56,14 @@ class User < ApplicationRecord
     favorites.find_by(review_id: review.id)
   end
 
-  def self.from_omniauth(auth)
-    user = User.find_by(email: auth.info.email)
-    user ||= User.create(name: auth.info.name,
-                         provider: auth.provider,
-                         uid: auth.uid,
-                         email: auth.info.email,
-                         password: Devise.friendly_token[0, 20])
-    user
+  def is_like?(review)
+    !Favorite.find_by(review_id: review.id, user_id: id).nil?
   end
 
   def get_data
     data = {}
     [*@@first_day..@@last_day].each do |day|
-      data[day.to_s] = self.records.where(purchase_date: day).pluck(:purchase_price).sum
+      data[day.to_s] = records.where(purchase_date: day).pluck(:purchase_price).sum
     end
     data
   end
@@ -94,7 +91,7 @@ class User < ApplicationRecord
     chart = {}
     user_data = records.where(purchase_date: @@first_day..@@last_day).includes(:label)
     user_data.each do |data|
-      chart[data.label.name] = data.label.records.where(purchase_date: @@first_day..@@last_day).where(user_id: self.id).pluck(:purchase_price).sum
+      chart[data.label.name] = data.label.records.where(purchase_date: @@first_day..@@last_day).where(user_id: id).pluck(:purchase_price).sum
     end
     chart
   end
@@ -104,8 +101,7 @@ class User < ApplicationRecord
     if    percent >= 85  && estimate_amount && percent < 100
       AlertMailer.alert_mail(self, estimate_amount, get_sum.to_f).deliver
     elsif percent >= 100 && estimate_amount
-      BeyondMailer.beyond_mail(self, estimate_amount,get_sum.to_f).deliver
+      BeyondMailer.beyond_mail(self, estimate_amount, get_sum.to_f).deliver
     end
  end
-
 end

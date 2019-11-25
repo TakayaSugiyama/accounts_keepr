@@ -15,6 +15,12 @@ class Record < ApplicationRecord
   # 未来の家計簿は登録できない
   validate :can_not_feature_post
 
+  def can_not_feature_post
+    if purchase_date.present? && purchase_date > Date.today
+      errors.add(:purchase_date, 'が未来になっています')
+    end
+  end
+
   # 日付のデータ
   @@today = Date.today
   @@last_day = Date.new(@@today.year, @@today.month, -1).strftime('%Y-%m-%d')
@@ -22,50 +28,38 @@ class Record < ApplicationRecord
   @@premonth_first_day = (Date.new(@@today.year, @@today.month) << 1).strftime('%Y-%m-%d')
   @@premonth_last_day = (Date.new(@@today.year, @@today.month, -1) << 1).strftime('%Y-%m-%d')
 
-  # スコープ
-
-  ## 最近の記録
-  def self.recent_records(user)
-    where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).order(purchase_date: :desc).slice(0..2)
-  end
-
-  ## 今月の家計簿の数
-  def self.recods_count_monthly(user)
-    where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).count
-  end
-
-  ## 今月の使用金額
-  def self.monthly_cost(first_day, last_day)
-    where(purchase_date: @@first_day..@@last_day).pluck(:purchase_price).sum
-  end
-
-  ## 費目別で今月の使用金額をとってくる
-  def self.category_cost(name)
-    where(purchase_date: @@first_day..@@last_day).select { |item| item.label.name == name }.map(&:purchase_price).sum
-  end
-
-  ## 先月の使用金額
-  def self.premonth_cost
-    where(purchase_date: @@premonth_first_day..@@premonth_last_day).pluck(:purchase_price).sum
-  end
-
-  def can_not_feature_post
-    if purchase_date.present? && purchase_date > Date.today
-      errors.add(:purchase_date, 'が未来になっています')
+  class << self
+    def recent_records(user)
+      where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).order(purchase_date: :desc).slice(0..2)
     end
-  end
 
-  # CSV
-  def self.csv_attributes
-    %w[store_name purchase_price purchase_date]
-  end
+    def recods_count_monthly(user)
+      where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).count
+    end
 
-  def self.generate_csv
-    CSV.generate(headers: true, encoding: Encoding::SJIS) do |csv|
-      csv << csv_attributes
-      all.find_each do |record|
-        csv << csv_attributes.map { |attr| record.send(attr) }
+    def monthly_cost(_first_day, _last_day)
+      where(purchase_date: @@first_day..@@last_day).pluck(:purchase_price).sum
+    end
+
+    def category_cost(name)
+      where(purchase_date: @@first_day..@@last_day).select { |item| item.label.name == name }.map(&:purchase_price).sum
+    end
+
+    def premonth_cost
+      where(purchase_date: @@premonth_first_day..@@premonth_last_day).pluck(:purchase_price).sum
+    end
+
+    def generate_csv
+      CSV.generate(headers: true, encoding: Encoding::SJIS) do |csv|
+        csv << csv_attributes
+        all.find_each do |record|
+          csv << csv_attributes.map { |attr| record.send(attr) }
+        end
       end
+    end
+
+    def csv_attributes
+      %w[store_name purchase_price purchase_date]
     end
   end
 end
