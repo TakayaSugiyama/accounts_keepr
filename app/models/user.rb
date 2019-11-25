@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Day
   before_save { email.downcase }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]
@@ -13,12 +14,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_reviews, through: :favorites, source: :review
 
-  # 日付のデータ
-  @@today = Date.today
-  @@last_day = Date.new(@@today.year, @@today.month, -1).strftime('%Y-%m-%d')
-  @@first_day = Date.new(@@today.year, @@today.month).strftime('%Y-%m-%d')
-  @@premonth_first_day = (Date.new(@@today.year, @@today.month) << 1).strftime('%Y-%m-%d')
-  @@premonth_last_day = (Date.new(@@today.year, @@today.month, -1) << 1).strftime('%Y-%m-%d')
 
   class << self
     def get_today

@@ -2,6 +2,7 @@
 
 require 'csv'
 class Record < ApplicationRecord
+  include Day
   belongs_to :user
   belongs_to :label
   has_many :memos, dependent: :destroy
@@ -20,13 +21,6 @@ class Record < ApplicationRecord
       errors.add(:purchase_date, 'が未来になっています')
     end
   end
-
-  # 日付のデータ
-  @@today = Date.today
-  @@last_day = Date.new(@@today.year, @@today.month, -1).strftime('%Y-%m-%d')
-  @@first_day = Date.new(@@today.year, @@today.month).strftime('%Y-%m-%d')
-  @@premonth_first_day = (Date.new(@@today.year, @@today.month) << 1).strftime('%Y-%m-%d')
-  @@premonth_last_day = (Date.new(@@today.year, @@today.month, -1) << 1).strftime('%Y-%m-%d')
 
   class << self
     def recent_records(user)
