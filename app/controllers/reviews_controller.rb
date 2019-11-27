@@ -72,19 +72,15 @@ class ReviewsController < ApplicationController
 
   def alreadey_wirited
     @product = Product.find(params[:product_id])
-    redirect_to @product.review.user, notice: '既にレビューを書いています' if @product.review
+    redirect_to @product.review.user, notice: '既にレビューを書いています' if !!@product.review
   end
 
   def only_product_user
     @product = Product.find(params[:product_id])
-    unless @product.record.user == current_user
-      redirect_to @product.record.user, notice: '権限がありません'
-    end
+    redirect_to @product.record.user, notice: '権限がありません' unless @product.record.user == current_user
   end
 
   def only_review_user
-    unless @review.user == current_user
-      redirect_to user_path(current_user), notice: '権限がありません'
-    end
+      redirect_to user_path(current_user), notice: '権限がありません' unless @review.user == current_user
   end
 end
