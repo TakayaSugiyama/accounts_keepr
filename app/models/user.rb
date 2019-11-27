@@ -14,20 +14,14 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_reviews, through: :favorites, source: :review
 
-  class << self
-    def get_premonth_last_day
-      @@premonth_last_day
-    end
-
-    def from_omniauth(auth)
-      user = User.find_by(email: auth.info.email)
-      user ||= User.create(name: auth.info.name,
-                           provider: auth.provider,
-                           uid: auth.uid,
-                           email: auth.info.email,
-                           password: Devise.friendly_token[0, 20])
-      user
-    end
+  def self.from_omniauth(auth)
+    user = User.find_by(email: auth.info.email)
+    user ||= User.create(name: auth.info.name,
+                          provider: auth.provider,
+                          uid: auth.uid,
+                          email: auth.info.email,
+                          password: Devise.friendly_token[0, 20])
+    user
   end
 
   def get_favorite_id(review)
@@ -39,15 +33,15 @@ class User < ApplicationRecord
   end
 
   def get_data
-    data = {}
+    data = Hash.new
     [*@@first_day..@@last_day].each do |day|
-      data[day.to_s] = records.where(purchase_date: day).pluck(:purchase_price).sum
+      data[day] = records.where(purchase_date: day).pluck(:purchase_price).sum
     end
     data
   end
 
   def get_sum
-    sum = records.monthly_cost(@@first_day, @@last_day)
+    records.monthly_cost
   end
 
   def get_engel

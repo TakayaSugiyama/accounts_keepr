@@ -31,7 +31,7 @@ class Record < ApplicationRecord
       where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).count
     end
 
-    def monthly_cost(_first_day, _last_day)
+    def monthly_cost
       where(purchase_date: @@first_day..@@last_day).pluck(:purchase_price).sum
     end
 

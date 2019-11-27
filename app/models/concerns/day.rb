@@ -26,6 +26,10 @@ module Day
       def get_premonth_first_day
         @@premonth_first_day
       end
+
+      def get_premonth_last_day
+        @@premonth_last_day
+      end
     end
   end
 end
