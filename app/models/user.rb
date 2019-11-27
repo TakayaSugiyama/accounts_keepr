@@ -52,9 +52,7 @@ class User < ApplicationRecord
   end
 
   def get_comparison
-    unless get_premonth_sum == 0
-      comparison = ((get_sum.to_f / get_premonth_sum) * 100).round
-    end
+      comparison = ((get_sum.to_f / get_premonth_sum) * 100).round unless get_premonth_sum == 0
   end
 
   def get_premonth_sum
