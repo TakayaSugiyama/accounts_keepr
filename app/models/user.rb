@@ -92,9 +92,9 @@ class User < ApplicationRecord
 
   def deliver_alert_mail(estimate_amount)
     percent = (get_sum.to_f / estimate_amount.price) * 100
-    if    percent >= 85  && estimate_amount && percent < 100
+    if (85...100).include?(percent) 
       AlertMailer.alert_mail(self, estimate_amount, get_sum.to_f).deliver
-    elsif percent >= 100 && estimate_amount
+    elsif percent >= 100
       BeyondMailer.beyond_mail(self, estimate_amount, get_sum.to_f).deliver
     end
  end
