@@ -46,8 +46,9 @@ class User < ApplicationRecord
   end
 
   def get_engel
-    food_cost = records.category_cost(Label.find_by(name: "食費").id)
-    engel = ((food_cost / get_sum.to_f) * 100).round if get_sum != 0
+    category= Label.find_by(name: "食費")
+    food_cost =  records.category_cost(category.id)
+    ((food_cost / get_sum.to_f) * 100).round unless get_sum == 0  
   end
 
   def get_comparison
