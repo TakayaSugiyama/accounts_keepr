@@ -23,20 +23,16 @@ class Record < ApplicationRecord
   end
 
   class << self
-    def recent_records(user)
-      where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).order(purchase_date: :desc).slice(0..2)
-    end
-
-    def recods_count_monthly(user)
-      where(user_id: user.id).where(purchase_date: @@first_day..@@last_day).count
+    def count_monthly
+      where(purchase_date: @@first_day..@@last_day).count
     end
 
     def monthly_cost
       where(purchase_date: @@first_day..@@last_day).pluck(:purchase_price).sum
     end
 
-    def category_cost(name)
-      where(purchase_date: @@first_day..@@last_day).select { |item| item.label.name == name }.map(&:purchase_price).sum
+    def category_cost(id)
+      where(purchase_date: @@first_day..@@last_day).group(:label_id).sum(:purchase_price)[id]
     end
 
     def premonth_cost

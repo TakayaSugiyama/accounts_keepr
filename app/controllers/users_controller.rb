@@ -8,8 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @monthly_money = EstimateAmount.target_amount(@user)
-    @records = Record.recent_records(@user)
-    @count = Record.recods_count_monthly(@user)
+    @records = @user.records.includes(:label).order(purchase_date: :desc)[0..2]
+    @count = @user.records.count_monthly
 
     respond_to do |format|
       format.html
