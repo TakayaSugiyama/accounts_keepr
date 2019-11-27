@@ -34,8 +34,9 @@ class User < ApplicationRecord
 
   def get_data
     data = Hash.new
-    [*@@first_day..@@last_day].each do |day|
-      data[day] = records.where(purchase_date: day).pluck(:purchase_price).sum
+    user_data = records.where(purchase_date: @@first_day..@@last_day).group(:purchase_date).sum(:purchase_price)
+    user_data.each do |date, price|
+      data[date] = price
     end
     data
   end
@@ -61,9 +62,9 @@ class User < ApplicationRecord
 
   def get_chart
     chart = {}
-    user_data = records.where(purchase_date: @@first_day..@@last_day).includes(:label)
-    user_data.each do |data|
-      chart[data.label.name] = data.label.records.where(purchase_date: @@first_day..@@last_day).where(user_id: id).pluck(:purchase_price).sum
+    user_data = records.where(purchase_date: @@first_day..@@last_day).includes(:label).group(:label_id).sum(:purchase_price)
+    user_data.each do |label_id, price|
+      chart[Label.find(label_id).name] = price
     end
     chart
   end
