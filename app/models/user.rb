@@ -15,22 +15,6 @@ class User < ApplicationRecord
   has_many :favorite_reviews, through: :favorites, source: :review
 
   class << self
-    def get_today
-      @@today
-    end
-
-    def get_first_day
-      @@first_day
-    end
-
-    def get_last_day
-      @@last_day
-    end
-
-    def get_premonth_first_day
-      @@premonth_first_day
-    end
-
     def get_premonth_last_day
       @@premonth_last_day
     end
