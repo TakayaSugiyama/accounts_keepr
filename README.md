@@ -35,7 +35,7 @@ https://docs.google.com/spreadsheets/d/1RD7jpve8eY3zwVRgTJJyagzFbNL5wXDSX1_3_qzt
 - ユーザー機能 
   - ユーザー登録
   - ログイン/ログアウト機能 
-    - Google, Facebook, Yahoo各SNSでのログイン・ログアウト機能
+    - Googleでのログイン・ログアウト機能
   -  マイページ(ユーザー情報管理)
   - 退会機能　
 -  家計簿管理機能
