@@ -5,7 +5,7 @@
         <div class = "col-md-6">
            <u><h3>簡単入力</h3></u>
           <span class="badge badge-danger">必須</span>
-          <%= f.date_field :purchase_date, value: Date.today %>
+          <%= f.date_field :purchase_date, value: form_date(@record) %>
           <span class="badge badge-danger">必須</span>
           <%= f.text_field :store_name, placeholder: "セブンイレブン" ,required: true %>
           <span class="badge badge-danger">必須</span>
