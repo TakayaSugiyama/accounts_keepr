@@ -9,7 +9,7 @@ module RecordsHelper
      if action_name == "new"
         Date.today 
      elsif action_name == "edit"
-        @record.purchase_date
+        record.purchase_date
      end
   end
 end
