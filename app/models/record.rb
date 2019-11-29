@@ -33,7 +33,7 @@ class Record < ApplicationRecord
 
     def category_cost(id)
       data = where(purchase_date: @@first_day..@@last_day).group(:label_id).sum(:purchase_price)
-      data[id].nil?  ?  0 : data[id]
+      data[id].nil? ? 0 : data[id]
     end
 
     def premonth_cost

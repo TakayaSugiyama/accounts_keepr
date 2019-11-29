@@ -17,10 +17,10 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
     user ||= User.create(name: auth.info.name,
-                          provider: auth.provider,
-                          uid: auth.uid,
-                          email: auth.info.email,
-                          password: Devise.friendly_token[0, 20])
+                         provider: auth.provider,
+                         uid: auth.uid,
+                         email: auth.info.email,
+                         password: Devise.friendly_token[0, 20])
     user
   end
 
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def get_data
-    data = Hash.new
+    data = {}
     user_data = records.where(purchase_date: @@first_day..@@last_day).group(:purchase_date).sum(:purchase_price)
     user_data.each do |date, price|
       data[date] = price
@@ -46,13 +46,15 @@ class User < ApplicationRecord
   end
 
   def get_engel
-    category= Label.find_by(name: "食費")
-    food_cost =  records.category_cost(category.id)
-    ((food_cost / get_sum.to_f) * 100).round unless get_sum == 0  
+    category = Label.find_by(name: '食費')
+    food_cost = records.category_cost(category.id)
+    ((food_cost / get_sum.to_f) * 100).round unless get_sum == 0
   end
 
   def get_comparison
-      comparison = ((get_sum.to_f / get_premonth_sum) * 100).round unless get_premonth_sum == 0
+    unless get_premonth_sum == 0
+      comparison = ((get_sum.to_f / get_premonth_sum) * 100).round
+      end
   end
 
   def get_premonth_sum
@@ -70,7 +72,7 @@ class User < ApplicationRecord
 
   def deliver_alert_mail(estimate_amount)
     percent = (get_sum.to_f / estimate_amount.price) * 100
-    if (85...100).include?(percent) 
+    if (85...100).cover?(percent)
       AlertMailer.alert_mail(self, estimate_amount, get_sum.to_f).deliver
     elsif percent >= 100
       BeyondMailer.beyond_mail(self, estimate_amount, get_sum.to_f).deliver

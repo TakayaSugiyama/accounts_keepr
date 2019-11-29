@@ -6,10 +6,10 @@ module RecordsHelper
   end
 
   def form_date(record)
-     if action_name == "new"
-        Date.today 
-     elsif action_name == "edit"
-        record.purchase_date
-     end
+    if action_name == 'new'
+      Date.today
+    elsif action_name == 'edit'
+      record.purchase_date
+    end
   end
 end
