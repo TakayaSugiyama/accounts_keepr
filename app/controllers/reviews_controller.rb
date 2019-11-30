@@ -13,7 +13,6 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     @review = Review.new
     3.times { @image = @review.images.build }
-    # binding.pry
   end
 
   def create
