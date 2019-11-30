@@ -21,11 +21,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: 'ユーザー情報を更新しました'
+      redirect_to @user, notice: 'ユーザー情報を更新しました'
     else
-      respond_to do |format|
-        format.js { render :error }
-      end
+      render :edit
     end
   end
 
