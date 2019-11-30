@@ -3,6 +3,7 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_record, only: %i[show edit destroy update]
+  before_action :set_field, only: %i[edit]
 
   def show; end
 
@@ -10,8 +11,7 @@ class RecordsController < ApplicationController
     @record = current_user.records.build(record_params)
     @estimate_amount = EstimateAmount.get_monthly_goal(current_user)
     if @record.save
-      # 予定金額を超えたらアラートメールを送る
-      current_user.deliver_alert_mail(@estimate_amount) if @estimate_amount
+      current_user.alert_or_byond_mail_to_target_user(@estimate_amount)
       redirect_to @record, notice: '家計簿を作成しました'
     else
       render :new
@@ -24,10 +24,7 @@ class RecordsController < ApplicationController
     redirect_to user_path(@record.user), notice: '家計簿を削除しました'
   end
 
-  def edit
-    @product = @record.products.build if @record.products.empty?
-    @memo = @record.memos.build if @record.memos.empty?
-  end
+  def edit; end
 
   def new
     @record = current_user.records.build
@@ -44,16 +41,7 @@ class RecordsController < ApplicationController
   end
 
   def index
-    gon.records = []
-    if params[:label_id]
-      current_user.records.includes(:label).where(label_id: params[:label_id]).each do |record|
-        gon.records.push(title: "#{record.label.name}  #{record.purchase_price}円", start: record.purchase_date, url: "/records/#{record.id}")
-      end
-    else
-      current_user.records.includes(:label).each do |record|
-        gon.records.push(title: "#{record.label.name}  #{record.purchase_price}円", start: record.purchase_date, url: "/records/#{record.id}")
-      end
-   end
+    gon.records = current_user.records_for_calendar(params[:label_id])
   end
 
   private
@@ -66,5 +54,10 @@ class RecordsController < ApplicationController
 
   def set_record
     @record = Record.find(params[:id])
+  end
+
+  def set_field
+    @product = @record.products.build if @record.products.empty?
+    @memo = @record.memos.build if @record.memos.empty?
   end
 end

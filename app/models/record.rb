@@ -20,7 +20,7 @@ class Record < ApplicationRecord
     if purchase_date.present? && purchase_date > Date.today
       errors.add(:purchase_date, 'が未来になっています')
     end
-  end
+  end 
 
   class << self
     def count_monthly

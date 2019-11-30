@@ -24,6 +24,22 @@ class User < ApplicationRecord
     user
   end
 
+  def records_for_calendar(label_id)
+    if label_id
+      records.includes(:label).where(label_id: params[:label_id]).map do |record|
+        { title: "#{record.label.name}  #{record.purchase_price}円", start: record.purchase_date, url: "/records/#{record.id}" }
+      end
+    else
+      records.includes(:label).map do |record|
+        { title: "#{record.label.name}  #{record.purchase_price}円", start: record.purchase_date, url: "/records/#{record.id}" }
+      end
+    end
+  end
+
+  def alert_or_byond_mail_to_target_user(estimate_amount)
+    self.deliver_alert_mail(estimate_amount) unless estimate_amount.nil?
+  end
+
   def get_favorite_id(review)
     favorites.find_by(review_id: review.id)
   end
