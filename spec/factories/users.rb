@@ -14,6 +14,6 @@ FactoryBot.define do
     password { 'aaaaaaaaaa' }
     password_confirmation { 'aaaaaaaaaa' }
     provider { 'google_oauth2' }
-    uid      { 12_345 }
+    uid      { 12345 }
   end
 end

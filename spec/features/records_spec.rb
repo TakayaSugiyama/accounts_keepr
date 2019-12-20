@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Records', type: :feature do
+RSpec.describe 'Records', type: :system do
   describe '新規家計簿登録' do
     before 'ログイン' do
       @user = FactoryBot.create(:user)
@@ -73,6 +73,7 @@ RSpec.describe 'Records', type: :feature do
       record = FactoryBot.create(:record, user_id: @user.id)
       visit record_path(record)
       click_on '削除'
+      page.driver.browser.switch_to.alert.accept
       expect(page).to have_content '家計簿を削除しました'
       expect(Record.all.count).to eq 0
     end
