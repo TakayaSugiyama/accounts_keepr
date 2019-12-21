@@ -23,7 +23,7 @@ RSpec.describe 'Review', type: :system do
       click_on 'レビューを書く'
       fill_in  'タイトル', with: 'test tiele'
       fill_in  'レビュー', with: 'test reveiw content'
-      find('input[name="review[rating]"]', visible: :all).set('5')
+      page.execute_script("document.querySelector('input[name=\"review[rating]\"]').value = '3'")
       click_on '登録する'
       expect(Review.all.count).to eq 1
     end
@@ -44,7 +44,7 @@ RSpec.describe 'Review', type: :system do
       click_on '編集'
       fill_in 'タイトル', with: 'updated'
       fill_in 'レビュー', with: 'updated'
-      find('input[name="review[rating]"]', visible: :all).set('5')
+      page.execute_script("document.querySelector('input[name=\"review[rating]\"]').value = '5'")
       click_on '更新する'
       expect(page).to have_content 'レビューを更新しました'
     end
