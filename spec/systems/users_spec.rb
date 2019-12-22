@@ -27,6 +27,7 @@ RSpec.describe 'Users', type: :system do
   describe 'ログイン/ログアウト機能' do
     before do
       @user = FactoryBot.create(:user)
+      @other_user = FactoryBot.create(:user)
       visit new_user_session_path
       fill_in 'パスワード', with: @user.password
     end
@@ -43,5 +44,28 @@ RSpec.describe 'Users', type: :system do
       click_on 'ログアウト'
       expect(page).to have_content 'ログアウトしました'
     end
+
+    it 'ログインユーザー以外のユーザーがアクセスできない' do
+      fill_in 'メールアドレス', with: @user.email
+      click_button 'ログイン'
+      visit  user_path @other_user
+      expect(page).to have_content '権限がありません'
+    end
+  end
+
+  it 'フレンドリーフォロワーリング' do
+    # データ作成
+    @user = FactoryBot.create(:user)
+    @record = FactoryBot.create(:record, user_id: @user.id)
+    visit record_path @record
+    expect(page).to have_content 'アカウント登録もしくはログインしてください'
+    @user = FactoryBot.create(:user)
+    @other_user = FactoryBot.create(:user)
+    visit new_user_session_path
+    # ログインする
+    fill_in 'パスワード', with: @user.password
+    fill_in 'メールアドレス', with: @user.email
+    click_button 'ログイン'
+    expect(current_url.include?(record_path(@record))).to eq true
   end
 end

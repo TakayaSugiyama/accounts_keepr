@@ -5,8 +5,6 @@ require 'spec_helper'
 require 'simplecov'
 SimpleCov.start
 
-
-
 require 'capybara/poltergeist'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -28,7 +26,6 @@ OmniAuth.configure do |config|
     }
   )
 end
-
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -65,7 +62,6 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :selenium
 
   Capybara.ignore_hidden_elements = false
-
 
   # config.before(:each) do |example|
   #   if example.metadata[:type] == :system

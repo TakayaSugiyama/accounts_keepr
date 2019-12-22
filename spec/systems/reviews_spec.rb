@@ -34,7 +34,7 @@ RSpec.describe 'Review', type: :system do
       visit review_path(review)
       click_on '削除'
       page.driver.browser.switch_to.alert.accept
-      visit current_path #リロード
+      visit current_path # リロード
       expect(Review.all.include?(review)).to eq false
     end
 
@@ -48,6 +48,5 @@ RSpec.describe 'Review', type: :system do
       click_on '更新する'
       expect(page).to have_content 'レビューを更新しました'
     end
-
   end
 end

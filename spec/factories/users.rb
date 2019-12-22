@@ -8,12 +8,12 @@ FactoryBot.define do
     password_confirmation { 'testtest' }
   end
 
-  factory :google_user, class: User do
+  factory :google_user, class: 'User' do
     name { 'google_user' }
     email { 'test@google.com' }
     password { 'aaaaaaaaaa' }
     password_confirmation { 'aaaaaaaaaa' }
     provider { 'google_oauth2' }
-    uid      { 12345 }
+    uid      { 12_345 }
   end
 end
