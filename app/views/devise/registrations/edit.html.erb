@@ -8,7 +8,7 @@
         <%= f.password_field :current_password, autocomplete: "current-password" %>
         <%= f.password_field :password, autocomplete: "new-password" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        <%= f.submit "パスワード更新", class: "btn btn-primary" %>
+        <%= f.submit "パスワード更新", class: "btn btn-primary" ,data: {disable_with: "更新中・・・"}%>
         <p><%= link_to "戻る", :back %></p>
       </div>
   <% end %>

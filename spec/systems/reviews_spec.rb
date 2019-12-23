@@ -18,14 +18,14 @@ RSpec.describe 'Review', type: :system do
       click_button 'ログイン'
     end
 
-    it 'レビューを作成できる' do
-      visit record_path(@record)
+    it 'レビューを作成できる', js: true do
+      visit record_path @record
       click_on 'レビューを書く'
+      page.execute_script("document.querySelector('input[name=\"review[rating]\"]').value = \'3\'")
       fill_in  'タイトル', with: 'test tiele'
       fill_in  'レビュー', with: 'test reveiw content'
-      page.execute_script("document.querySelector('input[name=\"review[rating]\"]').value = '3'")
       click_on '登録する'
-      expect(Review.all.count).to eq 1
+      expect(page).to have_content "投稿しました"
     end
 
     it 'レビューを削除できる' do
@@ -38,7 +38,7 @@ RSpec.describe 'Review', type: :system do
       expect(Review.all.include?(review)).to eq false
     end
 
-    it 'レビューを更新できる' do
+    it 'レビューを更新できる', js: true do
       review = FactoryBot.create(:review, user_id: @user.id, product_id: @product.id)
       visit review_path(review)
       click_on '編集'

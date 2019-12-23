@@ -9,7 +9,7 @@
     <% end %>
     <%= f.password_field :password, autofocus: true, autocomplete: "new-password" , requried: true %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" , required: true %>
-    <%= f.submit "送信", class: "btn btn-primary" %>
+    <%= f.submit "送信", class: "btn btn-primary", data: {disable_with: "送信中・・・"} %>
     <p><%= render "devise/shared/links" %></p>
   </div>
 <% end %>
