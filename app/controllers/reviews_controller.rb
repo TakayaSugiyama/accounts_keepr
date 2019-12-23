@@ -86,6 +86,6 @@ class ReviewsController < ApplicationController
   def only_review_user
     unless @review.user == current_user
       redirect_to user_path(current_user), notice: '権限がありません'
-      end
+    end
   end
 end
