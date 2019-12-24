@@ -18,7 +18,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def after_sign_in_path_for(resource)
+     current_user
+   end
+
   def failure
     redirect_to root_path
   end
+  
 end
