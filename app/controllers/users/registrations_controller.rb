@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def prohibit_google_user
-    if current_user.provider
+    if !!current_user.provider
       redirect_to user_path(current_user), notice: 'アクセスできません'
     end
   end

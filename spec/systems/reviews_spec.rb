@@ -25,7 +25,7 @@ RSpec.describe 'Review', type: :system do
       fill_in  'タイトル', with: 'test tiele'
       fill_in  'レビュー', with: 'test reveiw content'
       click_on '登録する'
-      expect(page).to have_content "投稿しました"
+      expect(page).to have_content '投稿しました'
     end
 
     it 'レビューを削除できる' do

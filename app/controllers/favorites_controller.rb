@@ -2,6 +2,7 @@
 
 class FavoritesController < ApplicationController
   before_action :set_review
+
   def create
     favorite = Favorite.new(review_id: @review.id, user_id: current_user.id)
     favorite.save

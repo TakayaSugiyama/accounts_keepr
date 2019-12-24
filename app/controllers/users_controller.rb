@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :only_not_google_user, only: %i[edit]
 
   def show
-    @monthly_money = EstimateAmount.target_amount(@user)
+    @monthly_money = EstimateAmount.target_amount @user
     @records = @user.records.includes(:label).order(purchase_date: :desc)[0..2]
     @count = @user.records.count_monthly
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path, notice: 'またのご利用をお待ちしております'
+    redirect_to root_url, notice: 'またのご利用をお待ちしております'
   end
 
   private
@@ -44,13 +44,11 @@ class UsersController < ApplicationController
 
   def forbid_not_mypage_user
     unless current_user.id == @user.id
-      redirect_to user_path(current_user), notice: '権限がありません'
+      redirect_to current_user, notice: '権限がありません'
     end
   end
 
   def only_not_google_user
-    if !!current_user.provider
-      redirect_to user_path(current_user), notice: 'アクセスできません'
-      end
+    redirect_to current_user, notice: 'アクセスできません' if !!current_user.provider
   end
 end
