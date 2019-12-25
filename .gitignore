@@ -32,4 +32,3 @@
 .env
 coverage
 
-/app/views/shared/layouts/_ad.html.erb
