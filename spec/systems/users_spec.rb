@@ -66,6 +66,6 @@ RSpec.describe 'Users', type: :system do
     fill_in 'パスワード', with: @user.password
     fill_in 'メールアドレス', with: @user.email
     click_button 'ログイン'
-    expect(page).to have_current_path record_path @record, ignore_query: true
+    expect(page).to have_current_path record_path(@record)
   end
 end
