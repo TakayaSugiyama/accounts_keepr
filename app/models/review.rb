@@ -11,4 +11,18 @@ class Review < ApplicationRecord
   validates :title, presence: true, length: { in: 5..20 }
   validates :content, presence: true, length: { maximum: 385 }
   validates :rating, presence: true, length: { minimum: 1 }
+
+  PER = 8
+
+  def edit_images
+    gon.images = []
+    self.images.pluck(:image).map do |image|
+      gon.images << image.image.url
+    end
+  end
+
+  def self.get_index_reviews 
+    order(created_at: :desc).includes(:images).select(:id,:rating,:title)
+  end
+
 end

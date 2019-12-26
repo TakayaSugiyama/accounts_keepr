@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def records_for_calendar(label_id)
     data = label_id ? records.includes(:label).where(label_id: label_id) : records.includes(:label)
-    data.map do |d|
+    data.select(:label_id, :purchase_price, :purchase_date,:id).map do |d|
       { title: "#{d.label.name}  #{d.purchase_price}円", start: d.purchase_date, url: "/records/#{d.id}" }
     end
   end

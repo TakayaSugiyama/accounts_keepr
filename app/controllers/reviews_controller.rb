@@ -31,15 +31,8 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    gon.images = []
-    @review.images.map do |image|
-      gon.images.push(image.image.url)
-    end
     gon.edit_rating = @review.rating
-    if gon.images.length <= 3
-      count = 3 - gon.images.length
-      count.times { @review.images.build }
-    end
+    (3 - gon.images.length).times { @review.images.build } if @review.edit_images.length <= 3
   end
 
   def show
@@ -52,11 +45,9 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.page(params[:page]).per(PER).order(created_at: :desc).includes(:images)
     gon.ratings = {}
-    @reviews.each do |review|
-      gon.ratings[review.id] = review.rating
-    end
+    @reviews = Review.page(params[:page]).per(PER).get_index_reviews
+    @reviews.select(:id,:rating).each {|review| gon.ratings[review.id] = review.rating}
   end
 
   private
