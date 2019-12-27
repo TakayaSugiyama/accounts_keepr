@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_action :store_location
+
   def google_oauth2
     callback_for(:google)
   end
@@ -19,11 +21,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
-     current_user
+     session[:previous_url].nil?  ?  current_user :  session[:previous_url]
    end
 
   def failure
     redirect_to root_path
   end
+ 
+  private 
+
+  def store_location
+    if request.path !=  user_google_oauth2_omniauth_callback_path && request.path  !=  root_path
+      session[:previous_url] = request.path
+    end
+  end 
   
 end
