@@ -56,6 +56,10 @@ class User < ApplicationRecord
     records.monthly_cost
   end
 
+  def get_user_profile_image 
+    InitialAvatar.avatar_data_uri(self.name[0], size: 25, font_size: 20)
+  end
+
   def get_engel
     category = Label.find_by(name: '食費')
     food_cost = records.category_cost(category.id)

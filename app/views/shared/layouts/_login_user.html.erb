@@ -9,10 +9,10 @@
 </li>
 <li class = "dropdown">
    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <%= current_user.name %>
+         <%=image_tag current_user.get_user_profile_image  %> <%= current_user.name %>
    </a>
    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% unless current_user.provider %>
+          <% unless !!current_user.provider %>
              <%= link_to "パスワード変更", edit_user_registration_path, class: "dropdown-item" %>
              <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "dropdown-item" %>
           <% end %>
