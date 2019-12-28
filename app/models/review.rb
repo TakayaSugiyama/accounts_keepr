@@ -14,11 +14,11 @@ class Review < ApplicationRecord
 
   PER = 8
 
-  def edit_images
-    gon.images = []
+  def get_images
+    images = []
     self.images.pluck(:image).map do |image|
-      gon.images << image.image.url
-    end
+      images.push(image.image.url)
+    end 
   end
 
   def self.get_index_reviews 

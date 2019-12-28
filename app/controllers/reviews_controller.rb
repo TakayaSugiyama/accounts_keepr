@@ -32,7 +32,8 @@ class ReviewsController < ApplicationController
 
   def edit
     gon.edit_rating = @review.rating
-    (3 - gon.images.length).times { @review.images.build } if @review.edit_images.length <= 3
+    gon.images = @review.get_images
+    (3 - @review.get_images.size).times { @review.images.build } if @review.get_images.size <= 3
   end
 
   def show
