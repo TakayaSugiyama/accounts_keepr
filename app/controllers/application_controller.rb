@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 
   # frendly following 
   def store_location
-    if request.fullpath !=  new_user_session_path
-      session[:previous_url] = request.fullpath 
+    if request.path !=  new_user_session_path
+      session[:previous_url] = request.path 
     end
   end 
 

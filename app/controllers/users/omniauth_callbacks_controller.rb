@@ -31,8 +31,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private 
 
   def store_location
-    if request.path !=  user_google_oauth2_omniauth_callback_path && request.path  !=  root_path
+    if request.path !=  user_google_oauth2_omniauth_callback_path && request.path  !=  root_path  
       session[:previous_url] = request.path
+    elsif session[:previous_url]  == root_path 
+      session[:previous_url] =  nil
     end
   end 
   
