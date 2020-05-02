@@ -9,8 +9,6 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-      webdriver_chrome:
-        image: selenium/standalone-chrome
     container:
       image: ruby:2.6.3
     steps:
@@ -33,6 +31,8 @@ jobs:
         run: |
           rails db:create RAILS_ENV=test
           rails db:migrate RAILS_ENV=test
+      - name: copy file
+        run: cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
       - name: run spec
         env:
           SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
