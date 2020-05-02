@@ -14,7 +14,7 @@ Rails.application.configure do
     Bullet.rails_logger = true 
   end
 
-  config.web_console.whitelisted_ips = '192.168.128.1'
+  config.web_console.whitelisted_ips = '172.28.0.1'
 
   # Do not eager load code on boot.
   config.eager_load = false
