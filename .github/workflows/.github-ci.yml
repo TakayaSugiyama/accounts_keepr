@@ -11,6 +11,8 @@ jobs:
           POSTGRES_PASSWORD: postgres
     container:
       image: ruby:2.6.3
+    env:
+      SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
     steps:
       - uses: actions/checkout@v2
       - name: setup bundle
