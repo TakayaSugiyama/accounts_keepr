@@ -14,11 +14,13 @@ Rails.application.configure do
     Bullet.rails_logger = true 
   end
 
+  config.web_console.whitelisted_ips = '192.168.128.1'
+
   # Do not eager load code on boot.
   config.eager_load = false
 
   # Show full error reports.
-  config.consider_all_requests_local = false
+  config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -35,7 +37,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 } 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 } 
   config.action_mailer.delivery_method = :letter_opener_web
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local

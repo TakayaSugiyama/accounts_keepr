@@ -3,6 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :prohibit_google_user, only: %i[edit update]
 
+  protect_from_forgery prepend: true
+
   private
 
   def prohibit_google_user

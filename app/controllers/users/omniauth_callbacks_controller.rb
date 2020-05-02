@@ -2,6 +2,7 @@
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_action :store_location
+  protect_from_forgery prepend: true
 
   def google_oauth2
     callback_for(:google)
