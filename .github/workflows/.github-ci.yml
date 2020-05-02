@@ -10,30 +10,18 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
     container:
-      image: ruby:2.6.3
+      image: circleci/ruby:2.6.3-buster-node-browsers
     steps:
       - uses: actions/checkout@v2
       - name: setup bundle
         run: bundle install
-      - name: install chorme
-        run: |
-          curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-          apt-get update -q -y
-          apt-get install -y google-chrome-stable
       - name: setup yarn
         run: |
-          curl -sL https://deb.nodesource.com/setup_12.x | bash -
-          apt-get install -y nodejs
           npm install -g yarn
           yarn install
       - name: setup migrate
-        run: |
-          rails db:create RAILS_ENV=test
-          rails db:migrate RAILS_ENV=test
+        run: rails db:setup RAILS_ENV=test
       - name: copy file
         run: cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
       - name: run spec
-        env:
-          SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
         run: bundle exec rspec
