@@ -5,7 +5,6 @@ require 'spec_helper'
 require 'simplecov'
 SimpleCov.start
 
-require 'capybara/poltergeist'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
@@ -44,13 +43,26 @@ end
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
+
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :headless_chrome, options: {
+      browser: :remote,
+      url: ENV.fetch("SELENIUM_REMOTE_URL"),
+      desired_capabilities: :chrome
+    }
+    Capybara.server_host = 'web'
+    Capybara.app_host='http://web'
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -62,6 +74,7 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :selenium
 
   Capybara.ignore_hidden_elements = false
+
 
   # config.before(:each) do |example|
   #   if example.metadata[:type] == :system

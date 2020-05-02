@@ -33,20 +33,13 @@ gem 'initial_avatar'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'hirb'
   gem 'hirb-unicode-steakknife', '~> 0.0.6'
-  gem 'launchy'
-  gem 'poltergeist'
   gem 'rack-mini-profiler'
-  gem 'rspec-rails'
-  gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  gem 'selenium-webdriver'
-  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -62,7 +55,9 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
+  gem "webdriver", require: !ENV['SELENIUM_REMOTE_URL'] 
+  gem 'selenium-webdriver'
+  gem 'rspec-rails'
   gem 'simplecov'
 end
 
