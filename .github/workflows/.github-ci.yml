@@ -10,16 +10,13 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
     container:
-      image: circleci/ruby:2.6.3-buster-node-browsers
+      image: circleci/ruby:2.6.3-node-browsers
     steps:
       - uses: actions/checkout@v1
       - name: setup bundle
         run: bundle install
       - name: setup yarn
-        run: |
-          sudo chown -R $(whoami) ~/.npm
-          npm install -g yarn
-          yarn install
+        run: yarn install
       - name: setup migrate
         run: rails db:setup RAILS_ENV=test
       - name: copy file
