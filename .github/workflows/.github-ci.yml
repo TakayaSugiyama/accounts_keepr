@@ -17,8 +17,7 @@ jobs:
         run: bundle install
       - name: setup yarn
         run: |
-          sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
-          yarn install
+          sudo yarn install
       - name: setup migrate
         run: |
           rails db:create RAILS_ENV=test
