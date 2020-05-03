@@ -28,10 +28,10 @@ jobs:
         run: bundle exec rspec
   rubocop:
     runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.3
     steps:
       - uses: actions/checkout@v1
-      - name: set permission to circle ci
-        run: sudo chown -R circleci .
       - name: setup bundle
         run: bundle install
       - name: setup migrate
