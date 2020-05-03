@@ -16,7 +16,10 @@ jobs:
       - name: setup bundle
         run: bundle install
       - name: setup yarn
-        run: yarn install
+        run: |
+          sh -c "sudo chown -R circleci /github"
+          sh -c "sudo chmod -R 777 /github"
+          yarn install
       - name: setup migrate
         run: rails db:setup RAILS_ENV=test
       - name: copy file
