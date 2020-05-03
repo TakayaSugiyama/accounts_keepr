@@ -20,9 +20,9 @@ jobs:
           sudo yarn install
       - name: setup migrate
         run: |
-          rails db:create RAILS_ENV=test
-          rails db:migrate RAILS_ENV=test
+          sudo rails db:create RAILS_ENV=test
+          sudo rails db:migrate RAILS_ENV=test
       - name: copy file
-        run: cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
+        run: sudo cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
       - name: run spec
         run: bundle exec rspec
