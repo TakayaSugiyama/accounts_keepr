@@ -1,0 +1,30 @@
+name: Test
+on: [push, pull_request]
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+    container:
+      image: circleci/ruby:2.6.3-node-browsers
+    steps:
+      - uses: actions/checkout@v1
+      - name: set permission to circle ci
+        run: sudo chown -R circleci .
+      - name: setup bundle
+        run: bundle install
+      - name: setup yarn
+        run: |
+          yarn install
+      - name: setup migrate
+        run: |
+          rails db:create RAILS_ENV=test
+          rails db:migrate RAILS_ENV=test
+      - name: copy file
+        run: sudo cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
+      - name: run spec
+        run: bundle exec rspec
