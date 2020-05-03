@@ -17,6 +17,7 @@ gem 'fog-aws'
 gem 'font-awesome-sass', '~> 5.11.2'
 gem 'fullcalendar-rails'
 gem 'gon'
+gem 'initial_avatar'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -29,7 +30,6 @@ gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'initial_avatar'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -55,10 +55,10 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem "webdriver", require: !ENV['SELENIUM_REMOTE_URL'] 
-  gem 'selenium-webdriver'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'simplecov'
+  gem 'webdriver', require: !ENV['SELENIUM_REMOTE_URL']
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

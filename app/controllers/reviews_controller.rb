@@ -33,7 +33,9 @@ class ReviewsController < ApplicationController
   def edit
     gon.edit_rating = @review.rating
     gon.images = @review.get_images
-    (3 - @review.get_images.size).times { @review.images.build } if @review.get_images.size <= 3
+    if @review.get_images.size <= 3
+      (3 - @review.get_images.size).times { @review.images.build }
+    end
   end
 
   def show
@@ -48,7 +50,7 @@ class ReviewsController < ApplicationController
   def index
     gon.ratings = {}
     @reviews = Review.page(params[:page]).per(PER).get_index_reviews
-    @reviews.select(:id,:rating).each {|review| gon.ratings[review.id] = review.rating}
+    @reviews.select(:id, :rating).each { |review| gon.ratings[review.id] = review.rating }
   end
 
   private

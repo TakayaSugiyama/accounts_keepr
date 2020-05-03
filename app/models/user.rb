@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def records_for_calendar(label_id)
     data = label_id ? records.includes(:label).where(label_id: label_id) : records.includes(:label)
-    data.select(:label_id, :purchase_price, :purchase_date,:id).map do |d|
+    data.select(:label_id, :purchase_price, :purchase_date, :id).map do |d|
       { title: "#{d.label.name}  #{d.purchase_price}円", start: d.purchase_date, url: "/records/#{d.id}" }
     end
   end
@@ -56,8 +56,8 @@ class User < ApplicationRecord
     records.monthly_cost
   end
 
-  def get_user_profile_image 
-    InitialAvatar.avatar_data_uri(self.name[0], size: 25, font_size: 20)
+  def get_user_profile_image
+    InitialAvatar.avatar_data_uri(name[0], size: 25, font_size: 20)
   end
 
   def get_engel
@@ -69,7 +69,7 @@ class User < ApplicationRecord
   def get_comparison
     unless get_premonth_sum == 0
       comparison = ((get_sum.to_f / get_premonth_sum) * 100).round
-      end
+    end
   end
 
   def get_premonth_sum

@@ -13,8 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def after_sign_up_path_for(resource)
-     current_user
+  def after_sign_up_path_for(_resource)
+    current_user
   end
-
 end

@@ -13,11 +13,11 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
-   
+
   if Rails.env.development? || Rails.env.test?
-    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email userinfo.profile',redirect_uri: "http://localhost:3001/users/auth/google_oauth2/callback"
-  elsif Rails.env.production? 
-    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email userinfo.profile', redirect_uri: "https://young-taiga-20455.herokuapp.com/users/auth/google_oauth2/callback"
+    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email userinfo.profile', redirect_uri: 'http://localhost:3001/users/auth/google_oauth2/callback'
+  elsif Rails.env.production?
+    config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'userinfo.email userinfo.profile', redirect_uri: 'https://young-taiga-20455.herokuapp.com/users/auth/google_oauth2/callback'
   end
 
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
