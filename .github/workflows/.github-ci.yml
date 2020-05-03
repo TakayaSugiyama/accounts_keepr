@@ -12,9 +12,7 @@ jobs:
     container:
       image: circleci/ruby:2.6.3-buster-node-browsers
     steps:
-      - name: set permission
-        run: sudo chown -R $USER:$USER /home/github/actions-runner/_work/{REPOSITORY_NAME_HERE}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: setup bundle
         run: bundle install
       - name: setup yarn
