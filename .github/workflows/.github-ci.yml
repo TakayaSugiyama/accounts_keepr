@@ -20,6 +20,7 @@ jobs:
           sudo yarn install
       - name: setup migrate
         run: |
+          whoami
           rails db:create RAILS_ENV=test
           rails db:migrate RAILS_ENV=test
       - name: copy file
