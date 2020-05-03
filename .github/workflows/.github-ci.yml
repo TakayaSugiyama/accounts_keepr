@@ -13,14 +13,15 @@ jobs:
       image: circleci/ruby:2.6.3-node-browsers
     steps:
       - uses: actions/checkout@v1
+      - name: set permission to circle ci
+        run: sudo chown -R circleci .
       - name: setup bundle
         run: bundle install
       - name: setup yarn
         run: |
-          sudo yarn install
+          yarn install
       - name: setup migrate
         run: |
-          whoami
           rails db:create RAILS_ENV=test
           rails db:migrate RAILS_ENV=test
       - name: copy file
