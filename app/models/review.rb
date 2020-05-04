@@ -18,11 +18,10 @@ class Review < ApplicationRecord
     images = []
     self.images.pluck(:image).map do |image|
       images.push(image.image.url)
-    end 
+    end
   end
 
-  def self.get_index_reviews 
-    order(created_at: :desc).includes(:images).select(:id,:rating,:title)
+  def self.get_index_reviews
+    order(created_at: :desc).includes(:images).select(:id, :rating, :title)
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -5,13 +7,13 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
- 
-  config.after_initialize do 
-    Bullet.enable = true 
-    Bullet.alert = true 
-    Bullet.bullet_logger = true 
-    Bullet.console = true 
-    Bullet.rails_logger = true 
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
   end
 
   config.web_console.whitelisted_ips = '172.28.0.1'
@@ -37,7 +39,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 } 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
   config.action_mailer.delivery_method = :letter_opener_web
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local

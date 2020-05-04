@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddYearToEstimateAmount < ActiveRecord::Migration[5.2]
   def change
     add_column :estimate_amounts, :year, :integer, null: false

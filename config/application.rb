@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'csv'
@@ -12,18 +14,17 @@ module AccoutsKeeper
     config.time_zone = 'Asia/Tokyo'
 
     config.i18n.default_locale = :ja
-    
-    config.generators do |g| 
-      g.test_framework :rspec, 
-         fixtures: true, 
-         view_specs: false,
-         helper_specs: false,
-         routing_specs: false, 
-         controller_spacs: false,
-         request_specs: false  
-      g.fixture_replacement :factory_bot, dir: "spec/factories"
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_spacs: false,
+                       request_specs: false
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
     config.assets.initialize_on_precompile = false
-
   end
 end

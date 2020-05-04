@@ -21,22 +21,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def after_sign_in_path_for(resource)
-     session[:previous_url].nil?  ?  current_user :  session[:previous_url]
+  def after_sign_in_path_for(_resource)
+    session[:previous_url].nil? ? current_user : session[:previous_url]
    end
 
   def failure
     redirect_to root_path
   end
- 
-  private 
+
+  private
 
   def store_location
-    if request.path !=  user_google_oauth2_omniauth_callback_path && request.path  !=  root_path  
+    if request.path !=  user_google_oauth2_omniauth_callback_path && request.path != root_path
       session[:previous_url] = request.path
-    elsif session[:previous_url]  == root_path 
-      session[:previous_url] =  nil
+    elsif session[:previous_url] == root_path
+      session[:previous_url] = nil
     end
-  end 
-  
+  end
 end

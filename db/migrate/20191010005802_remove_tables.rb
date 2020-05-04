@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RemoveTables < ActiveRecord::Migration[5.2]
   def change
-    #drop_table :label_relations
+    # drop_table :label_relations
   end
 end

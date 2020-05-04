@@ -1,5 +1,5 @@
 name: Test
-on: [push, pull_request]
+on: [push]
 jobs:
   rspec:
     runs-on: ubuntu-latest
@@ -18,13 +18,20 @@ jobs:
       - name: setup bundle
         run: bundle install
       - name: setup yarn
-        run: |
-          yarn install
+        run: yarn install
       - name: setup migrate
-        run: |
-          rails db:create RAILS_ENV=test
-          rails db:migrate RAILS_ENV=test
+        run: rails db:create db:migrate RAILS_ENV=test
       - name: copy file
         run: sudo cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
       - name: run spec
         run: bundle exec rspec
+  rubocop:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.3
+    steps:
+      - uses: actions/checkout@v1
+      - name: setup bundle
+        run: bundle install
+      - name: run rubocop
+        run: bundle exec rubocop
