@@ -6,7 +6,7 @@
   $ git clone https://github.com/TakayaSugiyama/accounts_keepr.git
   $ cd ~/accounts_keeper
   $ docker-compose up - d
-  $ docker-compose run web rails db:
+  $ docker-compose run web rails db:create db:migrate
   $ docker-compose run web bundle exec rubocop
   $ docker-compose run web bundle exec rspec
 ```
