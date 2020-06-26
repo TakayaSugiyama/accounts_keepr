@@ -7,6 +7,7 @@
   $ cd ~/accounts_keeper
   $ docker-compose up - d
   $ docker-compose run web rails db:create db:migrate
+  $ docker-compose run yarn install
   $ docker-compose run web bundle exec rubocop
   $ docker-compose run web bundle exec rspec
 ```
