@@ -10,6 +10,7 @@
   $ docker-compose run yarn install
   $ docker-compose run web bundle exec rubocop
   $ docker-compose run web bundle exec rspec
+  $ docker-compose run web bin/rails  s -b 0.0.0.0
 ```
 
 `docker-compose up`をするとコンテナが起動します。
