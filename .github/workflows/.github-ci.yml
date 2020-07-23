@@ -3,6 +3,7 @@ on: [push]
 jobs:
   rspec:
     runs-on: ubuntu-latest
+    if: "! contains(toJSON(github.event.commits.*.msg), '[skip-ci]')"
     services:
       db:
         image: postgres:11
@@ -27,6 +28,7 @@ jobs:
         run: bundle exec rspec
   rubocop:
     runs-on: ubuntu-latest
+    if: "! contains(toJSON(github.event.commits.*.msg), '[skip-ci]')"
     container:
       image: ruby:2.6.3
     steps:
