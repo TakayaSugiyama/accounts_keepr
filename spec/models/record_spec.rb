@@ -9,6 +9,14 @@ RSpec.describe Record, type: :model do
       @label = FactoryBot.create(:label)
     end
 
+    context '購入日が未来の日時の時' do
+      let(:record) { FactoryBot.build(:record, purchase_date: Date.tomorrow.strftime('%Y-%m-%d')) }
+      it '登録出来ない' do
+        record.valid?
+        expect(record.errors[:purchase_date]).to end_with 'が未来になっています'
+      end
+    end
+
     it '家計簿を新規で投稿できる' do
       record = FactoryBot.create(:record, user_id: @user.id, label_id: @label.id)
       expect(described_class.first.store_name).to eq record.store_name
