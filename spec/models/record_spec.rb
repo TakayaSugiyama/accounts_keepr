@@ -4,50 +4,62 @@ require 'rails_helper'
 
 RSpec.describe Record, type: :model do
   describe '新規投稿機能' do
-    before do
-      @user = FactoryBot.create(:user)
-      @label = FactoryBot.create(:label)
-    end
+      let(:user) { create(:user) }
+      let(:label)  { FactoryBot.create(:label) }
 
-    context '購入日が未来の日時の時' do
-      let(:record) { FactoryBot.build(:record, purchase_date: Date.tomorrow.strftime('%Y-%m-%d')) }
-      it '登録出来ない' do
-        record.valid?
-        expect(record.errors[:purchase_date]).to end_with 'が未来になっています'
+    context "正常に入力されている時" do
+      let!(:record) { create(:record, user_id: user.id, label_id: label.id) }
+      it '家計簿を新規で投稿できる' do
+        expect(described_class.first.store_name).to eq record.store_name
       end
     end
 
-    it '家計簿を新規で投稿できる' do
-      record = FactoryBot.create(:record, user_id: @user.id, label_id: @label.id)
-      expect(described_class.first.store_name).to eq record.store_name
-    end
+    describe "バリデーション" do
+      context '店の名前がnilの時d' do
+        let(:record) { build(:record, store_name: nil) }
+        it "エラ-メッセージが返る" do
+          record.valid?
+          expect(record.errors[:store_name]).to end_with 'を入力してください'
+        end
+      end
 
-    it '店の名前がnilだと登録できない' do
-      record = FactoryBot.build(:record, store_name: nil)
-      record.valid?
-      expect(record.errors[:store_name]).to include 'を入力してください'
-    end
+      context '合計金額がnilの時' do
+        let(:record) { build(:record, purchase_price: nil) }
+        it "エラ〜メッセージ返る" do
+          record.valid?
+          expect(record.errors[:purchase_price]).to contain_exactly("を入力してください", "は数値で入力してください")
+        end
+      end
 
-    it '合計金額がnilだと登録できない' do
-      record = FactoryBot.build(:record, purchase_price: nil)
-      record.valid?
-      expect(record.errors[:purchase_price]).to include 'を入力してください'
-    end
+      context '日付がnilの時' do
+        let(:record) { build(:record, purchase_date: nil) }
+        it "エラーメッセージが返る" do
+          record.valid?
+          expect(record.errors[:purchase_date]).to end_with 'を入力してください'
+        end
+      end
 
-    it '日付がnilだと登録できない' do
-      record = FactoryBot.build(:record, purchase_date: nil)
-      record.valid?
-      expect(record.errors[:purchase_date]).to include 'を入力してください'
-    end
+      context 'userと紐づいていない時' do
+        let(:record) { build(:record, user_id: nil) }
+        it "登録出来ない" do
+          expect(record.valid?).to eq false
+        end
+      end
 
-    it 'ユーザー選択しないと登録できない' do
-      record = FactoryBot.build(:record, user_id: nil)
-      expect(record.valid?).to eq false
-    end
+      context 'ラベルと紐づいていない時' do
+        let(:record) { build(:record, label_id: nil) }
+        it "登録出来ない" do
+          expect(record.valid?).to eq false
+        end
+      end
 
-    it 'ラベルを選択しないと登録できない' do
-      record = FactoryBot.build(:record, label_id: nil)
-      expect(record.valid?).to eq false
+      context '購入日が未来の日時の時' do
+        let(:record) { FactoryBot.build(:record, purchase_date: Date.tomorrow.strftime('%Y-%m-%d')) }
+        it '登録出来ない' do
+          record.valid?
+          expect(record.errors[:purchase_date]).to end_with 'が未来になっています'
+        end
+      end
     end
   end
 end
