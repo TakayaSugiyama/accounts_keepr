@@ -92,5 +92,5 @@ class User < ApplicationRecord
     elsif percent >= 100
       BeyondMailer.beyond_mail(self, estimate_amount, get_sum.to_f).deliver
     end
- end
+  end
 end

@@ -11,7 +11,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
     container:
-      image: circleci/ruby:2.6.3-node-browsers
+      image: circleci/ruby:2.6.6-node-browsers
     steps:
       - uses: actions/checkout@v1
       - name: set permission to circle ci
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "! contains(toJSON(github.event.commits.*.msg), '[skip-ci]')"
     container:
-      image: ruby:2.6.3
+      image: ruby:2.6.6
     steps:
       - uses: actions/checkout@v1
       - name: setup bundle
