@@ -12,19 +12,20 @@
 # SupportedStylesAlignWith: start_of_line, def
 Layout/DefEndAlignment:
   Exclude:
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-    - 'app/models/user.rb'
+    - "app/controllers/users/omniauth_callbacks_controller.rb"
+    - "app/models/user.rb"
 
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
-    - 'app/models/user.rb'
-    - 'spec/systems/records_spec.rb'
+    - "app/models/user.rb"
+    - "spec/systems/records_spec.rb"
 
 # Offense count: 3
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
-  Max: 18
+  Enabled: true
+  Max: 20
 
 # Offense count: 11
 # Configuration parameters: CountComments, ExcludedMethods.
@@ -40,9 +41,9 @@ Metrics/MethodLength:
 # Offense count: 14
 Naming/AccessorMethodName:
   Exclude:
-    - 'app/models/concerns/day.rb'
-    - 'app/models/review.rb'
-    - 'app/models/user.rb'
+    - "app/models/concerns/day.rb"
+    - "app/models/review.rb"
+    - "app/models/user.rb"
 
 # Offense count: 1
 # Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
@@ -52,19 +53,19 @@ Naming/AccessorMethodName:
 # MethodDefinitionMacros: define_method, define_singleton_method
 Naming/PredicateName:
   Exclude:
-    - 'spec/**/*'
-    - 'app/models/user.rb'
+    - "spec/**/*"
+    - "app/models/user.rb"
 
 # Offense count: 15
 # Configuration parameters: AllowedChars.
 Style/AsciiComments:
   Exclude:
-    - 'app/controllers/home_controller.rb'
-    - 'app/models/estimate_amount.rb'
-    - 'app/uploaders/image_uploader.rb'
-    - 'spec/systems/records_spec.rb'
-    - 'spec/systems/reviews_spec.rb'
-    - 'spec/systems/users_spec.rb'
+    - "app/controllers/home_controller.rb"
+    - "app/models/estimate_amount.rb"
+    - "app/uploaders/image_uploader.rb"
+    - "spec/systems/records_spec.rb"
+    - "spec/systems/reviews_spec.rb"
+    - "spec/systems/users_spec.rb"
 
 # Offense count: 4
 # Cop supports --auto-correct.
@@ -72,15 +73,15 @@ Style/AsciiComments:
 # SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
   Exclude:
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'app/helpers/users/amniauth_callbacks_helper.rb'
-    - 'app/helpers/users/registrations_helper.rb'
+    - "app/controllers/users/omniauth_callbacks_controller.rb"
+    - "app/controllers/users/registrations_controller.rb"
+    - "app/helpers/users/amniauth_callbacks_helper.rb"
+    - "app/helpers/users/registrations_helper.rb"
 
 # Offense count: 5
 Style/ClassVars:
   Exclude:
-    - 'app/models/concerns/day.rb'
+    - "app/models/concerns/day.rb"
 
 # Offense count: 62
 Style/Documentation:
@@ -89,40 +90,40 @@ Style/Documentation:
 # Offense count: 3
 Style/DoubleNegation:
   Exclude:
-    - 'app/controllers/reviews_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'app/controllers/users_controller.rb'
+    - "app/controllers/reviews_controller.rb"
+    - "app/controllers/users/registrations_controller.rb"
+    - "app/controllers/users_controller.rb"
 
 # Offense count: 10
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/comments_controller.rb'
-    - 'app/controllers/reviews_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/models/record.rb'
-    - 'app/models/user.rb'
+    - "app/controllers/application_controller.rb"
+    - "app/controllers/comments_controller.rb"
+    - "app/controllers/reviews_controller.rb"
+    - "app/controllers/users/registrations_controller.rb"
+    - "app/controllers/users_controller.rb"
+    - "app/models/record.rb"
+    - "app/models/user.rb"
 
 # Offense count: 11
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/reviews_controller.rb'
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/models/record.rb'
-    - 'app/models/user.rb'
-    - 'spec/rails_helper.rb'
+    - "app/controllers/application_controller.rb"
+    - "app/controllers/reviews_controller.rb"
+    - "app/controllers/users/omniauth_callbacks_controller.rb"
+    - "app/controllers/users/registrations_controller.rb"
+    - "app/controllers/users_controller.rb"
+    - "app/models/record.rb"
+    - "app/models/user.rb"
+    - "spec/rails_helper.rb"
 
 # Offense count: 2
 Style/MixinUsage:
   Exclude:
-    - 'bin/setup'
-    - 'bin/update'
+    - "bin/setup"
+    - "bin/update"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -130,8 +131,8 @@ Style/MixinUsage:
 # SupportedStyles: predicate, comparison
 Style/NumericPredicate:
   Exclude:
-    - 'spec/**/*'
-    - 'app/models/user.rb'
+    - "spec/**/*"
+    - "app/models/user.rb"
 
 # Offense count: 100
 # Cop supports --auto-correct.
