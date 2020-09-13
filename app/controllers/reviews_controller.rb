@@ -33,9 +33,7 @@ class ReviewsController < ApplicationController
   def edit
     gon.edit_rating = @review.rating
     gon.images = @review.get_images
-    if @review.get_images.size <= 3
-      (3 - @review.get_images.size).times { @review.images.build }
-    end
+    (3 - @review.get_images.size).times { @review.images.build } if @review.get_images.size <= 3
   end
 
   def show
@@ -65,21 +63,15 @@ class ReviewsController < ApplicationController
 
   def alreadey_wirited
     @product = Product.find(params[:product_id])
-    if !!@product.review
-      redirect_to @product.review.user, notice: '既にレビューを書いています'
-    end
+    redirect_to @product.review.user, notice: '既にレビューを書いています' if !!@product.review
   end
 
   def only_product_user
     @product = Product.find(params[:product_id])
-    unless @product.record.user == current_user
-      redirect_to @product.record.user, notice: '権限がありません'
-    end
+    redirect_to @product.record.user, notice: '権限がありません' unless @product.record.user == current_user
   end
 
   def only_review_user
-    unless @review.user == current_user
-      redirect_to current_user, notice: '権限がありません'
-    end
+    redirect_to current_user, notice: '権限がありません' unless @review.user == current_user
   end
 end

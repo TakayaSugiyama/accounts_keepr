@@ -1,45 +1,45 @@
 <div class = "mt-3 container mb-4" >
-   <h1 class = "text-center mb-4">家計簿登録フォーム</h1>
+  <h1 class = "text-center mb-4">家計簿登録フォーム</h1>
   <%= bootstrap_form_with(model: @record, local: true,label_errors: true) do |f| %>
-     <div class = "row">
-        <div class = "col-md-6">
-           <u><h3>簡単入力</h3></u>
-          <span class="badge badge-danger">必須</span>
-          <%= f.date_field :purchase_date, value: form_date(@record) %>
-          <span class="badge badge-danger">必須</span>
-          <%= f.text_field :store_name, placeholder: "セブンイレブン" ,required: true %>
-          <span class="badge badge-danger">必須</span>
-          <%= f.number_field :purchase_price, placeholder: 1000 ,required: true %>
-           <span class="badge badge-danger">必須</span> 
-           <%= f.collection_select :label_id,  Label.all, :id, :name, selected: edit_or_new(@record) %>
-          <hr/>
-          <%# 買い物メモ ここから %>
-          <u><h3>買い物メモ</h3></u>
-          <div id = "memos"> 
-            <%= f.fields_for :memos do |memo| %>
-                <%= render 'memo_fields', f: memo %>
+    <div class = "row">
+      <div class = "col-md-6">
+        <u><h3>簡単入力</h3></u>
+        <span class="badge badge-danger">必須</span>
+        <%= f.date_field :purchase_date, value: form_date(@record) %>
+        <span class="badge badge-danger">必須</span>
+        <%= f.text_field :store_name, placeholder: "セブンイレブン" ,required: true %>
+        <span class="badge badge-danger">必須</span>
+        <%= f.number_field :purchase_price, placeholder: 1000 ,required: true %>
+          <span class="badge badge-danger">必須</span> 
+          <%= f.collection_select :label_id,  Label.all, :id, :name, selected: edit_or_new(@record) %>
+        <hr/>
+        <%# 買い物メモ ここから %>
+        <u><h3>買い物メモ</h3></u>
+        <div id = "memos"> 
+          <%= f.fields_for :memos do |memo| %>
+              <%= render 'memo_fields', f: memo %>
+          <% end %>
+          <div class = "links mb-3">
+                <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success" , id: "add-memo" %>
+            </div>
+        </div>
+        <hr/>
+        <%# 買い物メモ ここまで %>
+      </div>
+      <div class = "col-md-6">
+          <%# 商品の記録 ここから %>
+          <u><h3>商品の記録</h3></u>
+          <div id = "products"> 
+            <%= f.fields_for :products do |product| %>
+                <%= render 'product_fields', f: product %>
             <% end %>
             <div class = "links mb-3">
-                  <%= link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success" , id: "add-memo" %>
-             </div>
+                    <%= link_to_add_association "商品情報を追加する",f, :products , class: "btn btn-success", id: "add-product"%>
+            </div>
           </div>
           <hr/>
-          <%# 買い物メモ ここまで %>
-        </div>
-        <div class = "col-md-6">
-            <%# 商品の記録 ここから %>
-            <u><h3>商品の記録</h3></u>
-            <div id = "products"> 
-              <%= f.fields_for :products do |product| %>
-                  <%= render 'product_fields', f: product %>
-              <% end %>
-              <div class = "links mb-3">
-                     <%= link_to_add_association "商品情報を追加する",f, :products , class: "btn btn-success", id: "add-product"%>
-              </div>
-            </div>
-            <hr/>
-            <%# 商品の記録 ここまで %>
-       </div>
+          <%# 商品の記録 ここまで %>
+    </div>
       </div>
     <div class = "mt-4 text-center">
       <%= f.submit class: "btn btn-lg btn-primary"%>

@@ -6,7 +6,7 @@
       <%= pie_chart  @user.get_chart  %>
       <p class = "text-center mt-3">前月使用額は <%= number_with_delimiter @user.get_premonth_sum %> 円です</p>
       <% if @user.get_comparison %>
-         <p class = "text-center">前月比は <%= @user.get_comparison %>%です</p>
+      <p class = "text-center">前月比は <%= @user.get_comparison %>%です</p>
       <% end  %>
       <p class = "text-center mt-3">エンゲル係数は <%= @user.get_engel %>% です</p>
       <div class = "text-info text-center">エンゲル係数とは? </div>
@@ -20,13 +20,13 @@
     <%= line_chart  @user.get_data %>
     <table class="table table-striped">
       <tr> 
-         <th>今月予定金額</th>
+        <th>今月予定金額</th>
         <td id = "estimate_field">
-           <% if @monthly_money %>
+        <% if @monthly_money %>
             <%= number_with_delimiter @monthly_money.price %>円
-           <% else %>
-             設定してください.
-           <% end %>
+        <% else %>
+          設定してください.
+        <% end %>
         </td>
       </tr>
       <tr>
@@ -48,7 +48,7 @@
     <% end %>
   </div>
   <div class = "col-md-2">
-     <%= render "shared/layouts/ad" %>
+    <%= render "shared/layouts/ad" %>
 </div>
 <div class = "out-wrapper mt-4 mb-4 container text-center mr-auto ml-auto">
   <h3>最近の支出</h3>
@@ -56,14 +56,14 @@
   </div>
   <div class = "card col-md-6 text-center offset-md-3 mb-4">
     <ul class="list-group list-group-flush">
-       <% @records.each do |record|%>
-          <li class="list-group-item"> 
-             <span class = "mr-1"><%= record.purchase_date %></span>
-             <span><%= record.label.name %></span>
-             <object><%= number_with_delimiter  record.purchase_price %>円</object>
-             <%= link_to "詳細", record_path(record) %>
-          </li>
-       <% end %>
+      <% @records.each do |record|%>
+        <li class="list-group-item"> 
+          <span class = "mr-1"><%= record.purchase_date %></span>
+          <span><%= record.label.name %></span>
+          <object><%= number_with_delimiter  record.purchase_price %>円</object>
+          <%= link_to "詳細", record_path(record) %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

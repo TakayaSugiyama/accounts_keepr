@@ -16,12 +16,12 @@
         <% if @review.images.any? %>
           <% @review.images.each do |image| %>
             <li class = "review-image">
-               <%= image_tag image.image.url , class: "img-fluid index-image img-thumbnail"%>
+              <%= image_tag image.image.url , class: "img-fluid index-image img-thumbnail"%>
             </li>
           <% end %>
         <% else %>
           <li>
-           <%= image_tag "review.jpg" ,class: "img-fluid index-image" %>
+            <%= image_tag "review.jpg" ,class: "img-fluid index-image" %>
           </li>
         <% end %>
       </div>
@@ -29,31 +29,31 @@
     <%# ここまでレビュー本文と画像 %>
     <div class = "card-footer">
         <div id = "like_unlike_field">
-           <%= render "reviews/favorite_field" , review: @review %>
+          <%= render "reviews/favorite_field" , review: @review %>
         </div>
-       <% if current_user %>
+        <% if current_user %>
         <% if @review.user == current_user %>
           <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか?"} %>
           <%= link_to "編集", edit_review_path(@review), class: "btn btn-success"%>
         <% end %>
-       <% end %>
+      <% end %>
     </div>
   </div>
 </div>
 <h3 class = "text-center mt-4">コメントを作成する</h3>
 <div class = "offset-md-3 col-md-6">
   <% if current_user %>
-     <%= bootstrap_form_with(model: @comment, url: review_comments_path(@review), scope: :comment) do |f| %>
+    <%= bootstrap_form_with(model: @comment, url: review_comments_path(@review), scope: :comment) do |f| %>
         <div id = "errors" class = "success-flash">
         </div>
         <%= f.text_area :content, label: "内容" ,'onKeyUp': "countLength(value, 'textlength2');" , rows: 5, id: "comment-field"%>
-         <p class = "text-right"><span id = "textlength2">0</span>/200文字
+          <p class = "text-right"><span id = "textlength2">0</span>/200文字
         <div class = "text-center">
-           <%= f.submit "投稿する", class: "btn btn-success"%>
+          <%= f.submit "投稿する", class: "btn btn-success"%>
         </div>
-     <% end %>
+    <% end %>
   <% else %>
-      <h3 class = "text-center">コメントをするにはログインが必要です。</h3>
+    <h3 class = "text-center">コメントをするにはログインが必要です。</h3>
   <% end %>
 </div>
 

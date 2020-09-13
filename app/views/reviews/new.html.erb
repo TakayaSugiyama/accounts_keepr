@@ -14,7 +14,7 @@
     <div id='star-rating'></div>
     <span class="badge badge-danger">必須</span>
     <%= f.text_field :title , required: true %>
-     <span class="badge badge-danger">必須</span>
+      <span class="badge badge-danger">必須</span>
     <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true %>
     <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
     <div id = "images">
@@ -24,7 +24,7 @@
       <% end %>
     </div>
     <div class = "text-center">
-       <%= f.submit class: "btn btn-primary", data: {disable_with: "作成中・・・"} %>
+      <%= f.submit class: "btn btn-primary", data: {disable_with: "作成中・・・"} %>
     </div>
   <% end %>
 </div>
@@ -33,7 +33,7 @@
   <script>
     $('#star-rating').raty({
       path: '/assets/',
-     click: function(score, e) {
+      click: function(score, e) {
       $("#review_rating").val(score)
       }
     });

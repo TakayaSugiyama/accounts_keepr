@@ -43,9 +43,7 @@ class UsersController < ApplicationController
   end
 
   def forbid_not_mypage_user
-    unless current_user.id == @user.id
-      redirect_to current_user, notice: '権限がありません'
-    end
+    redirect_to current_user, notice: '権限がありません' unless current_user.id == @user.id
   end
 
   def only_not_google_user

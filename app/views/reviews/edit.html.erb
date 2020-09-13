@@ -12,7 +12,7 @@
     <div id='star-edit-rating'></div>
     <span class="badge badge-danger">必須</span>
     <%= f.text_field :title , required: true %>
-     <span class="badge badge-danger">必須</span>
+      <span class="badge badge-danger">必須</span>
     <%= f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true %>
     <p class = "text-right"><span id = "textlength">0</span>/385文字</p>
     <div id = "images">
@@ -22,7 +22,7 @@
       <% end %>
     </div>
     <div class = "text-center">
-       <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

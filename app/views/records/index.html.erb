@@ -18,9 +18,9 @@
     <% end %>
   </div>
   <div class = "col-md-3 mt-2 mb-4"> 
-     <% if current_user.records.any? %>
-       <%= link_to "csvダウンロード", user_path(current_user, format: :csv), class: "btn btn-sm btn-primary"%>
-     <% end %>
+    <% if current_user.records.any? %>
+      <%= link_to "csvダウンロード", user_path(current_user, format: :csv), class: "btn btn-sm btn-primary"%>
+    <% end %>
   </div>
   </div>
   <p class = "text-info text-center">ラベルをクリックすると詳細に飛びます</p>

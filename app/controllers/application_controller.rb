@@ -14,9 +14,7 @@ class ApplicationController < ActionController::Base
 
   # frendly following
   def store_location
-    if request.path != new_user_session_path
-      session[:previous_url] = request.path
-    end
+    session[:previous_url] = request.path if request.path != new_user_session_path
   end
 
   def after_sign_in_path_for(_resource)
