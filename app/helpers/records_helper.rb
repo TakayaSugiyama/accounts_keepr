@@ -6,9 +6,10 @@ module RecordsHelper
   end
 
   def form_date(record)
-    if action_name == 'new'
+    case action_name
+    when 'new'
       Date.today
-    elsif action_name == 'edit'
+    when 'edit'
       record.purchase_date
     end
   end
