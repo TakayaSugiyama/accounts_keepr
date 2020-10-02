@@ -10,6 +10,8 @@
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleAlignWith, AutoCorrect, Severity.
 # SupportedStylesAlignWith: start_of_line, def
+AllCops:
+  NewCops: enable
 Layout/DefEndAlignment:
   Exclude:
     - "app/controllers/users/omniauth_callbacks_controller.rb"
