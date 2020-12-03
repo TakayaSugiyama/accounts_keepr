@@ -17,6 +17,25 @@ Layout/DefEndAlignment:
     - "app/controllers/users/omniauth_callbacks_controller.rb"
     - "app/models/user.rb"
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Exclude:
+    - "db/schema.rb"
+
+Style/NumericLiterals:
+  Exclude:
+    - "db/schema.rb"
+
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - "db/schema.rb"
+
+Style/WordArray:
+  Exclude:
+    - "db/schema.rb"
+
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
@@ -38,6 +57,8 @@ Metrics/AbcSize:
 # ExcludedMethods: refine
 Metrics/BlockLength:
   Max: 101
+  Exclude:
+    - "db/schema.rb"
 
 # Offense count: 1
 # Configuration parameters: CountComments, ExcludedMethods.
