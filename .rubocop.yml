@@ -23,6 +23,10 @@ Lint/UselessAssignment:
     - "app/models/user.rb"
     - "spec/systems/records_spec.rb"
 
+Lint/EmptyBlock:
+  Exclude:
+    - "spec/models/favorite_spec.rb"
+
 # Offense count: 3
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:

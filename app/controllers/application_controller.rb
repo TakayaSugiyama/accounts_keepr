@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resource)
-    if !session[:previous_url].nil?
-      session[:previous_url]
-    else
+    if session[:previous_url].nil?
       current_user
+    else
+      session[:previous_url]
     end
   end
 
