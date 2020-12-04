@@ -6,27 +6,27 @@
   position: relative;
   h1{
     padding-top:100px;
-    color: rgba(255,255,255,0.8);
+    color: rgb(255,255,255);
     font-size: 100px;
   }
 }
 
-.bg{
-  position: absolute;
-  width: 100%;
-}
+// .bg{
+//   position: absolute;
+//   width: 100%;
+// }
 
-#top-wrapper::before{
-  /* 透過した黒を重ねる */
-  background-color: rgba(0,0,0,0.3);
-  /* どの範囲に重ねるかを指定 */
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  content: ' ';
-}
+// #top-wrapper::before{
+//   /* 透過した黒を重ねる */
+//   background-color: rgba(0,0,0,0.3);
+//   /* どの範囲に重ねるかを指定 */
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   content: ' ';
+// }
 
 #about-wrapper {
   background: #f6f6f6;
