@@ -1,15 +1,3 @@
-GIT
-  remote: https://github.com/heartcombo/devise.git
-  revision: 8bb358cf80a632d3232c3f548ce7b95fd94b6eb2
-  branch: ca-omniauth-2
-  specs:
-    devise (4.7.3)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -100,6 +88,12 @@ GEM
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     csv (3.1.9)
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.4.4)
     docile (1.3.5)
     dotenv (2.7.6)
@@ -228,10 +222,9 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    omniauth (2.0.0)
+    omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
-      rack-protection
     omniauth-google-oauth2 (0.8.1)
       jwt (>= 2.0)
       oauth2 (~> 1.1)
@@ -256,8 +249,6 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.0)
       rack (>= 1.2.0)
-    rack-protection (2.1.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.4)
@@ -413,7 +404,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2)
   csv
-  devise!
+  devise
   dotenv-rails
   factory_bot_rails
   faker
@@ -431,7 +422,7 @@ DEPENDENCIES
   listen (>= 2.7, < 4.0)
   mini_magick
   momentjs-rails
-  omniauth
+  omniauth (= 1.9.1)
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)
   pry-rails
