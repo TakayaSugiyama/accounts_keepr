@@ -30,7 +30,7 @@ $ docker-compose exec web /bin/bash
 - コンテナを止めたいとき
 
 ```
-$ docker-compose stop
+$ docker-compose down
 ```
 
 ## アプリ名 AccountsKeeper
