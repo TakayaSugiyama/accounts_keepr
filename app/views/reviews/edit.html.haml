@@ -1,0 +1,27 @@
+.offset-md-3.col-md-6.mt-3.mb-4
+  %h1.text-center レビュー編集
+  = bootstrap_form_with(model: @review, local: true)  do |f|
+    #product_data
+      %h2
+        商品名:  #{@review.product.name}
+      %h2
+        価格:   #{@review.product.price}円
+      %h2
+        購入したお店:  #{@review.product.record.store_name}
+    = f.label :rating
+    = f.hidden_field :rating, id: :review_rating
+    %span.badge.badge-danger 必須
+    #star-edit-rating
+    %span.badge.badge-danger 必須
+    = f.text_field :title , required: true
+    %span.badge.badge-danger 必須
+    = f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true
+    %p.text-right
+      %span#textlength> 0
+      \/385文字
+    #images
+      = f.fields_for :images do  |image|
+        %img.preview.none{:alt => "preview image", :src => "", :width => "200px"}/
+        = image.file_field :image, class: "image_field"
+    .text-center
+      = f.submit class: "btn btn-primary"

@@ -1,0 +1,36 @@
+- provide(:title, "新規レビュー投稿 / AccountsKeeper")
+.offset-md-3.col-md-6.mt-3
+  %h1.text-center レビュー投稿
+  = bootstrap_form_with(model: @review, local: true ,url: create_review_path(@product.id))  do |f|
+    #product_data
+      %h2
+        商品名:  #{@product.name}
+      %h2
+        価格:   #{@product.price}円
+      %h2
+        購入したお店:  #{@product.record.store_name}
+    = f.label :rating
+    = f.hidden_field :rating, id: :review_rating
+    = f.hidden_field :product_id , value: @product.id
+    %span.badge.badge-danger 必須
+    #star-rating
+    %span.badge.badge-danger 必須
+    = f.text_field :title , required: true
+    %span.badge.badge-danger 必須
+    = f.text_area :content, rows: 5 , 'onKeyUp': "countLength(value, 'textlength');"  ,requred: true
+    %p.text-right
+      %span#textlength> 0
+      \/385文字
+    #images
+      = f.fields_for :images do  |image|
+        %img.preview.none{:alt => "preview image", :src => "", :width => "200px"}/
+        = image.file_field :image, class: "image_field"
+    .text-center
+      = f.submit class: "btn btn-primary", data: {disable_with: "作成中・・・"}
+:javascript
+  $('#star-rating').raty({
+    path: '/assets/',
+    click: function(score, e) {
+    $("#review_rating").val(score)
+    }
+  });

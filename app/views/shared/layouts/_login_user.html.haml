@@ -1,0 +1,17 @@
+%li
+  = link_to "家計簿を登録する", new_record_path , class: "nav-link"
+%li
+  = link_to "家計簿一覧", records_path, class: "nav-link"
+%li
+  = link_to "Reviews", reviews_path , class: "nav-link"
+%li.dropdown
+  %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    = image_tag current_user.get_user_profile_image
+    = current_user.name
+  .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+    - unless !!current_user.provider
+      = link_to "パスワード変更", edit_user_registration_path, class: "dropdown-item"
+      = link_to "ユーザー情報編集", edit_user_path(current_user), class: "dropdown-item"
+    = link_to "アカウントを削除する", user_path(current_user), data: { confirm: "アカウントを削除しますか?" }, method: :delete, class: "dropdown-item"
+%li
+  = link_to "ログアウト",destroy_user_session_path , method: :delete , class: "nav-link"

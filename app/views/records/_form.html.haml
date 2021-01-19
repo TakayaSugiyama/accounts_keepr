@@ -1,0 +1,35 @@
+.mt-3.container.mb-4
+  %h1.text-center.mb-4 家計簿登録フォーム
+  = bootstrap_form_with(model: @record, local: true,label_errors: true) do |f|
+    .row
+      .col-md-6
+        %u
+          %h3 簡単入力
+        %span.badge.badge-danger 必須
+        = f.date_field :purchase_date, value: form_date(@record)
+        %span.badge.badge-danger 必須
+        = f.text_field :store_name, placeholder: "セブンイレブン" ,required: true
+        %span.badge.badge-danger 必須
+        = f.number_field :purchase_price, placeholder: 1000 ,required: true
+        %span.badge.badge-danger 必須
+        = f.collection_select :label_id,  Label.all, :id, :name, selected: edit_or_new(@record)
+        %hr/
+        %u
+          %h3 買い物メモ
+        #memos
+          = f.fields_for :memos do |memo|
+            = render 'memo_fields', f: memo
+          .links.mb-3
+            = link_to_add_association "メモを追加する",f, :memos , class: "btn btn-success" , id: "add-memo"
+        %hr/
+      .col-md-6
+        %u
+          %h3 商品の記録
+        #products
+          = f.fields_for :products do |product|
+            = render 'product_fields', f: product
+          .links.mb-3
+            = link_to_add_association "商品情報を追加する",f, :products , class: "btn btn-success", id: "add-product"
+        %hr/
+    .mt-4.text-center
+      = f.submit class: "btn btn-lg btn-primary"

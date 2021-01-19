@@ -1,0 +1,60 @@
+- provide(:title, "#{@user.name} / AccountsKeeper" )
+.row.mt-4.container.mr-auto.ml-auto
+  #engel.col-md-4
+    %h3.text-center
+      %u 支出割合
+    - if @user.get_chart.any?
+      = pie_chart  @user.get_chart
+      %p.text-center.mt-3
+        前月使用額は #{number_with_delimiter @user.get_premonth_sum} 円です
+      - if @user.get_comparison
+        %p.text-center
+          前月比は #{@user.get_comparison}%です
+      %p.text-center.mt-3
+        エンゲル係数は #{@user.get_engel}% です
+      .text-info.text-center エンゲル係数とは?
+      = render "users/engel"
+    - else
+      %h4.text-center 記録がありません
+  .col-md-6
+    %h3
+      今月の支出  (#{User.get_first_day} 〜 #{User.get_last_day})
+    = line_chart  @user.get_data
+    %table.table.table-striped
+      %tr
+        %th 今月予定金額
+        %td#estimate_field
+          - if @monthly_money
+            = number_with_delimiter @monthly_money.price
+            円
+          - else
+            設定してください.
+      %tr
+        %th 当月支出
+        %td
+          = number_with_delimiter @user.get_sum
+          円
+    - unless @monthly_money
+      #set_field.col-md-7
+        %h4 今月の使用予定金額を設定する
+        #error_messages.text-center.text-danger
+        = bootstrap_form_with(model: @estimate_amount, url: set_estimate_amount_path(@user), scope: :estimate_amount,data: {confirm: "今月の予定金額は変更できませんが、よろしいですか?"}) do |f|
+          = f.number_field :price, label: "使用予定金額", required: true, id: "set_price_field"
+          = f.hidden_field :month, value: Date.today.month
+          = f.hidden_field :year, value: Date.today.year
+          = f.submit "使用予定金額を設定する"
+  .col-md-2
+    = render "shared/layouts/ad"
+  .out-wrapper.mt-4.mb-4.container.text-center.mr-auto.ml-auto
+    %h3 最近の支出
+    = link_to "一覧を見る",records_path
+  .card.col-md-6.text-center.offset-md-3.mb-4
+    %ul.list-group.list-group-flush
+      - @records.each do |record|
+        %li.list-group-item
+          %span.mr-1= record.purchase_date
+          %span= record.label.name
+          %object
+            = number_with_delimiter  record.purchase_price
+            円
+          = link_to "詳細", record_path(record)

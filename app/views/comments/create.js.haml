@@ -1,0 +1,3 @@
+$('#comment-field').val('');
+$("#comment_lists").html("#{j render "comments/comment", comments: @comments}") ;
+$(".success-flash").html("#{j render "comments/flash"}");
