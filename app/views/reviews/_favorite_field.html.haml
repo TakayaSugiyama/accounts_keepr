@@ -1,0 +1,16 @@
+- if user_signed_in?
+  - if current_user.is_like?(review)
+    = link_to review_favorite_path(review, current_user.get_favorite_id(review)), remote: true, method: :delete do
+      %span.heart.like= icon("fas", "heart")
+    %span= review.favorites.count
+  - else
+    = link_to review_favorites_path(review), remote: true, method: :post do
+      %span.heart.unlike= icon("fas", "heart")
+    %span= review.favorites.count
+- else
+  %p
+    %span#require-login.heart.unlike= icon("fas", "heart")
+    %span= review.favorites.count
+    %span#required.none
+      いいねをするにはログインが必要です。
+      \#{link_to "ログインする", new_user_session_path, class: "btn btn-sm btn-primary"}

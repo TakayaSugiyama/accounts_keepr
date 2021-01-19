@@ -1,0 +1,43 @@
+- provide(:title, "#{@review.product.name}のレビュー / AccountsKeeper")
+.container.mt-3
+  .card
+    .card-header.text-center
+      商品名: #{@review.product.name}
+      %br/
+      価格: #{number_with_delimiter  @review.product.price}円
+      %br/
+      タイトル:  #{@review.title}
+      %div{:id => "star_show_#{@review.id}"}
+    .card-body
+      %p= @review.content
+      %ul.mt-3.text-center.slide.justify-content-center
+        - if @review.images.any?
+          - @review.images.each do |image|
+            %li.review-image
+              = image_tag image.image.url , class: "img-fluid index-image img-thumbnail"
+        - else
+          %li
+            = image_tag "review.jpg" ,class: "img-fluid index-image"
+  .card-footer
+    #like_unlike_field
+      = render "reviews/favorite_field" , review: @review
+    - if current_user
+      - if @review.user == current_user
+        = link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: {confirm: "削除しますか?"}
+        = link_to "編集", edit_review_path(@review), class: "btn btn-success"
+%h3.text-center.mt-4 コメントを作成する
+.offset-md-3.col-md-6
+  - if current_user
+    = bootstrap_form_with(model: @comment, url: review_comments_path(@review), scope: :comment) do |f|
+      #errors.success-flash
+      = f.text_area :content, label: "内容" ,'onKeyUp': "countLength(value, 'textlength2');" , rows: 5, id: "comment-field"
+      %p.text-right
+        %span#textlength2> 0
+        \/200文字
+      .text-center
+        = f.submit "投稿する", class: "btn btn-success"
+  - else
+    %h3.text-center コメントをするにはログインが必要です。
+%h3.text-center.mt-3 コメント一覧
+#comment_lists.contaner
+  = render "comments/comment", comments: @comments

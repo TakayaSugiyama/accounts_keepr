@@ -1,0 +1,13 @@
+%h1 今月の設定金額を超えました。
+%table{:border => "1"}
+  %thead
+    %tr
+      %th 今月の設定金額
+      %th 今月の使用金額
+  %tbody
+    %td
+      = @estimate_amount.price
+      円
+    %td
+      = @sum_price
+      円

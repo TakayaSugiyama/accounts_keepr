@@ -1,0 +1,10 @@
+- comments.each do |comment|
+  .col-md-6.offset-md-3.mt-4.mb-4{:id => "comment_#{comment.id}"}
+    .card
+      %p.text-center= comment.content
+      .card-footer.text-center
+        = comment.user.name
+        さんがコメントしました
+        %span.ml-4= l  comment.created_at
+        - if comment.user == current_user
+          = link_to "削除", review_comment_path(comment.review,comment),remote: true,method: :delete, data: {confirm: "削除しますか?"}

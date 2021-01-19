@@ -1,0 +1,17 @@
+- provide(:title, "レビュー一覧 / AccountsKeeper ")
+.container.mt-4
+  .row
+    - @reviews.each do |review|
+      .col-md-3.mb-3
+        .card
+          - if review.images.any?
+            = image_tag review.images.first.image.thumb.url , class: "img-fluid img-thumbnail minimum"
+          - else
+            = image_tag "review-thumb.jpg" ,class: "img-thumbnail index-image"
+          .card-body.index-card
+            = truncate review.title, length: 10
+          .text-center
+            %div{:id => "star_index_#{review.id}"}
+          .card-footer.text-center
+            = link_to "詳細を見る", review_path(review) , class: "btn btn-success btn-sm"
+  = paginate @reviews

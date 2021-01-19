@@ -1,0 +1,18 @@
+- provide(:title, "Accounts Keeper")
+#top-wrapper
+  %div
+    #top-title.text-center
+      %h1 AccountsKeeper
+      = link_to "新規登録", new_user_registration_path, class: "btn btn-primary"
+      = link_to "ログイン", new_user_session_path, class: "btn btn-success"
+      .mt-4
+        = link_to "Googleで登録/ログインする",user_google_oauth2_omniauth_authorize_path, class: "btn btn-danger"
+        %p.text-white 利用規約、プライバシーポリシーに同意の元ご利用ください
+  #about-wrapper
+    .section-title
+      %h2.text-center Accounts Keeperとは
+      #about-text.text-center.container
+        %p
+          Account Keeperは日頃のお金の流れを把握しやすくする家計簿アプリケーションです。
+          %br/
+          実際に買われた商品のレビューを投稿、閲覧することができます。

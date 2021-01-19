@@ -1,0 +1,18 @@
+.container.text-center.offset-md-3
+  .row
+    .col-md-7
+      %h2.text-center.mt-4 新規登録
+      = bootstrap_form_with(model: @user, local: true, as: resource_name, url: registration_path(resource_name)) do |f|
+        %span.badge.badge-danger 必須
+        = f.text_field :name, required: true , placeholder: "Your Name (5 to 30 characters)"
+        %span.badge.badge-danger 必須
+        = f.email_field :email, required: true, placeholder: "Your Email Address"
+        %span.badge.badge-danger 必須
+        = f.password_field :password , required: true, placeholder: "Password (6 to 20 characters)"
+        = f.check_box :password_check , label: "パスワードを表示する"
+        %span.badge.badge-danger 必須
+        = f.password_field :password_confirmation, required: true, placeholder: "Password Confirmation (6 to 20 characters)"
+        = f.check_box :password_confirmation_check, label: "パスワードを表示する"
+        %p.mt-3.font-weight-bold 利用規約、プライバシーポリシーに同意の元ご利用ください
+        %p= f.primary "登録" ,data: {disable_with: "作成中・・・"}
+        %p= render "devise/shared/links"

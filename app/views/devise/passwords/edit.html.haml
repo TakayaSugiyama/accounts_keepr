@@ -1,0 +1,14 @@
+- provide(:title,"パスワード変更 / AccountsKeeper")
+.container.text-center
+  = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    .col-sm-9.mt-4
+      %h2 パスワードを変更する
+      = f.hidden_field :reset_password_token
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} 文字以上)
+        %br/
+      = f.password_field :password, autofocus: true, autocomplete: "new-password" , requried: true
+      = f.password_field :password_confirmation, autocomplete: "new-password" , required: true
+      = f.submit "送信", class: "btn btn-primary", data: {disable_with: "送信中・・・"}
+      %p= render "devise/shared/links"
