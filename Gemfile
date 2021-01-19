@@ -17,6 +17,7 @@ gem 'fog-aws'
 gem 'font-awesome-sass', '~> 5.11.2'
 gem 'fullcalendar-rails'
 gem 'gon'
+gem 'haml-rails', '~> 2.0'
 gem 'initial_avatar'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -30,7 +31,6 @@ gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
