@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap_form', '~> 4.0'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'chartkick'
 gem 'cocoon'
 gem 'coffee-rails', '~> 4.2'
