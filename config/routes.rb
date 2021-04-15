@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   concern :csv do
-    post "csv", on: :collection
+    post 'csv', on: :collection
   end
   resources :reviews, except: %i[new create] do
     resources :comments, only: %i[create destroy]
