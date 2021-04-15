@@ -10,11 +10,6 @@ class UsersController < ApplicationController
     @monthly_money = EstimateAmount.target_amount @user
     @records = @user.records.includes(:label).order(purchase_date: :desc)[0..2]
     @count = @user.records.count_monthly
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @user.records.generate_csv, filename: "records-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
-    end
   end
 
   def edit; end

@@ -15,6 +15,6 @@
           = link_to "元に戻す", @user
     .col-md-3.mt-2.mb-4
       - if current_user.records.any?
-        = link_to "csvダウンロード", user_path(current_user, format: :csv), class: "btn btn-sm btn-primary"
+        = link_to "csvダウンロード", csv_records_path(format: :csv) , class: "btn btn-sm btn-primary", method: :post
   %p.text-info.text-center ラベルをクリックすると詳細に飛びます
   #calendar.container.mt-3.mb-4

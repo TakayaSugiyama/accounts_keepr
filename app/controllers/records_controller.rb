@@ -44,6 +44,12 @@ class RecordsController < ApplicationController
     gon.records = current_user.records_for_calendar(params[:label_id])
   end
 
+  def csv
+    respond_to do |format|
+      format.csv { send_data current_user.records.generate_csv, filename: "records-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
+    end
+  end
+
   private
 
   def record_params
