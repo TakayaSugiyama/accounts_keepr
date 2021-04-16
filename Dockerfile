@@ -1,4 +1,4 @@
-FROM ruby:2.6.6
+FROM ruby:2.6.7
 RUN apt-get update -y
 RUN apt-get install curl libcurl4 libcurl4-openssl-dev
 RUN apt install -y graphviz
