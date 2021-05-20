@@ -6,7 +6,7 @@
       = link_to "新規登録", new_user_registration_path, class: "btn btn-primary"
       = link_to "ログイン", new_user_session_path, class: "btn btn-success"
       .mt-4
-        = link_to "Googleで登録/ログインする",user_google_oauth2_omniauth_authorize_path, class: "btn btn-danger"
+        = link_to "Googleで登録/ログインする", user_google_oauth2_omniauth_authorize_path, class: "btn btn-danger", method: :post
         %p.text-white 利用規約、プライバシーポリシーに同意の元ご利用ください
   #about-wrapper
     .section-title

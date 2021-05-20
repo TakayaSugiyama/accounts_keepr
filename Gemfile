@@ -24,13 +24,14 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'mini_magick'
 gem 'momentjs-rails'
-gem 'omniauth', '1.9.1'
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
