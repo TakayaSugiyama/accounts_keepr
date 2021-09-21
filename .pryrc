@@ -2,6 +2,7 @@
 
 begin
   require 'hirb'
+  require "./lib/tag"
 rescue LoadError
   # Missing goodies, bummer
 end
