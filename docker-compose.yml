@@ -1,14 +1,13 @@
 version: "3.9"
 services:
   db:
-    image: postgres:11
+    image: mysql:5.7
     volumes:
-      - db-volume:/var/lib/postgres/data
+      - db-volume:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      MYSQL_ROOT_PASSWORD: password
   web:
     build: .
     tty: true

@@ -2,6 +2,7 @@
 
 require 'csv'
 class Record < ApplicationRecord
+  serialize :tags
   include Day
   belongs_to :user
   belongs_to :label

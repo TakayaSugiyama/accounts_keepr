@@ -230,6 +230,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    mysql2 (0.5.3)
     nio4r (2.5.7)
     nokogiri (1.11.4)
       mini_portile2 (~> 2.5.0)
@@ -258,7 +259,6 @@ GEM
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
-    pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -450,10 +450,10 @@ DEPENDENCIES
   listen (>= 2.7, < 4.0)
   mini_magick
   momentjs-rails
+  mysql2
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
-  pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.3)
   rack-mini-profiler

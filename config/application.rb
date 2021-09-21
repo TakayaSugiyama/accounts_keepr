@@ -14,7 +14,7 @@ module AccoutsKeeper
     config.time_zone = 'Asia/Tokyo'
 
     config.i18n.default_locale = :ja
-
+    config.autoload_paths += %W(#{config.root}/lib)
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: true,
