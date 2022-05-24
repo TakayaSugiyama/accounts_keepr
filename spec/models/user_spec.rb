@@ -28,6 +28,7 @@ RSpec.describe User, type: :model do
   describe 'ユーザー情報を変更できる' do
     before do
       @user = FactoryBot.create(:user)
+      @user.skip_confirmation_notification!
     end
 
     it '正常に名前を更新できる' do
@@ -36,6 +37,7 @@ RSpec.describe User, type: :model do
     end
 
     it '正常にメールアドレスを更新できる' do
+      @user.skip_reconfirmation!
       @user.update(email: 'aaaaa@aaaaaa.com')
       expect(@user.email).to eq 'aaaaa@aaaaaa.com'
     end
