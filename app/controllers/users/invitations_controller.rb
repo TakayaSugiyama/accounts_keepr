@@ -1,21 +1,6 @@
-class Users::InvitationsController < Devise::InvitationsController
-  def new
-    super
-  end
+# frozen_string_literal: true
 
-  def create
-    super
-  end
-
-  def edit
-    super
-  end
-
-  def update
-    super
-  end
-
-  def destroy
-    super
+module Users
+  class InvitationsController < Devise::InvitationsController
   end
 end
