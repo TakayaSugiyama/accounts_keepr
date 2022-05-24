@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   include Day
   before_save { email.downcase }
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :invitable, :database_authenticatable, :registerable, :confirmable, :invitable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]
   validates :name, presence: true, length: { in: 5..30 }
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
