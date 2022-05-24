@@ -14,7 +14,7 @@ RSpec.describe 'Users', type: :system do
     it '登録できる' do
       fill_in '名前', with: 'test_user1'
       click_on '登録'
-      expect(page).to have_content 'アカウント登録が完了しました。'
+      expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
     end
 
     it '登録に失敗してエラーがでる' do
