@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddConfirmationToUser < ActiveRecord::Migration[5.2]
   ## Confirmable
   # t.string   :confirmation_token
@@ -10,6 +12,6 @@ class AddConfirmationToUser < ActiveRecord::Migration[5.2]
     add_column :users, :confirmed_at, :datetime
     add_column :users, :confirmation_sent_at, :datetime
     add_column :users, :unconfirmed_email, :string
-    add_index :users, :confirmation_token,   unique: true
+    add_index :users, :confirmation_token, unique: true
   end
 end
