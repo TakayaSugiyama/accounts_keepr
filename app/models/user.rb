@@ -3,9 +3,10 @@
 class User < ApplicationRecord
   include Day
   before_save { email.downcase }
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]
-  validates :name, presence: true, length: { in: 5..30 }
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2],
+                                                                   validate_on_invite: true
+  validates :name, presence: true, length: { in: 1..30 }
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   has_many :estimate_amounts, dependent: :destroy
   has_many :comments, dependent: :destroy

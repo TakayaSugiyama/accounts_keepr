@@ -10,11 +10,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_paramaters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:invite, keys: [:name])
   end
 
   # frendly following
   def store_location
-    if request.path != new_user_session_path && request.path != user_confirmation_path
+    if request.path != new_user_session_path && request.path != user_confirmation_path && request.path != new_user_confirmation_path
       session[:previous_url] = request.path
     end
   end

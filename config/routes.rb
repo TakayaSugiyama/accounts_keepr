@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   resources :records, concerns: :csv
   post '/estimateamounts/:user_id', to: 'estimate_amounts#create', as: 'set_estimate_amount'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations',
+    invitations: 'users/invitations'
+  }
   resources :users, only: %i[show edit update destroy]
   get '/services', to: 'home#service'
   get '/privacys', to: 'home#privacy'
