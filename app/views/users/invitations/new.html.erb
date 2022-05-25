@@ -1,15 +1,15 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
+<div class= "container mt-5">
+  <h2><%= t "devise.invitations.new.header" %></h2>
 
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit t("devise.invitations.new.submit_button") %>
-  </div>
-<% end %>
+  <%= bootstrap_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+    <div class="field">
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions mt-3">
+      <%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

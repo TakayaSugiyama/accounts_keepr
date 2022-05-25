@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   # frendly following
   def store_location
-    if request.path != new_user_session_path && request.path != user_confirmation_path
+    if request.path != new_user_session_path && request.path != user_confirmation_path && request.path != new_user_confirmation_path
       session[:previous_url] = request.path
     end
   end
