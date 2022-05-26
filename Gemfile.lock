@@ -96,6 +96,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.10.2)
+      devise (>= 4.8.0)
     devise_invitable (2.0.6)
       actionmailer (>= 5.0)
       devise (>= 4.6)
@@ -433,6 +435,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   csv
   devise
+  devise-i18n
   devise_invitable
   dotenv-rails
   factory_bot_rails

@@ -13,3 +13,4 @@ ADD Gemfile.lock  Gemfile.lock
 RUN bundle install
 RUN yarn install
 ADD . .
+CMD ["rails", "server", "-b", "0.0.0.0"]
