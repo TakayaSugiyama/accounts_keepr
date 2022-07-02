@@ -25,6 +25,13 @@ jobs:
         run: sudo cp spec/support/capybara-ci.rb.example spec/support/capybara.rb
       - name: run spec
         run: bundle exec rspec
+      - name: Slack Notification
+        uses: lazy-actions/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'RSpec'
+          url: ${{ secrets.SLACK_WEBHOOK }}
   rubocop:
     runs-on: ubuntu-latest
     container:
@@ -35,3 +42,10 @@ jobs:
         run: bundle install
       - name: run rubocop
         run: bundle exec rubocop
+      - name: Slack Notification
+        uses: lazy-actions/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'RSpec'
+          url: ${{ secrets.SLACK_WEBHOOK }}
