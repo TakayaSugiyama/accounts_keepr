@@ -47,5 +47,5 @@ jobs:
         if: always()
         with:
           type: ${{ job.status }}
-          job_name: 'RSpec'
+          job_name: 'Rubocop'
           url: ${{ secrets.SLACK_WEBHOOK }}
