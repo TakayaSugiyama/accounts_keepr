@@ -4,5 +4,5 @@
     %h2 パスワードをお忘れですか?
     = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
       = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your Email Address"
-      = f.submit "送信", class: "btn btn-primary" data: {disable_with: "送信中・・・"}
+      = f.submit "送信", class: "btn btn-primary", data: {disable_with: "送信中・・・"}
       %p= render "devise/shared/links"
