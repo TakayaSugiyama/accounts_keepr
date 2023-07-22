@@ -43,9 +43,9 @@ jobs:
         with:
           script: |
             const { ISSUE_NUMBER } = process.env
-            github.rest.issues.removeLabels({
+            github.rest.issues.removeLabel({
               issue_number: ISSUE_NUMBER,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ['task']
+              name: 'task'
             })
