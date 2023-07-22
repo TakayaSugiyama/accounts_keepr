@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Set issue number
         run: |
-          issue_number=${${{github.ref}} | grep -o "[0-9]\."}
-          echo issue_number
+          issue_number=$(echo ${{github.head_ref}} | grep -o "[0-9]\+")
+          echo "${issue_number}"
           echo "ISSUE_NUMBER=${issue_number}" >> $GITHUB_ENV
       - name: Add label
         uses: actions/github-script@v6
@@ -19,7 +19,7 @@ jobs:
           script: |
             const { ISSUE_NUMBER } = process.env
             github.rest.issues.addLabels({
-              issue_number: ,
+              issue_number: ISSUE_NUMBER,
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: ['task']
