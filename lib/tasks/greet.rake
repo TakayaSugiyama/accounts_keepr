@@ -5,4 +5,9 @@ namespace :greet do
   task task_test: :environment do
     puts 'hello'
   end
+
+  desc 'おはよう'
+  task morning: :environment do
+    puts 'おはよう'
+  end
 end
