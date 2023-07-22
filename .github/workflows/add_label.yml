@@ -1,6 +1,8 @@
 name: Add Label
 on:
   pull_request:
+    path:
+      - "lib/tasks/**"
 
 jobs:
   apply-label:
