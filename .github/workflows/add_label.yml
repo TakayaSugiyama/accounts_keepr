@@ -17,16 +17,16 @@ jobs:
           echo "ISSUE_NUMBER=${issue_number}" >> $GITHUB_ENV
       - name: Get chnaged files
         uses: tj-actions/changed-files@v37
-        id: changed-files-yaml
+        id: changed-files
         with:
           files_yaml: |
             task:
               - lib/tasks/**
       - name: Output changed fields
-        run: echo "${{steps.changed-files.outputs.all_changed_files}}"
+        run: echo "${{steps.changed-files.outputs.task_changed_files}}"
       - name: Add label
         uses: actions/github-script@v6
-        if: steps.changed-files-yaml.outputs.task_any_changed == 'true'
+        if: steps.changed-files.outputs.task_any_changed == 'true'
         env:
           ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
         with:
