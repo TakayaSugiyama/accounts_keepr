@@ -1,20 +1,30 @@
 name: Add Label
 on:
   pull_request:
-    path:
-      - "lib/tasks/**"
 
 jobs:
   apply-label:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set issue number
         run: |
           issue_number=$(echo ${{github.head_ref}} | grep -o "[0-9]\+")
           echo "${issue_number}"
           echo "ISSUE_NUMBER=${issue_number}" >> $GITHUB_ENV
+      - name: Get chnaged files
+        uses: tj-actions/changed-files@v37
+        id: changed-files-yaml
+        with:
+          files_yaml: |
+            task:
+              - lib/tasks/**
       - name: Add label
         uses: actions/github-script@v6
+        if: steps.changed-files-yaml.outputs.task_any_changed == 'true'
         env:
           ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
         with:
