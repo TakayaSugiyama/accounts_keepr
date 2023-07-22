@@ -1,6 +1,5 @@
 on:
   pull_request:
-    types: [opened, edited]
 
 jobs:
   apply-label:
@@ -9,13 +8,13 @@ jobs:
       - name: Set issue number
         run: |
           issue_number=${${{github.ref}} | grep -o "[0-9]\."}
-          echo issue_number
+          echo "ISSUENUMBER=${issue_number}" >> $GITHUB_ENV
       - name: Add label
         uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.addLabels({
-              issue_number: issue_number,
+              issue_number: ${{ env.ISSUENUMBER }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: ['task']
