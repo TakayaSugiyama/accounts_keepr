@@ -8,8 +8,11 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g yarn
 WORKDIR /app
+RUN gem update --system \
+    && gem install bundler -v 2.4.17
 ADD Gemfile  Gemfile
 ADD Gemfile.lock  Gemfile.lock
+RUN bundle config set --global force_ruby_platform true
 RUN bundle install
 RUN yarn install
 ADD . .
